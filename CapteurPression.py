@@ -26,13 +26,6 @@ RST = None     # on the PiOLED this pin isnt used
 #SPI_PORT = 0
 #SPI_DEVICE = 0
 
-# Beaglebone Black pin configuration:
-# RST = 'P9_12'
-# Note the following are only used with SPI:
-# DC = 'P9_15'
-# SPI_PORT = 1
-# SPI_DEVICE = 0
-
 # 128x32 display with hardware I2C:
 disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
 
@@ -70,8 +63,6 @@ font = ImageFont.load_default()
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
 # font = ImageFont.truetype('Minecraftia.ttf', 8)
 
-
-
 def cleanAndExit():
 	print ("Cleaning...")
 	draw.rectangle((0,0,width,height), outline=0, fill=0)
@@ -84,13 +75,14 @@ hx = HX711(21,20)
 hx.set_reading_format("LSB","MSB")
 #calibrate to generate the reference unit value
 hx.set_reference_unit(250)
+#mis en commentaire car peu utile
 #hx.reset()
 hx.tare()
+#pour l instant sauvegarde prévue sur le serveur
 #dataFile = open('loadData.csv', 'w')
 while True:
-	# Draw a black filled box to clear the image.
+    # Draw a black filled box to clear the image.
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-
 
     # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
     cmd = "hostname -I | cut -d\' \' -f1"
@@ -101,12 +93,7 @@ while True:
 ##    MemUsage = subprocess.check_output(cmd, shell = True )
 ##    cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
 ##    Disk = subprocess.check_output(cmd, shell = True )
-    
-    # Write two lines of text.
-
-
    
-
     try:
 		val = hx.get_weight(5)
 		print (val, " g")
