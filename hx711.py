@@ -15,8 +15,8 @@ class HX711:
         self.REFERENCE_UNIT = 250# The value returned by the hx711 that corresponds to your reference unit AFTER dividing by the SCALE.
         
         self.OFFSET = 1
-        self.lastVal = long(0)
-        #self.lastVal = 0
+        #self.lastVal = long(0)
+        self.lastVal = 0
 
         self.LSByte = [2, -1, -1]
         self.MSByte = [0, 3, 1]
@@ -110,14 +110,14 @@ class HX711:
     def read_long(self):
         np_arr8 = self.read_np_arr8()
         np_arr32 = np_arr8.view('uint32')
-        self.lastVal = np_arr32
+        self.lastVal = int(np_arr32)
 
-        #return self.lastVal
-        return long(self.lastVal)
+        return self.lastVal
+        #return long(self.lastVal)
 
     def read_average(self, times=3):
-        #values = 0
-        values = long(0)
+        values = 0
+        #values = long(0)
         for i in range(times):
             values += self.read_long()
 
@@ -128,7 +128,7 @@ class HX711:
 
     def get_weight(self, times=3):
         value = self.get_value(times)
-        value = value / self.REFERENCE_UNIT
+        value = int(value / self.REFERENCE_UNIT)
         return value
 
     def tare(self, times=15):

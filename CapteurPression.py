@@ -87,14 +87,15 @@ hx.set_reference_unit(250)
 #hx.reset()
 hx.tare()
 #dataFile = open('loadData.csv', 'w')
+
 while True:
 	# Draw a black filled box to clear the image.
-    draw.rectangle((0,0,width,height), outline=0, fill=0)
+   draw.rectangle((0,0,width,height), outline=0, fill=0)
 
 
     # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
-    cmd = "hostname -I | cut -d\' \' -f1"
-    IP = subprocess.check_output(cmd, shell = True )
+   cmd = "hostname -I | cut -d\' \' -f1"
+   IP = subprocess.check_output(cmd, shell = True )
 ##    cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
 ##    CPU = subprocess.check_output(cmd, shell = True )
 ##    cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
@@ -102,23 +103,16 @@ while True:
 ##    cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
 ##    Disk = subprocess.check_output(cmd, shell = True )
     
-    # Write two lines of text.
-
-
-   
-
-    try:
-		val = hx.get_weight(5)
-		print (val, " g")
-		draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
-                draw.text((x, top+8),     "Pression: "+str(val/1000)+" bars", font=font, fill=255)
-                draw.text((x, top+16),    "Masse: "+str(val)+" g",  font=font, fill=255)
-  
-                disp.image(image)
-                disp.display()
-	
-		hx.power_down()
-		time.sleep(1)
-		hx.power_up()
-    except (KeyboardInterrupt, SystemExit):
-		cleanAndExit()
+   try:
+       val = hx.get_weight(5)
+       print (val, " g")
+       draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
+       draw.text((x, top+8),     "Pression: "+str(val/1000)+" bars", font=font, fill=255)
+       draw.text((x, top+16),    "Masse: "+str(val)+" g",  font=font, fill=255)
+       disp.image(image)
+       disp.display()
+       hx.power_down()
+       time.sleep(1)
+       hx.power_up()
+   except (KeyboardInterrupt, SystemExit):
+       cleanAndExit()
