@@ -74,7 +74,7 @@ hx = HX711(21,20)
 #hx.set_reading_format("MSB","LSB")
 hx.set_reading_format("LSB","MSB")
 #calibrate to generate the reference unit value
-hx.set_reference_unit(250)
+hx.set_reference_unit(1)
 #mis en commentaire car peu utile
 #hx.reset()
 hx.tare()
