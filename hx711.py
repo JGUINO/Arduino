@@ -77,7 +77,7 @@ class HX711:
 		
 	############################################################
 	# zero is function which sets the current data as 	   #
-	# an offset for particulart channel. It can be used for    #
+	# an offset for particular channel. It can be used for    #
 	# subtracting the weight of the packaging. 		   #
 	# max value of times parameter is 99. min 1. Default 10.   #
 	# INPUTS: times # how many times do reading and then mean  #
@@ -193,7 +193,7 @@ class HX711:
 		elif flag == True:
 			self._pstdev_filter = True
 			if self._debug_mode:
-				print('Population standatd deviation filter ENABLED')
+				print('Population standard deviation filter ENABLED')
 			return True
 		else:
 			raise ValueError('In function "set_pstdev_filter" parameter "flag" can be only BOOL value.\n'
@@ -354,7 +354,7 @@ class HX711:
 	# OUTPUTS: INT | BOOL					   #
 	############################################################
 	def get_raw_data_mean(self, times=1):
-		backup_channel = self._current_channel 		# do backup of current channel befor reading for later use
+		backup_channel = self._current_channel 		# do backup of current channel before reading for later use
 		backup_gain = self._gain_channel_A		# backup of gain channel A
 		if times > 0 and times < 100:		# check if times is in required range 
 			data_list = []			# create empty list
