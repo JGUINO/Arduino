@@ -113,7 +113,7 @@ try:
 	
 	# measure tare and save the value as offset for current channel
 	# and gain selected. That means channel A and gain 128
-	result = hx.zero(times=30)
+	result = hx.zero(times=60)
 	
 	# Read data several, or only one, time and return mean value.
 	# It subtracts offset value for particular channel from the mean value.
