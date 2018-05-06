@@ -18,6 +18,21 @@ from PIL import ImageFont
 
 import subprocess
 
+class alarmePression:
+    def __init__(self, IOout=24,PressionMax=2.8):
+        self.IOout=IOout
+        self.PressionMax=PressionMax
+        GPIO.setup(self.IOout,GPIO.OUT)
+
+    def alarmeSonne(self, Pression=0):
+        if Pression > self.PressionMax:
+            GPIO.output(self.IOout, True)
+        else:
+            GPIO.output(self.IOout, False)
+
+
+
+
 class affichageOLED:
     def __init__(self):
     
@@ -106,7 +121,7 @@ try:
 		print('Capteur pret')
 	else:
 		print('pas pret')
-	
+	al=alarmePression(24,1.8)
 	#hx.set_gain_A(gain=64)		# You can change the gain for channel A  at any time.
 	#hx.select_channel(channel='A')	# Select desired channel. Either 'A' or 'B' at any time.
 	
@@ -175,6 +190,7 @@ try:
 	    valeurJGUI = hx.get_weight_mean(30)
 	    print(str(int(valeurJGUI)) + ' g') 
 	    d.affVal(valeurJGUI)
+        al.alarmeSonne(valeurJGUI/1000)
 	    time.sleep(30)
 	# if you need the data fast without doing average or filtering them.
 	# do some kind of loop and do not pass any argument. Default 'times' is 1
