@@ -52,7 +52,7 @@ class affichageOLED:
         self.top = padding
         self.bottom = self.height-padding
 # Move left to right keeping track of the current x position for drawing shapes.
-        self.x = 0
+        self.x = 2
 
 # Load default font.
         self.fontstandard = ImageFont.load_default()
@@ -74,9 +74,9 @@ class affichageOLED:
     def affVal(self, val=0):
        self.affNettoie()
        self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-       self.draw.text((self.x, self.top+8),     "P°: "+str(int(val/100)/10)+" bars", font=self.font, fill=255)
+       self.draw.text((self.x, self.top+8),     "P.: "+str(int(val/100)/10)+" bars", font=self.font, fill=255)
        self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
-       self.draw.text((self.x, self.top+48),    "CMC (c) 2018",  font=self.font, fill=255)
+       self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.font, fill=255)
        self.disp.image(self.image)
        self.disp.display()
        return True

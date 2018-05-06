@@ -91,6 +91,7 @@ class HX711:
 				if (self._current_channel == 'A' and 
 					self._gain_channel_A == 128):
 					self._offset_A_128 = result
+                    print('Offset A 128'+str(result)+'\n')
 					return True
 				elif (self._current_channel == 'A' and 
 					self._gain_channel_A == 64):
