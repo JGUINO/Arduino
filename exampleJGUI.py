@@ -31,7 +31,7 @@ def on_publish(client, obj , mid):
         print("Publication reussie")
 
 client.reinitialise()
-client.user_data_set()
+#client.user_data_set()
 client.on_connect = on_connect
 client.on_message = on_message
 client.on_publish = on_publish
