@@ -20,8 +20,9 @@ from PIL import ImageFont
 import subprocess
 
 class publication:
+    client=mqtt.Client()
+
     def __init__(self):
-        client=mqtt.Client()
         self=client
 #        demarragepublication(self)
 # callbacks obligatoires
@@ -33,16 +34,16 @@ class publication:
         print("Publication reussie")
 
     def demarragepublication(self):
-        self.reinitialise()
-        self.user_data_set(self)
-        self.on_connect = on_connect
-        self.on_message = on_message
-        self.on_publish = on_publish
+        client.reinitialise()
+        client.user_data_set(self)
+        client.on_connect = on_connect
+        client.on_message = on_message
+        client.on_publish = on_publish
         print("avant connection")
-        self.connect("192.168.0.31", 1883, 60)
+        client.connect("192.168.0.31", 1883, 60)
         print("apres connection")
-        self.loop_start()
-        self.publish("capteurs/pression", "Demarrage capteur", qos=0, retain=False)
+        client.loop_start()
+        client.publish("capteurs/pression", "Demarrage capteur", qos=0, retain=False)
 
 # fonctions de publication
     def publier(client, message):
