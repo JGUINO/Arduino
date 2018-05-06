@@ -73,7 +73,7 @@ class affichageOLED:
 
     def affVal(self, val=0):
        self.affNettoie()
-       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.font, fill=255)
+       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
        self.draw.text((self.x, self.top+8),     "Pression: "+str(int(val/100)/10)+" bars", font=self.font, fill=255)
        self.draw.text((self.x, self.top+16),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
        self.draw.text((self.x, self.top+24),    "CMC (c) 2018",  font=self.font, fill=255)
@@ -206,12 +206,11 @@ try:
 	#hx.power_up()			# turns on the hx711.
 	#hx.reset()			# resets the hx711 and get it ready for 
 					# reading of the currently selected channel
-	for i in range(2):
+##	for i in range(2):
 		# without argument default is 1
-		print ('-> Weight channel A gain 128: ' + str(hx.get_weight_mean(30)) + ' g')
-		print ('-> Raw data channel A gain 128: ' + str(hx.get_raw_data_mean(30)))
-		print('--------------------------------------------')
-		
+##		print ('-> Weight channel A gain 128: ' + str(hx.get_weight_mean(30)) + ' g')##
+##		print ('-> Raw data channel A gain 128: ' + str(hx.get_raw_data_mean(30)))
+##		print('--------------------------------------------')
 		#result = hx.set_gain_A(128)
 		#if result:
 			# without argument default is 1
@@ -220,7 +219,6 @@ try:
 		#	print('--------------------------------------------')
 		#else:
 		#	print('cannot set gain 128')
-		
 		# uniquement pour B non connecte
 		#result = hx.select_channel('B')
 		#if result:
@@ -230,20 +228,17 @@ try:
 		#	print ('-> Raw data channel B gain 32: ' + str(hx.get_raw_data_mean()))
 		#else:
 		#	print('cannot select channel B')
-		
 		# you can also get the last raw data read for each channel and gain without reading it again
 		# without an argument it return raw data for currently set channel and gain, so channel B
 		#last_value = hx.get_last_raw_data()
 		#print('I remember last raw data for channel B: ' + str(last_value))	
 		#last_value = hx.get_last_raw_data(channel='A', gain_A=64)
 		#print('I remember last raw data for channel A gain 64: ' + str(last_value))	
-		last_value = hx.get_last_raw_data(channel='A', gain_A=128)
-		print('I remember last raw data for channel A gain 128: ' + str(last_value) + '\n')
+##		last_value = hx.get_last_raw_data(channel='A', gain_A=128)
+##		print('I remember last raw data for channel A gain 128: ' + str(last_value) + '\n')
 		# now I turn OFF Population standard deviation filter
-		if hx.set_pstdev_filter(False):
-			print('Population standard deviation filter is turned OFF.' + '\n')
-		
-	
+##		if hx.set_pstdev_filter(False):
+##			print('Population standard deviation filter is turned OFF.' + '\n')	
 except (KeyboardInterrupt, SystemExit):
 	print('Bye :)')
 	
