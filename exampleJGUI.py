@@ -74,9 +74,9 @@ class affichageOLED:
     def affVal(self, val=0):
        self.affNettoie()
        self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-       self.draw.text((self.x, self.top+8),     "Pression: "+str(int(val/100)/10)+" bars", font=self.font, fill=255)
-       self.draw.text((self.x, self.top+16),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
-       self.draw.text((self.x, self.top+24),    "CMC (c) 2018",  font=self.font, fill=255)
+       self.draw.text((self.x, self.top+8),     "P°: "+str(int(val/100)/10)+" bars", font=self.font, fill=255)
+       self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
+       self.draw.text((self.x, self.top+48),    "CMC (c) 2018",  font=self.font, fill=255)
        self.disp.image(self.image)
        self.disp.display()
        return True
@@ -148,7 +148,7 @@ try:
 ##		# you must have known weight first. Required argument is only
 ##		# scale ratio. Without arguments 'channel' and 'gain_A' it sets 
 ##		# the ratio for current channel and gain.
-		ratio = data / value 	# calculate the ratio for channel A and gain 64
+		ratio = data / value 	# calculate the ratio for channel A and gain 128
 		hx.set_scale_ratio(scale_ratio=ratio)	# set ratio for current channel
 		print('Ratio is set to :' + str(int(ratio)))
 	else:
