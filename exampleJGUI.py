@@ -22,7 +22,9 @@ class alarmePression:
     def __init__(self, IOout=24,PressionMax=1.8):
         self.IOout=IOout
         self.PressionMax=PressionMax
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.IOout,GPIO.OUT)
+        GPIO.output(self.IOout, False)
 
     def alarmeSonne(self, Pression=0):
         if Pression > self.PressionMax:
