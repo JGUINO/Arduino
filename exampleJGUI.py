@@ -21,17 +21,18 @@ import subprocess
 
 class publication:
     def __init__(self):
-        self.client=mqtt.Client()
+        client=mqtt.Client()
+        self=client
 # callbacks obligatoires
-    def on_connect(self.client, userdata, flags, rc):
+    def on_connect(client, userdata, flags, rc):
         print("Connected with result code "+str(rc))
-    def on_message(self.client, userdata, msg):
+    def on_message(client, userdata, msg):
         print("Message recu")
-    def on_publish(self.client, obj , mid):
+    def on_publish(client, obj , mid):
         print("Publication reussie")
 # fonctions de publication
-    def publier(self.client, message):
-        self.client.publish("capteurs/pression/"+message,"Demarrage encodeur", qos=0, retain=False)
+    def publier(client, message):
+        client.publish("capteurs/pression/"+message,"Demarrage encodeur", qos=0, retain=False)
 
 
 class alarmePression:
