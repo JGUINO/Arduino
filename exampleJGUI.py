@@ -72,9 +72,9 @@ class affichageOLED:
     def affLancement(self, hx):
         self.affNettoie()
         self.draw.text((self.x, self.top),"IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-        self.draw.text((self.x, self.top+8),"Tarage en cours...", font=self.font, fill=255)
-        self.draw.text((self.x, self.top+24),"Offset:"+str(int(hx.get_current_offset())), font=self.font, fill=255)
-        self.draw.text((self.x, self.top+32),"Ratio:"+str(int(hx.get_current_scale_ratio())), font=self.font, fill=255)
+        self.draw.text((self.x, self.top+8),"Tarage...", font=self.font, fill=255)
+        self.draw.text((self.x, self.top+22),"Offset:"+str(int(hx.get_current_offset())), font=self.font, fill=255)
+        self.draw.text((self.x, self.top+34),"Ratio:"+str(int(hx.get_current_scale_ratio())), font=self.font, fill=255)
         self.draw.text((self.x, self.top+46),"CMC(c) 2018",  font=self.font, fill=255)
         self.disp.image(self.image)
         self.disp.display()
@@ -83,7 +83,7 @@ class affichageOLED:
     def affVal(self, val=0):
        self.affNettoie()
 ##       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-       self.draw.text((self.x, self.top+8),     "P.: "+str(int(val/100)/10)+" bars", font=self.font, fill=255)
+       self.draw.text((self.x, self.top),     "P.: "+str(int(val/100)/10)+" bars", font=self.font, fill=255)
        self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
        self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.font, fill=255)
        self.disp.image(self.image)
