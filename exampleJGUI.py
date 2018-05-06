@@ -130,7 +130,7 @@ class affichageOLED:
 
 try:
 	d=affichageOLED()
-    p=publication()
+	p=publication()
 	# Create an object hx which represents your real hx711 chip
 	# Required input parameters are only 'dout_pin' and 'pd_sck_pin'
 	# If you do not pass any argument 'gain_channel_A' then the default value is 128
