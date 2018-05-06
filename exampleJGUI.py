@@ -32,7 +32,7 @@ class alarmePression:
             print("Alarme activee: "+str(Pression))
         else:
             GPIO.output(self.IOout, False)
-            print("Alarme annulee"+str(Pression))
+            print("Alarme annulee: "+str(Pression))
 
 
 
@@ -79,7 +79,7 @@ class affichageOLED:
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
         self.font = ImageFont.truetype('Starjedi.ttf', 16)
-        cmd = "hostname -I | cut -d\' \' -f1"
+        cmd = "hostname -I"# | cut -d\' \' -f1"
         self.IP = subprocess.check_output(cmd, shell = True )
     
     def affNettoie(self):
@@ -190,7 +190,7 @@ try:
 	# subtracted by offset and converted by scale ratio to 
 	# desired units. In my case in grams.
 	while True :
-	    print('Current weight on the scale in grams is: ')
+	    print('Masse actuelle en grammes: ')
 	    valeurJGUI = hx.get_weight_mean(30)
 	    print(str(int(valeurJGUI)) + ' g') 
 	    d.affVal(valeurJGUI)
