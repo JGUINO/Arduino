@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from hx711 import HX711		# import the class HX711
 import RPi.GPIO as GPIO		# import GPIO
+import paho.mqtt.client as mqtt
 
 import time
 import sys
@@ -17,6 +18,21 @@ from PIL import ImageDraw
 from PIL import ImageFont
 
 import subprocess
+
+class publication:
+    def __init__(self):
+        self.client=mqtt.Client()
+# callbacks obligatoires
+    def on_connect(self.client, userdata, flags, rc):
+        print("Connected with result code "+str(rc))
+    def on_message(self.client, userdata, msg):
+        print("Message recu")
+    def on_publish(self.client, obj , mid):
+        print("Publication reussie")
+# fonctions de publication
+    def publier(self.client, message):
+        self.client.publish("capteurs/pression/"+message,"Demarrage encodeur", qos=0, retain=False)
+
 
 class alarmePression:
     def __init__(self, IOout=24,PressionMax=1.8):
@@ -113,6 +129,7 @@ class affichageOLED:
 
 try:
 	d=affichageOLED()
+    p=publication()
 	# Create an object hx which represents your real hx711 chip
 	# Required input parameters are only 'dout_pin' and 'pd_sck_pin'
 	# If you do not pass any argument 'gain_channel_A' then the default value is 128
@@ -123,6 +140,7 @@ try:
 	result = hx.reset()		# Before we start, reset the hx711 ( not necessary)
 	if result:			# you can check if the reset was successful
 		print('Capteur pret')
+        p.publier("Capteur pret")
 	else:
 		print('pas pret')
 	al=alarmePression(24,1.8)
