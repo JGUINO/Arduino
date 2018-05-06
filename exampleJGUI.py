@@ -69,14 +69,14 @@ class affichageOLED:
        self.disp.display()
        return True   
 
-    def affLancement(self, hx):
-       self.affNettoie()
-       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-       self.draw.text((self.x, self.top+8),     "Tarage en cours...", font=self.font, fill=255)
-       self.draw.text((self.x, self.top+24),    "Offset: "+str(int(hx.get_current_offset(hx)),  font=self.font, fill=255)
-       self.draw.text((self.x, self.top+24),    "Ratio: "+str(int(hx.get_current_scale_ratio(hx)),  font=self.font, fill=255)
-       self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.font, fill=255)
-       self.disp.image(self.image)
+	def affLancement(self, hx):
+		self.affNettoie()
+		self.draw.text((self.x, self.top),"IP: " + str(self.IP),  font=self.fontstandard, fill=255)
+		self.draw.text((self.x, self.top+8),"Tarage en cours...", font=self.font, fill=255)
+		self.draw.text((self.x, self.top+24),"Offset: "+str(int(hx.get_current_offset()), font=self.font, fill=255)
+		self.draw.text((self.x, self.top+32),"Ratio: "+str(int(hx.get_current_scale_ratio()), font=self.font, fill=255)
+		self.draw.text((self.x, self.top+46),"CMC(c) 2018",  font=self.font, fill=255)
+		self.disp.image(self.image)
        self.disp.display()
        return True
 
