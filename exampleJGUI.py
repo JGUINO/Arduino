@@ -19,7 +19,7 @@ from PIL import ImageFont
 import subprocess
 
 class alarmePression:
-    def __init__(self, IOout=24,PressionMax=2.8):
+    def __init__(self, IOout=24,PressionMax=1.8):
         self.IOout=IOout
         self.PressionMax=PressionMax
         GPIO.setup(self.IOout,GPIO.OUT)
@@ -27,8 +27,10 @@ class alarmePression:
     def alarmeSonne(self, Pression=0):
         if Pression > self.PressionMax:
             GPIO.output(self.IOout, True)
+            print("Alarme activee: "+str(Pression))
         else:
             GPIO.output(self.IOout, False)
+            print("Alarme annulee"+str(Pression))
 
 
 
