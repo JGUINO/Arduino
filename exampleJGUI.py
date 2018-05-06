@@ -32,17 +32,17 @@ class publication:
     def on_publish(client, obj , mid):
         print("Publication reussie")
 
-    def demarragepublication(client):
-        client.reinitialise()
-        client.user_data_set(client)
-        client.on_connect = on_connect
-        client.on_message = on_message
-        client.on_publish = on_publish
+    def demarragepublication(self):
+        self.reinitialise()
+        self.user_data_set(self)
+        self.on_connect = on_connect
+        self.on_message = on_message
+        self.on_publish = on_publish
         print("avant connection")
-        client.connect("192.168.0.31", 1883, 60)
+        self.connect("192.168.0.31", 1883, 60)
         print("apres connection")
-        client.loop_start()
-        client.publish("capteurs/pression", "Demarrage capteur", qos=0, retain=False)
+        self.loop_start()
+        self.publish("capteurs/pression", "Demarrage capteur", qos=0, retain=False)
 
 # fonctions de publication
     def publier(client, message):
