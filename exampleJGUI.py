@@ -19,35 +19,31 @@ from PIL import ImageFont
 
 import subprocess
 
-class publication:
-    client=mqtt.Client()
 
-    def __init__(self):
-        self=client
-#        demarragepublication(self)
+client=mqtt.Client()
+
 # callbacks obligatoires
-    def on_connect(client, userdata, flags, rc):
+def on_connect(client, userdata, flags, rc):
         print("Connected with result code "+str(rc))
-    def on_message(client, userdata, msg):
+def on_message(client, userdata, msg):
         print("Message recu")
-    def on_publish(client, obj , mid):
+def on_publish(client, obj , mid):
         print("Publication reussie")
 
-    def demarragepublication(self):
-        client.reinitialise()
-        client.user_data_set(self)
-        client.on_connect = on_connect
-        client.on_message = on_message
-        client.on_publish = on_publish
-        print("avant connection")
-        client.connect("192.168.0.31", 1883, 60)
-        print("apres connection")
-        client.loop_start()
-        client.publish("capteurs/pression", "Demarrage capteur", qos=0, retain=False)
+client.reinitialise()
+client.user_data_set(self)
+client.on_connect = on_connect
+client.on_message = on_message
+client.on_publish = on_publish
+print("avant connection")
+client.connect("192.168.0.31", 1883, 60)
+print("apres connection")
+client.loop_start()
+client.publish("capteurs/pression", "Demarrage capteur", qos=0, retain=False)
 
 # fonctions de publication
-    def publier(client, message):
-        client.publish("capteurs/pression/"+message,"Demarrage encodeur", qos=0, retain=False)
+def publier(client, message):
+        client.publish("capteurs/pression/"+message,"Demarrage", qos=0, retain=False)
 
 
 class alarmePression:
@@ -145,8 +141,6 @@ class affichageOLED:
 
 try:
 	d=affichageOLED()
-	p=publication()
-	p.demarragepublication()
 	# Create an object hx which represents your real hx711 chip
 	# Required input parameters are only 'dout_pin' and 'pd_sck_pin'
 	# If you do not pass any argument 'gain_channel_A' then the default value is 128
@@ -157,7 +151,7 @@ try:
 	result = hx.reset()		# Before we start, reset the hx711 ( not necessary)
 	if result:			# you can check if the reset was successful
 		print('Capteur pret')
-		p.publier("Capteur pret")
+		publier(client,"Capteur pret")
 	else:
 		print('pas pret')
 	al=alarmePression(24,1.8)
