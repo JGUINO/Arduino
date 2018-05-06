@@ -69,11 +69,20 @@ class affichageOLED:
        self.disp.display()
        return True   
 
-        
+    def affLancement(self, hx):
+       self.affNettoie()
+       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
+       self.draw.text((self.x, self.top+8),     "Tarage en cours...", font=self.font, fill=255)
+       self.draw.text((self.x, self.top+24),    "Offset: "+str(int(hx.get_current_offset()),  font=self.font, fill=255)
+       self.draw.text((self.x, self.top+24),    "Ratio: "+str(int(hx.get_current_scale_ratio()),  font=self.font, fill=255)
+       self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.font, fill=255)
+       self.disp.image(self.image)
+       self.disp.display()
+       return True
 
     def affVal(self, val=0):
        self.affNettoie()
-       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
+##       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
        self.draw.text((self.x, self.top+8),     "P.: "+str(int(val/100)/10)+" bars", font=self.font, fill=255)
        self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
        self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.font, fill=255)
@@ -113,8 +122,9 @@ try:
 	
 	# measure tare and save the value as offset for current channel
 	# and gain selected. That means channel A and gain 128
+	d.affLancement(hx)
 	result = hx.zero(times=30)
-	
+	d.affLancement(hx)
 	# Read data several, or only one, time and return mean value.
 	# It subtracts offset value for particular channel from the mean value.
 	# This value is still just a number from HX711 without any conversion
@@ -123,10 +133,10 @@ try:
 	
 	if data  != False:	# always check if you get correct value or only False
 		# now the value is close to 0
-		print('Data subtracted by offset but still not converted to any unit: '\
-		 + str(data))
+		print('Donnee moyenne moins Offset mais pas encore convertie en une unite: '\
+		 + str(int(data)))
 	else:
-		print('invalid data')
+		print('Donnee invalide')
 ##
 ##	# In order to calculate the conversion ratio to some units, in my case I want grams,
 ##	# you must have known weight.
@@ -151,10 +161,12 @@ try:
 		ratio = data / value 	# calculate the ratio for channel A and gain 128
 		hx.set_scale_ratio(scale_ratio=ratio)	# set ratio for current channel
 		print('Ratio is set to :' + str(int(ratio)))
+		d.affLancement(hx)
 	else:
 		raise ValueError('Cannot calculate mean value. Try debug mode.')
 	hx.set_scale_ratio(scale_ratio=200)
 	print('Ratio is set to 200')
+	d.affLancement(hx)
 	# Read data several, or only one, time and return mean value
 	# subtracted by offset and converted by scale ratio to 
 	# desired units. In my case in grams.
