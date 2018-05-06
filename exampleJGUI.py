@@ -23,6 +23,7 @@ class publication:
     def __init__(self):
         client=mqtt.Client()
         self=client
+        demarragepublication(self)
 # callbacks obligatoires
     def on_connect(client, userdata, flags, rc):
         print("Connected with result code "+str(rc))
@@ -30,6 +31,19 @@ class publication:
         print("Message recu")
     def on_publish(client, obj , mid):
         print("Publication reussie")
+
+    def demarragepublication(self, client):
+        client.reinitialise()
+        client.user_data_set(self)
+        client.on_connect = on_connect
+        client.on_message = on_message
+        client.on_publish = on_publish
+        print("avant connection")
+        client.connect("192.168.0.31", 1883, 60)
+        print("apres connection")
+        client.loop_start()
+        client.publish("capteurs/pression", "Demarrage capteur", qos=0, retain=False)
+
 # fonctions de publication
     def publier(client, message):
         client.publish("capteurs/pression/"+message,"Demarrage encodeur", qos=0, retain=False)
