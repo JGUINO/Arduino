@@ -23,7 +23,7 @@ class publication:
     def __init__(self):
         client=mqtt.Client()
         self=client
-        demarragepublication(self)
+#        demarragepublication(self)
 # callbacks obligatoires
     def on_connect(client, userdata, flags, rc):
         print("Connected with result code "+str(rc))
@@ -32,9 +32,9 @@ class publication:
     def on_publish(client, obj , mid):
         print("Publication reussie")
 
-    def demarragepublication(self, client):
+    def demarragepublication(client):
         client.reinitialise()
-        client.user_data_set(self)
+        client.user_data_set(client)
         client.on_connect = on_connect
         client.on_message = on_message
         client.on_publish = on_publish
@@ -145,6 +145,7 @@ class affichageOLED:
 try:
 	d=affichageOLED()
 	p=publication()
+	p.demarragepublication()
 	# Create an object hx which represents your real hx711 chip
 	# Required input parameters are only 'dout_pin' and 'pd_sck_pin'
 	# If you do not pass any argument 'gain_channel_A' then the default value is 128
