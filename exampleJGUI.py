@@ -190,7 +190,7 @@ try:
 	    valeurJGUI = hx.get_weight_mean(30)
 	    print(str(int(valeurJGUI)) + ' g') 
 	    d.affVal(valeurJGUI)
-        al.alarmeSonne(valeurJGUI/1000)
+	    al.alarmeSonne(valeurJGUI/1000)
 	    time.sleep(30)
 	# if you need the data fast without doing average or filtering them.
 	# do some kind of loop and do not pass any argument. Default 'times' is 1
