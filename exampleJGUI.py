@@ -25,7 +25,7 @@ class affichageOLED:
         RST = None     # on the PiOLED this pin isnt used
 
 # 128x32 display with hardware I2C:
-        self.disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
+        self.disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
 
 # Initialize library.
         self.disp.begin()
@@ -55,11 +55,11 @@ class affichageOLED:
         self.x = 0
 
 # Load default font.
-        self.font = ImageFont.load_default()
+        self.fontstandard = ImageFont.load_default()
 
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
-# font = ImageFont.truetype('Minecraftia.ttf', 8)
+        self.font = ImageFont.truetype('Starjedi.ttf', 16)
         cmd = "hostname -I | cut -d\' \' -f1"
         self.IP = subprocess.check_output(cmd, shell = True )
     
@@ -91,12 +91,12 @@ try:
 	# If you do not pass any argument 'set_channel' then the default value is 'A'
 	# you can set a gain for channel A even though you want to currently select channel B
 	#hx = HX711(dout_pin=21, pd_sck_pin=20, gain_channel_A=128, select_channel='B')
-	hx=HX711(21, 20, 128, 'A')
+	hx=HX711(13, 23, 128, 'A')
 	result = hx.reset()		# Before we start, reset the hx711 ( not necessary)
 	if result:			# you can check if the reset was successful
-		print('Ready to use')
+		print('Capteur pret')
 	else:
-		print('not ready')
+		print('pas pret')
 	
 	#hx.set_gain_A(gain=64)		# You can change the gain for channel A  at any time.
 	#hx.select_channel(channel='A')	# Select desired channel. Either 'A' or 'B' at any time.
@@ -104,55 +104,55 @@ try:
 	# Read data several, or only one, time and return mean value
 	# it just returns exactly the number which hx711 sends
 	# argument times is not required default value is 1
-##	data = hx.get_raw_data_mean(times=1)
-##	
-##	if data != False:	# always check if you get correct value or only False
-##		print('Raw data: ' + str(data))
-##	else:
-##		print('invalid data')
+	data = hx.traitement_donnees(times=5)
+	
+	if data != False:	# always check if you get correct value or only False
+		print('Moyenne de donnees: ' + str(data))
+	else:
+		print('donnees invalides')
 	
 	# measure tare and save the value as offset for current channel
 	# and gain selected. That means channel A and gain 128
-	result = hx.zero(times=60)
+	result = hx.zero(times=30)
 	
 	# Read data several, or only one, time and return mean value.
 	# It subtracts offset value for particular channel from the mean value.
 	# This value is still just a number from HX711 without any conversion
 	# to units such as grams or kg.
-##	data = hx.get_data_mean(times=30)
-##	
-##	if data  != False:	# always check if you get correct value or only False
-##		# now the value is close to 0
-##		print('Data subtracted by offset but still not converted to any unit: '\
-##			 + str(data))
-##	else:
-##		print('invalid data')
+	data = hx.get_data_mean(times=30)
+	
+	if data  != False:	# always check if you get correct value or only False
+		# now the value is close to 0
+		print('Data subtracted by offset but still not converted to any unit: '\
+		 + str(data))
+	else:
+		print('invalid data')
 ##
 ##	# In order to calculate the conversion ratio to some units, in my case I want grams,
 ##	# you must have known weight.
-##	input('Put known weight on the scale and then press Enter')
+	input('Put known weight on the scale and then press Enter')
 ##	#hx.set_debug_mode(True)
-##	data = hx.get_data_mean(times=30)
-##	if data != False:
-##		print('Mean value from HX711 subtracted by offset: ' + str(data))
-##		known_weight_grams = input('Write how many grams it was and press Enter: ')
-##		try:
-##			value = float(known_weight_grams)
-##			print(str(value) + ' grams')
-##		except ValueError:
-##			print('Expected integer or float and I have got: '\
-##					+ str(known_weight_grams))
+	data = hx.get_data_mean(times=30)
+	if data != False:
+		print('Mean value from HX711 subtracted by offset: ' + str(data))
+		known_weight_grams = input('Write how many grams it was and press Enter: ')
+		try:
+			value = float(known_weight_grams)
+			print(str(value) + ' grams')
+		except ValueError:
+			print('Expected integer or float and I have got: '\
+					+ str(known_weight_grams))
 ##
 ##		# set scale ratio for particular channel and gain which is 
 ##		# used to calculate the conversion to units. To set this 
 ##		# you must have known weight first. Required argument is only
 ##		# scale ratio. Without arguments 'channel' and 'gain_A' it sets 
 ##		# the ratio for current channel and gain.
-##		ratio = data / value 	# calculate the ratio for channel A and gain 64
-##		hx.set_scale_ratio(scale_ratio=ratio)	# set ratio for current channel
-##		print('Ratio is set to :' + str(int(ratio)))
-##	else:
-##		raise ValueError('Cannot calculate mean value. Try debug mode.')
+		ratio = data / value 	# calculate the ratio for channel A and gain 64
+		hx.set_scale_ratio(scale_ratio=ratio)	# set ratio for current channel
+		print('Ratio is set to :' + str(int(ratio)))
+	else:
+		raise ValueError('Cannot calculate mean value. Try debug mode.')
 	hx.set_scale_ratio(scale_ratio=200)
 	print('Ratio is set to 200')
 	# Read data several, or only one, time and return mean value

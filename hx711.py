@@ -85,7 +85,8 @@ class HX711:
 	############################################################
 	def zero(self, times=10):
 		if times > 0 and times < 100:
-			result = self.get_raw_data_mean(times)
+			#result = self.get_raw_data_mean(times)
+			result = self.traitement_donnees(times)
 			if result != False:
 				if (self._current_channel == 'A' and 
 					self._gain_channel_A == 128):
@@ -267,7 +268,8 @@ class HX711:
 						print('Time elapsed: ' + str(end_counter - start_counter))
 					# hx711 has turned off. First few readings are inaccurate.
 					# Despite it this reading was ok and data can be used.
-					result = self.get_raw_data_mean(6) # set for the next reading.
+					#result = self.get_raw_data_mean(6) # set for the next reading.
+					result = self.traitement_donnees(6)
 					if result == False:
 						return False
 			return True
@@ -346,8 +348,104 @@ class HX711:
 			print('Converted 2\'s complement value: ' + str(signed_data) + '\n')
 		
 		return signed_data
-	
-	############################################################
+#
+# nettoyage donnees en enlevant tout ce qui depasse
+#
+	def nettoyage_donnees(self, data_list):
+		compteur = len(data_list)
+		moyenne = data_list[0]
+		if compteur > 2:
+			moyenne = stat.mean(data_list)
+			deviation = stat.pstdev(data_list)
+			if deviation > 1000: #0.1*moyenne:
+				data_nettoyees=[]
+				max = moyenne + deviation
+				min = moyenne - deviation
+				for i in range(compteur):
+					if data_list[i] <= max and data_list[i] >=min and data_list[i] != -1:
+						data_nettoyees.append(data_list[i])
+				if len(data_nettoyees) < len(data_list):
+					if self._debug_mode:
+						print("liste :"+str(data_list))
+						print("liste nettoyee :"+str(data_nettoyees))
+					if len(data_nettoyees) > 2:
+						moyenne=self.nettoyage_donnees(data_nettoyees)
+					elif len(data_nettoyees) == 2:
+						moyenne = stat.mean(data_nettoyees)
+					elif len(data_nettoyees) ==1:
+						moyenne = data_nettoyees[0]
+					else:
+						moyenne = False
+				return moyenne
+			else:
+				return moyenne
+		else:
+			return moyenne
+#
+# fonction de traitement de donnees CMC
+#
+	def traitement_donnees(self, times=1):
+		backup_channel = self._current_channel
+		backup_gain = self._gain_channel_A
+		valeur_lue = self._read()
+		while valeur_lue == False:
+			valeur_lue = self._read()
+		moyenne = valeur_lue
+		compteur=1
+		if times > 0 and times< 100:
+			if times == 1 :
+				return moyenne
+
+			data_list = []
+			data_list.append(valeur_lue)
+			for i in range(times):
+				if valeur_lue != False:
+					compteur = compteur + 1
+					data_list.append(valeur_lue)
+				valeur_lue = self._read()
+			if compteur > 1:
+				moyenne=self.nettoyage_donnees(data_list)
+				deviation=stat.pstdev(data_list)
+			return moyenne
+
+
+		else :
+			raise ValueError("la quantite de mesures doit etre entre 1 et 100 :"+str(times))
+
+	    #
+	    # fonction de refiltrage
+	def filtrefin(self, data_list):
+                                data_pstdev = stat.pstdev(data_list)	# calculate population standard deviation from the data
+                                data_mean = stat.mean(data_list)	# calculate mean from the collected data
+                                max_num = data_mean + data_pstdev	# calculate max number which is within pstdev
+                                min_num = data_mean - data_pstdev	# calculate min number which is within pstdev
+                                filtered_data = []			# create new list for filtered data
+                                if data_pstdev <=100:			# is pstdev is less than 100 it is ok
+                                    self._save_last_raw_data(self._current_channel, self._gain_channel_A, data_mean)	# save last data
+                                    return data_mean		# just return the calculated mean
+                                for index,num in enumerate(data_list):	# now I know that pstdev is greater then iterate through the list
+                                    if (num > min_num and num < max_num):	# check if the number is within pstdev
+                                            filtered_data.append(num)	# then append to the filtered data list
+                                if enumerate(filtered_data) == 1:
+                                    return data_mean
+                                
+                                filtered_data_pstdev = stat.pstdev(filtered_data)
+                                filtered_data_mean=stat.mean(filtered_data)
+                                if filtered_data_pstdev <=100:			# is pstdev is less than 100 it is ok
+                                    self._save_last_raw_data(self._current_channel, self._gain_channel_A, filtered_data_mean)	# save last data
+                                    return filtered_data_mean		# just return the calculated mean
+                                self.filtrefin(filtered_data)
+                                if self._debug_mode:
+                                    print('data_list: ' + str(data_list))
+                                    print('filtered_data list: ' + str(filtered_data))
+                                    print('pstdev data: ' + str(data_pstdev))
+                                    print('pstdev filtered data: ' + str(stat.pstdev(filtered_data)))
+                                    print('mean data_list: ' + str(stat.mean(data_list)))
+                                    print('mean filtered_data: ' + str(stat.mean(filtered_data)))
+                                f_data_mean = stat.mean(filtered_data)		# calculate mean from filtered data
+                                
+                                return f_data_mean		# return mean from filtered data
+        ############################################################
 	# get_raw_data_mean returns mean value of readings.	   #
 	# If return False something is wrong. Try debug mode.	   #
 	# INPUTS: times # how many times to read data. Default 1   #
@@ -357,10 +455,15 @@ class HX711:
 		backup_channel = self._current_channel 		# do backup of current channel before reading for later use
 		backup_gain = self._gain_channel_A		# backup of gain channel A
 		if times > 0 and times < 100:		# check if times is in required range 
-			data_list = []			# create empty list
+			data_list = []
+			nb_valeurs = 0
 			for i in range(times):		# for number of times read and add up all readings.
-				data_list.append(self._read())	# append every read value to the list
-			if times > 2 and self._pstdev_filter:			# if times is > 2 filter the data
+				valeur_lue = self._read()
+				if valeur_lue != False :
+					nb_valeurs=nb_valeurs+1
+					data_list.append(valeur_lue)
+
+			if nb_valeurs > 2 and self._pstdev_filter:			# if times is > 2 filter the data
 				data_pstdev = stat.pstdev(data_list)	# calculate population standard deviation from the data
 				data_mean = stat.mean(data_list)	# calculate mean from the collected data
 				max_num = data_mean + data_pstdev	# calculate max number which is within pstdev
@@ -376,18 +479,21 @@ class HX711:
 						filtered_data.append(num)	# then append to the filtered data list
 				if self._debug_mode:
 					print('data_list: ' + str(data_list))
-					print('filtered_data lsit: ' + str(filtered_data))
+					print('filtered_data list: ' + str(filtered_data))
 					print('pstdev data: ' + str(data_pstdev))
 					print('pstdev filtered data: ' + str(stat.pstdev(filtered_data)))
 					print('mean data_list: ' + str(stat.mean(data_list)))
 					print('mean filtered_data: ' + str(stat.mean(filtered_data)))
-				f_data_mean = stat.mean(filtered_data)		# calculate mean from filtered data
+				#f_data_mean = stat.mean(self.filtrefin(filtered_data))		# calculate mean from filtered data
+				f_data_mean = self.filtrefin(filtered_data)
 				self._save_last_raw_data(backup_channel, backup_gain, f_data_mean)	# save last data
 				return f_data_mean		# return mean from filtered data
-			else: 
+			elif nb_valeurs > 2: 
 				data_mean = stat.mean(data_list)		# calculate mean from the list
 				self._save_last_raw_data(backup_channel, backup_gain, data_mean)	# save last data
 				return data_mean		# times was 2 or less just return mean
+			else :
+                            return data_list[0]
 		else:
 			raise ValueError('function "get_raw_data_mean" parameter "times" has to be in range 1 up to 99.\n I have got: '\
 						+ str(times))
@@ -400,7 +506,8 @@ class HX711:
 	# OUTPUTS: INT | BOOL					   #
 	############################################################
 	def get_data_mean(self, times=1):
-		result = self.get_raw_data_mean(times)
+		#result = self.get_raw_data_mean(times)
+		result = self.traitement_donnees(times)
 		if result != False:
 			if self._current_channel =='A' and self._gain_channel_A == 128:
 				return result- self._offset_A_128
@@ -420,7 +527,8 @@ class HX711:
 	# OUTPUTS: INT | BOOL 					   #
 	############################################################
 	def get_weight_mean(self, times=1):
-		result = self.get_raw_data_mean(times)
+		#result = self.get_raw_data_mean(times)
+		result = self.traitement_donnees(times)
 		if result != False:
 			if self._current_channel =='A' and self._gain_channel_A == 128:
 				return (result - self._offset_A_128) / self._scale_ratio_A_128
@@ -552,7 +660,8 @@ class HX711:
 	def reset(self):
 		self.power_down()
 		self.power_up()
-		result = self.get_raw_data_mean(6)
+		#result = self.get_raw_data_mean(6)
+		result = self.traitement_donnees(6)
 		if result != False:
 			return True
 		else:
