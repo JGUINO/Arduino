@@ -225,7 +225,7 @@ try:
 	    d.affVal(valeurJGUI)
 	    al.alarmeSonne(valeurJGUI/1000)
 	    time.sleep(30)
-	    p.publier(str(valeurJGUI/1000)+" bars")
+	    client.publier(str(valeurJGUI/1000)+" bars")
 	# if you need the data fast without doing average or filtering them.
 	# do some kind of loop and do not pass any argument. Default 'times' is 1
 	# be aware that HX711 sometimes return invalid or wrong data.
