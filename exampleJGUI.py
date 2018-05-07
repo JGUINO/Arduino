@@ -21,10 +21,32 @@ import subprocess
 
 
 client=mqtt.Client()
+#parametres de lancement
+nomCapteur="CapteurX"
+nomCapteur=sys.argv[0]
+#Offset
+decal=22550
+decal=sys.argv[1]
+#ratio de mesure
+ratioMesure=218
+ratioMesure=sys.argv[2]
+#ratio pression masse (3,1416kg pour 1 bar)
+ratioMassePression=3.1416
+ratioMassePression=sys.argv[3]
+#Pression avant alarme
+pressionMax=1.8
+pressionMax=sys.argv[4]
+#adresse serveur MQTT
+hostMQTT="localhost"
+hostMQTT=sys.argv[5]
+#example de ligne de commande python3 "CapteurcleeD" 22550 218 3.1416 1.8 "192.168.0.31"
+
+
+
 
 # callbacks obligatoires
 def on_connect(client, userdata, flags, rc):
-        print("Connected with result code "+str(rc))
+        print("Connecte avec le code retour "+str(rc))
 def on_message(client, userdata, msg):
         print("Message recu")
 def on_publish(client, obj , mid):
@@ -36,14 +58,14 @@ client.on_connect = on_connect
 client.on_message = on_message
 client.on_publish = on_publish
 print("avant connection")
-client.connect("192.168.0.31", 1883, 60)
+client.connect(hostMQTT, 1883, 60)
 print("apres connection")
 client.loop_start()
-client.publish("capteurs/pression", "Demarrage capteur", qos=0, retain=False)
+client.publish("capteurs/pression"+nomCapteur, "Demarrage capteur ", qos=0, retain=False)
 
 # fonctions de publication
 def publier(client, message):
-        client.publish("capteurs/pression/"+message,"Demarrage", qos=0, retain=False)
+        client.publish("capteurs/pression/"+nomCapteur,message, qos=0, retain=False)
 
 
 class alarmePression:
@@ -66,8 +88,9 @@ class alarmePression:
 
 
 class affichageOLED:
-    def __init__(self):
-    
+    def __init__(self, ratioMP=3.14,PressionMax=1.8):
+        self.ratioMP=ratioMP
+        self.pressionMax=PressionMax
 # Raspberry Pi pin configuration:
         RST = None     # on the PiOLED this pin isnt used
 
@@ -128,19 +151,22 @@ class affichageOLED:
         return True
 
     def affVal(self, val=0):
-       self.affNettoie()
+        self.affNettoie()
 ##       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-       self.draw.text((self.x, self.top),     "P.: "+str(int(val/100)/10)+" bars", font=self.font, fill=255)
-       self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
-       self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.font, fill=255)
-       self.disp.image(self.image)
-       self.disp.display()
-       return True
+        self.draw.text((self.x, self.top),     "P.: "+str(int(val/self.ratioMP)/1000)+" bars", font=self.font, fill=255)
+        self.draw.rectangle((0,self+top+24,self.width,12),0,255)
+        ratioPression=val/self.ratioMP/1000/self.pressionMax
+        self.draw.rectangle((int(ratioPression*self.width),self+top+25,int((self.width-2)),10),0,0)
+        self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
+        self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.font, fill=255)
+        self.disp.image(self.image)
+        self.disp.display()
+        return True
     
     
 
 try:
-	d=affichageOLED()
+	d=affichageOLED(pressionMax)
 	# Create an object hx which represents your real hx711 chip
 	# Required input parameters are only 'dout_pin' and 'pd_sck_pin'
 	# If you do not pass any argument 'gain_channel_A' then the default value is 128
@@ -154,7 +180,7 @@ try:
 		publier(client,"Capteur pret")
 	else:
 		print('pas pret')
-	al=alarmePression(24,1.8)
+	al=alarmePression(24,pressionMax)
 	#hx.set_gain_A(gain=64)		# You can change the gain for channel A  at any time.
 	#hx.select_channel(channel='A')	# Select desired channel. Either 'A' or 'B' at any time.
 	
@@ -171,7 +197,9 @@ try:
 	# measure tare and save the value as offset for current channel
 	# and gain selected. That means channel A and gain 128
 	d.affLancement(hx)
-	result = hx.zero(times=30)
+	result = hx.zero(times=30) #inutile si offset en parametre fonctionne
+	d.affLancement(hx)
+	hx.set_offset(decal)
 	d.affLancement(hx)
 	# Read data several, or only one, time and return mean value.
 	# It subtracts offset value for particular channel from the mean value.
@@ -212,8 +240,8 @@ try:
 		d.affLancement(hx)
 	else:
 		raise ValueError('Cannot calculate mean value. Try debug mode.')
-	hx.set_scale_ratio(scale_ratio=218)
-	print('Ratio is set to 218')
+	hx.set_scale_ratio(scale_ratio=ratioMesure)
+	print('Ratio is set to '+str(ratioMesure)
 	d.affLancement(hx)
 	# Read data several, or only one, time and return mean value
 	# subtracted by offset and converted by scale ratio to 
@@ -223,9 +251,9 @@ try:
 	    valeurJGUI = hx.get_weight_mean(30)
 	    print(str(int(valeurJGUI)) + ' g') 
 	    d.affVal(valeurJGUI)
-	    al.alarmeSonne(valeurJGUI/1000)
+	    al.alarmeSonne(valeurJGUI/1000/ratioMassePression)
 	    time.sleep(30)
-	    publier(client,str(valeurJGUI/1000)+" bars")
+	    publier(client,str(valeurJGUI/ratioMassePression/1000)+" bars")
 	# if you need the data fast without doing average or filtering them.
 	# do some kind of loop and do not pass any argument. Default 'times' is 1
 	# be aware that HX711 sometimes return invalid or wrong data.
@@ -236,28 +264,6 @@ try:
 		# the value will vary because it is only one immediate reading.
 		# the default speed for hx711 is 10 samples per second
 	#	print(str(hx.get_weight_mean()) + ' g')
-	
-	# if you are not sure which gain is currently set on channel A you can call
-	#print('Current gain on channel A: ' + str(hx.get_current_gain_A()))
-	
-	# to get currently selected channel
-	#print('Current channel is: ' + str(hx.get_current_channel()))
-	
-	# to get current offset for a particular channel
-	#offset =  hx.get_current_offset(channel='A', gain_A=128)
-	#print('Current offset for channel A and gain 128: ' + str(offset))
-	# if no arguments passed then it return offset for the currently selected channel and gain
-	#offset =  hx.get_current_offset()
-	#print('Current offset for channel A and the current gain (128): ' + str(offset))
-	#offset =  hx.get_current_offset(channel='B')	# for channel B no argument gain_A
-	#print('Current offset for channel B: ' + str(offset))
-	
-	# set offset manually for particular channel and gain. If you want to
-	# set offset for channel B then gain_A is not required
-	# if no arguments 'channel' and 'gain_A' provided. The offset is
-	# set for the current channel and gain
-	#hx.set_offset(offset=15000)
-	
 	#input('Now I will show you how it looks if you turn on debug mode. Press ENTER')
 	# turns on debug mode. It prints many things so you can find problem
 	#hx.set_debug_mode(flag=True)
@@ -302,7 +308,7 @@ try:
 ##		if hx.set_pstdev_filter(False):
 ##			print('Population standard deviation filter is turned OFF.' + '\n')	
 except (KeyboardInterrupt, SystemExit):
-	print('Bye :)')
+	print('Au revoir :)')
 	
 finally:
 	d.affNettoie()
