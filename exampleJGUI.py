@@ -240,9 +240,10 @@ try:
 		d.affLancement(*hx)
 	else:
 		raise ValueError('Cannot calculate mean value. Try debug mode.')
+
 	hx.set_scale_ratio(scale_ratio=ratioMesure)
 	print('Ratio is set to '+str(ratioMesure)
-	d.affLancement(*hx)
+	##################################################################################### d.affLancement(*hx)
 	# Read data several, or only one, time and return mean value
 	# subtracted by offset and converted by scale ratio to 
 	# desired units. In my case in grams.
