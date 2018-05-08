@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin python3
 from hx711 import HX711		# import the class HX711
 import RPi.GPIO as GPIO		# import GPIO
 import paho.mqtt.client as mqtt
@@ -162,12 +162,9 @@ class affichageOLED:
 
     def affVal(self, val=0):
         self.affNettoie()
-##       self.draw.text((self.x, self.top),"IP: " + str(self.IP),  font=self.fontstandard, fill=255)
         self.draw.text((self.x, self.top),"P.: "+str(int(val/self.ratioMP/10)/100)+" bars", font=self.font, fill=255)
-        #self.draw.rectangle((0,self.top+48,self.width,16),255,255)
         ratioPression=val/self.ratioMP/1000/self.pressionMax
         self.affJauge(0,self.top+24,self.width,self.top+52,ratioPression)
-        #self.draw.rectangle((int(ratioPression*self.width),self.top+48,int((self.width)),16),0,255)
         #self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
         self.draw.text((self.x, self.top+52),"CMC(c)2018"+" Pic: "+str(self.pressionHaute)+"b",  font=self.fontstandard, fill=255)
         self.disp.image(self.image)
@@ -274,7 +271,7 @@ try:
 		compteurmqtt=compteurmqtt+1
 		if compteurmqtt==10:
 			#une publication toutes les 10 analyses de mesures
-			publier(client,str(pression)+" bars")
+			publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)"
 			compteurmqtt=0
 
 	# if you need the data fast without doing average or filtering them.
