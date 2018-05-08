@@ -153,9 +153,10 @@ class affichageOLED:
         self.disp.display()
         return True
 
-    def affJauge(self, x, y, largeur, hauteur, pourcentage=0.5)
+    def affJauge(self, x, y, largeur, hauteur, pourcentage=0.5):
         self.draw.rectangle((x,y,largeur,hauteur),255,255)
         self.draw.rectangle((x+pourcentage*largeur,y,pourcentage*largeur,hauteur),0,255)
+        return True
 
     def affVal(self, val=0):
         self.affNettoie()
