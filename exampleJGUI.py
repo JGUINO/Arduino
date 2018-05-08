@@ -57,7 +57,7 @@ client.reinitialise()
 client.on_connect = on_connect
 client.on_message = on_message
 client.on_publish = on_publish
-print("avant connection")
+print("avant connection"+hostMQTT)
 client.connect(hostMQTT, 1883, 60)
 print("apres connection")
 client.loop_start()
