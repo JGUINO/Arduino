@@ -264,7 +264,7 @@ try:
 		d.affVal(valeurJGUI)
 		al.alarmeSonne(valeurJGUI/1000/ratioMassePression)
 		time.sleep(3)
-		compteurmqtt+=compteurmqtt
+		compteurmqtt=compteurmqtt+1
 		if compteurmqtt==10:
 			#une publication toutes les 10 analyses de mesures
 			publier(client,str(valeurJGUI/ratioMassePression/1000)+" bars")
