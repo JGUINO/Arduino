@@ -88,9 +88,10 @@ class alarmePression:
 
 
 class affichageOLED:
-    def __init__(self, ratioMP=3.14,PressionMax=1.8):
+    def __init__(self, ratioMP=3.14,PressionMax=1.8,NomCapteur="CapteurX"):
         self.ratioMP=ratioMP
         self.pressionMax=PressionMax
+        self.nomCapteur=NomCapteur
 # Raspberry Pi pin configuration:
         RST = None     # on the PiOLED this pin isnt used
 
@@ -130,6 +131,8 @@ class affichageOLED:
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
         self.font = ImageFont.truetype('Starjedi.ttf', 16)
+        self.petiteFont=ImageFont.truetype('Starjedi.ttf', 8)
+        self.trespetiteFont=ImageFont.truetype('Starjedi.ttf', 4)
         cmd = "hostname -I"# | cut -d\' \' -f1"
         self.IP = subprocess.check_output(cmd, shell = True )
     
@@ -142,7 +145,7 @@ class affichageOLED:
     def affLancement(self, hx):
         self.affNettoie()
         self.draw.text((self.x, self.top),"IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-        self.draw.text((self.x, self.top+4),"Tarage...", font=self.font, fill=255)
+        self.draw.text((self.x, self.top+4),"Tarage "+self.nomCapteur, font=self.petiteFont, fill=255)
         self.draw.text((self.x, self.top+18),"Decal:"+str(int(hx.get_current_offset())), font=self.font, fill=255)
         self.draw.text((self.x, self.top+32),"Ratio:"+str(int(hx.get_current_scale_ratio())), font=self.font, fill=255)
         self.draw.text((self.x, self.top+46),"CMC(c) 2018",  font=self.font, fill=255)
@@ -154,11 +157,11 @@ class affichageOLED:
         self.affNettoie()
 ##       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
         self.draw.text((self.x, self.top),     "P.: "+str(int(val/self.ratioMP)/1000)+" bars", font=self.font, fill=255)
-        self.draw.rectangle((0,self.top+46,self.width,16),255,255)
+        self.draw.rectangle((0,self.top+48,self.width,16),255,255)
         ratioPression=val/self.ratioMP/1000/self.pressionMax
-        self.draw.rectangle((int(ratioPression*self.width),self.top+46,int((self.width)),16),255,0)
-        self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
-        self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.font, fill=255)
+        self.draw.rectangle((int(ratioPression*self.width),self.top+48,int((self.width)),16),0,255)
+        #self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
+        self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.petiteFont, fill=255)
         self.disp.image(self.image)
         self.disp.display()
         return True
@@ -166,7 +169,7 @@ class affichageOLED:
     
 
 try:
-	d=affichageOLED(ratioMassePression,pressionMax)
+	d=affichageOLED(ratioMassePression,pressionMax,nomCapteur)
 	# Create an object hx which represents your real hx711 chip
 	# Required input parameters are only 'dout_pin' and 'pd_sck_pin'
 	# If you do not pass any argument 'gain_channel_A' then the default value is 128
