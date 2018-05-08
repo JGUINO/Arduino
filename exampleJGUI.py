@@ -163,13 +163,13 @@ class affichageOLED:
     def affVal(self, val=0):
         self.affNettoie()
 ##       self.draw.text((self.x, self.top),"IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-        self.draw.text((self.x, self.top),"P.: "+str(int(val/self.ratioMP)/1000)+" bars", font=self.font, fill=255)
+        self.draw.text((self.x, self.top),"P.: "+str(int(val/self.ratioMP/10)/100)+" bars", font=self.font, fill=255)
         #self.draw.rectangle((0,self.top+48,self.width,16),255,255)
         ratioPression=val/self.ratioMP/1000/self.pressionMax
         self.affJauge(0,self.top+24,self.width,self.top+52,ratioPression)
         #self.draw.rectangle((int(ratioPression*self.width),self.top+48,int((self.width)),16),0,255)
         #self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
-        self.draw.text((self.x, self.top+56),"CMC(c) 2018"+" P. haute :"+str(self.pressionHaute),  font=self.trespetiteFont, fill=255)
+        self.draw.text((self.x, self.top+56),"CMC(c)2018"+" Pic:"+str(self.pressionHaute)+"b",  font=self.trespetiteFont, fill=255)
         self.disp.image(self.image)
         self.disp.display()
         return True
