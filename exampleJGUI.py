@@ -268,7 +268,7 @@ try:
 		d.affVal(valeurJGUI)
 		pression=int(valeurJGUI/ratioMassePression/10)/100
 		if pression>d.pressionHaute:
-			self.pressionHaute=pression
+			d.pressionHaute=pression
 		al.alarmeSonne(pression)
 		time.sleep(3)
 		compteurmqtt=compteurmqtt+1
