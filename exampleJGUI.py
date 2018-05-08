@@ -237,12 +237,12 @@ try:
 		ratio = data / value 	# calculate the ratio for channel A and gain 128
 		hx.set_scale_ratio(scale_ratio=ratio)	# set ratio for current channel
 		print('Ratio is set to :' + str(int(ratio)))
-		d.affLancement(hx)
+		d.affLancement(*hx)
 	else:
 		raise ValueError('Cannot calculate mean value. Try debug mode.')
 	hx.set_scale_ratio(scale_ratio=ratioMesure)
 	print('Ratio is set to '+str(ratioMesure)
-	d.affLancement(hx)
+	d.affLancement(*hx)
 	# Read data several, or only one, time and return mean value
 	# subtracted by offset and converted by scale ratio to 
 	# desired units. In my case in grams.
