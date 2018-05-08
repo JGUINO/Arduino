@@ -92,6 +92,7 @@ class affichageOLED:
     def __init__(self, ratioMP=3.14,PressionMax=1.8,NomCapteur="CapteurX"):
         self.ratioMP=ratioMP
         self.pressionMax=PressionMax
+        self.pressionHaute=0
         self.nomCapteur=NomCapteur
 # Raspberry Pi pin configuration:
         RST = None     # on the PiOLED this pin isnt used
@@ -168,7 +169,7 @@ class affichageOLED:
         self.affJauge(0,self.top+24,self.width,self.top+52,ratioPression)
         #self.draw.rectangle((int(ratioPression*self.width),self.top+48,int((self.width)),16),0,255)
         #self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
-        self.draw.text((self.x, self.top+56),    "CMC(c) 2018",  font=self.trespetiteFont, fill=255)
+        self.draw.text((self.x, self.top+56),"CMC(c) 2018"+" P. haute :"+str(self.pressionHaute),  font=self.trespetiteFont, fill=255)
         self.disp.image(self.image)
         self.disp.display()
         return True
@@ -197,20 +198,22 @@ try:
 	# Read data several, or only one, time and return mean value
 	# it just returns exactly the number which hx711 sends
 	# argument times is not required default value is 1
-	data = hx.traitement_donnees(times=5)
+	#data = hx.traitement_donnees(times=5)
 	
-	if data != False:	# always check if you get correct value or only False
-		print('Moyenne de donnees: ' + str(data))
-	else:
-		print('donnees invalides')
+	#if data != False:	# always check if you get correct value or only False
+	#	print('Moyenne de donnees: ' + str(data))
+	#else:
+	#	print('donnees invalides')
 	
 	# measure tare and save the value as offset for current channel
 	# and gain selected. That means channel A and gain 128
 	d.affLancement(hx)
-	result = hx.zero(times=30) #inutile si offset en parametre fonctionne
-	d.affLancement(hx)
-	hx.set_offset(decal)
-	d.affLancement(hx)
+	if decal==0:
+		result = hx.zero(times=30) #inutile si offset en parametre fonctionne
+		d.affLancement(hx)
+	else :
+		hx.set_offset(decal)
+		d.affLancement(hx)
 	# Read data several, or only one, time and return mean value.
 	# It subtracts offset value for particular channel from the mean value.
 	# This value is still just a number from HX711 without any conversion
@@ -226,17 +229,18 @@ try:
 ##
 ##	# In order to calculate the conversion ratio to some units, in my case I want grams,
 ##	# you must have known weight.
-	input('Put known weight on the scale and then press Enter')
+	if ratioMesure==0:
+		input('Put known weight on the scale and then press Enter')
 ##	#hx.set_debug_mode(True)
-	data = hx.get_data_mean(times=30)
-	if data != False:
-		print('Mean value from HX711 subtracted by offset: ' + str(data))
-		known_weight_grams = input('Write how many grams it was and press Enter: ')
-		try:
-			value = float(known_weight_grams)
-			print(str(value) + ' grams')
-		except ValueError:
-			print('Expected integer or float and I have got: '\
+		data = hx.get_data_mean(times=30)
+		if data != False:
+			print('Mean value from HX711 subtracted by offset: ' + str(data))
+			known_weight_grams = input('Write how many grams it was and press Enter: ')
+			try:
+				value = float(known_weight_grams)
+				print(str(value) + ' grams')
+			except ValueError:
+				print('Expected integer or float and I have got: '\
 					+ str(known_weight_grams))
 ##
 ##		# set scale ratio for particular channel and gain which is 
@@ -244,16 +248,16 @@ try:
 ##		# you must have known weight first. Required argument is only
 ##		# scale ratio. Without arguments 'channel' and 'gain_A' it sets 
 ##		# the ratio for current channel and gain.
-		ratio = data / value 	# calculate the ratio for channel A and gain 128
-		hx.set_scale_ratio(scale_ratio=ratio)	# set ratio for current channel
-		print('Ratio is set to :' + str(int(ratio)))
-		d.affLancement(hx)
+			ratio = data / value 	# calculate the ratio for channel A and gain 128
+			hx.set_scale_ratio(scale_ratio=ratio)	# set ratio for current channel
+			print('Ratio is set to :' + str(int(ratio)))
+			d.affLancement(hx)
+		else:
+			raise ValueError('Cannot calculate mean value. Try debug mode.')
 	else:
-		raise ValueError('Cannot calculate mean value. Try debug mode.')
-
-	hx.set_scale_ratio(scale_ratio=ratioMesure)
-	print('Ratio is set to '+str(ratioMesure))
-	d.affLancement(hx)
+		hx.set_scale_ratio(scale_ratio=ratioMesure)
+		print('Le ratio est regle a '+str(ratioMesure))
+		d.affLancement(hx)
 	# Read data several, or only one, time and return mean value
 	# subtracted by offset and converted by scale ratio to 
 	# desired units. In my case in grams.
@@ -262,12 +266,15 @@ try:
 		valeurJGUI = hx.get_weight_mean(30)
 		print('Masse actuelle en grammes: '+str(int(valeurJGUI)) + ' g')
 		d.affVal(valeurJGUI)
-		al.alarmeSonne(valeurJGUI/1000/ratioMassePression)
+		pression=int(valeurJGUI/ratioMassePression/10)/100
+		if pression>d.pressionHaute:
+			self.pressionHaute=pression
+		al.alarmeSonne(pression)
 		time.sleep(3)
 		compteurmqtt=compteurmqtt+1
 		if compteurmqtt==10:
 			#une publication toutes les 10 analyses de mesures
-			publier(client,str(valeurJGUI/ratioMassePression/1000)+" bars")
+			publier(client,str(pression)+" bars")
 			compteurmqtt=0
 
 	# if you need the data fast without doing average or filtering them.
