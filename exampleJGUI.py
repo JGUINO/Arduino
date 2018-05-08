@@ -188,6 +188,7 @@ try:
 		publier(client,"Capteur pret")
 	else:
 		print('HX711 pas pret')
+		publier(client,"HX711 pret")
 	al=alarmePression(24,pressionMax)
 	#hx.set_gain_A(gain=64)		# You can change the gain for channel A  at any time.
 	#hx.select_channel(channel='A')	# Select desired channel. Either 'A' or 'B' at any time.
@@ -272,6 +273,7 @@ try:
 		if compteurmqtt==10:
 			#une publication toutes les 10 analyses de mesures
 			publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
+			publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
 			compteurmqtt=0
 
 	# if you need the data fast without doing average or filtering them.
