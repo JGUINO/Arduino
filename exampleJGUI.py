@@ -148,14 +148,14 @@ class affichageOLED:
         self.draw.text((self.x, self.top+8),"Tarage "+self.nomCapteur, font=self.petiteFont, fill=255)
         self.draw.text((self.x, self.top+18),"Decal:"+str(int(hx.get_current_offset())), font=self.font, fill=255)
         self.draw.text((self.x, self.top+32),"Ratio:"+str(int(hx.get_current_scale_ratio())), font=self.font, fill=255)
-        self.draw.text((self.x, self.top+46),"CMC(c) 2018",  font=self.petiteFont, fill=255)
+        self.draw.text((self.x, self.top+56),"CMC(c) 2018",  font=self.trespetiteFont, fill=255)
         self.disp.image(self.image)
         self.disp.display()
         return True
 
-    def affJauge(self, x, y, largeur, hauteur, pourcentage=0.5):
-        self.draw.rectangle((x,y,largeur,hauteur),255,255)
-        self.draw.rectangle((x+int(pourcentage*largeur),y,int((1-pourcentage)*largeur),hauteur),0,255)
+    def affJauge(self, x1, y1, x2, y2, pourcentage=0.5):
+        self.draw.rectangle((x1,y1,x2,y2),255,255)
+        self.draw.rectangle((x1+int(pourcentage*largeur),y1,x2,y2),0,255)
         return True
 
     def affVal(self, val=0):
@@ -164,7 +164,7 @@ class affichageOLED:
         self.draw.text((self.x, self.top),"P.: "+str(int(val/self.ratioMP)/1000)+" bars", font=self.font, fill=255)
         #self.draw.rectangle((0,self.top+48,self.width,16),255,255)
         ratioPression=val/self.ratioMP/1000/self.pressionMax
-        self.affJauge(0,self.top+52,self.width,16,ratioPression)
+        self.affJauge(0,self.top+24,self.width,self.top+52,ratioPression)
         #self.draw.rectangle((int(ratioPression*self.width),self.top+48,int((self.width)),16),0,255)
         #self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
         self.draw.text((self.x, self.top+56),    "CMC(c) 2018",  font=self.trespetiteFont, fill=255)
@@ -214,14 +214,14 @@ try:
 	# It subtracts offset value for particular channel from the mean value.
 	# This value is still just a number from HX711 without any conversion
 	# to units such as grams or kg.
-	data = hx.get_data_mean(times=30)
+	#data = hx.get_data_mean(times=30)
 	
-	if data  != False:	# always check if you get correct value or only False
+	#if data  != False:	# always check if you get correct value or only False
 		# now the value is close to 0
-		print('Donnee moyenne moins Offset mais pas encore convertie en une unite: '\
-		 + str(int(data)))
-	else:
-		print('Donnee invalide')
+		#print('Donnee moyenne moins Offset mais pas encore convertie en une unite: '\
+		# + str(int(data)))
+	#else:
+		#print('Donnee invalide')
 ##
 ##	# In order to calculate the conversion ratio to some units, in my case I want grams,
 ##	# you must have known weight.
@@ -256,14 +256,20 @@ try:
 	# Read data several, or only one, time and return mean value
 	# subtracted by offset and converted by scale ratio to 
 	# desired units. In my case in grams.
+	compteurmqtt=0
 	while True :
 		print('Masse actuelle en grammes: ')
 		valeurJGUI = hx.get_weight_mean(30)
 		print(str(int(valeurJGUI)) + ' g') 
 		d.affVal(valeurJGUI)
 		al.alarmeSonne(valeurJGUI/1000/ratioMassePression)
-		time.sleep(30)
-		publier(client,str(valeurJGUI/ratioMassePression/1000)+" bars")
+		time.sleep(3)
+		compteurmqtt+=compteurmqtt
+		if compteurmqtt==10:
+			#une publication toutes les 10 analyses de mesures
+			publier(client,str(valeurJGUI/ratioMassePression/1000)+" bars")
+			compteurmqtt=0
+
 	# if you need the data fast without doing average or filtering them.
 	# do some kind of loop and do not pass any argument. Default 'times' is 1
 	# be aware that HX711 sometimes return invalid or wrong data.
