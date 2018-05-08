@@ -271,7 +271,7 @@ try:
 		compteurmqtt=compteurmqtt+1
 		if compteurmqtt==10:
 			#une publication toutes les 10 analyses de mesures
-			publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)"
+			publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
 			compteurmqtt=0
 
 	# if you need the data fast without doing average or filtering them.
