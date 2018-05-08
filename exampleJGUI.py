@@ -248,13 +248,13 @@ try:
 	# subtracted by offset and converted by scale ratio to 
 	# desired units. In my case in grams.
 	while True :
-	    print('Masse actuelle en grammes: ')
-	    valeurJGUI = hx.get_weight_mean(30)
-	    print(str(int(valeurJGUI)) + ' g') 
-	    d.affVal(valeurJGUI)
-	    al.alarmeSonne(valeurJGUI/1000/ratioMassePression)
-	    time.sleep(30)
-	    publier(client,str(valeurJGUI/ratioMassePression/1000)+" bars")
+		print('Masse actuelle en grammes: ')
+		valeurJGUI = hx.get_weight_mean(30)
+		print(str(int(valeurJGUI)) + ' g') 
+		d.affVal(valeurJGUI)
+		al.alarmeSonne(valeurJGUI/1000/ratioMassePression)
+		time.sleep(30)
+		publier(client,str(valeurJGUI/ratioMassePression/1000)+" bars")
 	# if you need the data fast without doing average or filtering them.
 	# do some kind of loop and do not pass any argument. Default 'times' is 1
 	# be aware that HX711 sometimes return invalid or wrong data.
