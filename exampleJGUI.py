@@ -25,8 +25,8 @@ client=mqtt.Client()
 nomCapteur="CapteurX"
 nomCapteur=sys.argv[1]
 #Offset
-decal=22550
-decal=sys.argv[2]
+decal=int(22550)
+decal=int(sys.argv[2])
 #ratio de mesure
 ratioMesure=218
 ratioMesure=sys.argv[3]
