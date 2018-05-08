@@ -169,7 +169,7 @@ class affichageOLED:
         self.affJauge(0,self.top+24,self.width,self.top+52,ratioPression)
         #self.draw.rectangle((int(ratioPression*self.width),self.top+48,int((self.width)),16),0,255)
         #self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
-        self.draw.text((self.x, self.top+52),"CMC(c)2018"+" Pic: "+str(self.pressionHaute)+"b",  font=self.trespetiteFont, fill=255)
+        self.draw.text((self.x, self.top+52),"CMC(c)2018"+" Pic: "+str(self.pressionHaute)+"b",  font=self.fontstandard, fill=255)
         self.disp.image(self.image)
         self.disp.display()
         return True
