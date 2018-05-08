@@ -153,15 +153,20 @@ class affichageOLED:
         self.disp.display()
         return True
 
+    def affJauge(self, x, y, largeur, hauteur, pourcentage=0.5)
+        self.draw.rectangle((x,y,largeur,hauteur),255,255)
+        self.draw.rectangle((x+pourcentage*largeur,y,pourcentage*largeur,hauteur),0,255)
+
     def affVal(self, val=0):
         self.affNettoie()
 ##       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-        self.draw.text((self.x, self.top),     "P.: "+str(int(val/self.ratioMP)/1000)+" bars", font=self.font, fill=255)
-        self.draw.rectangle((0,self.top+48,self.width,16),255,255)
+        self.draw.text((self.x, self.top*0),     "P.: "+str(int(val/self.ratioMP)/1000)+" bars", font=self.font, fill=255)
+        #self.draw.rectangle((0,self.top+48,self.width,16),255,255)
         ratioPression=val/self.ratioMP/1000/self.pressionMax
-        self.draw.rectangle((int(ratioPression*self.width),self.top+48,int((self.width)),16),0,255)
+        self.affJauge(0,self.top+50,self.width,16,ratioPression)
+        #self.draw.rectangle((int(ratioPression*self.width),self.top+48,int((self.width)),16),0,255)
         #self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
-        self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.petiteFont, fill=255)
+        self.draw.text((self.x, self.top+56),    "CMC(c) 2018",  font=self.petiteFont, fill=255)
         self.disp.image(self.image)
         self.disp.display()
         return True
