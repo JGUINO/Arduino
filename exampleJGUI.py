@@ -28,14 +28,14 @@ nomCapteur=sys.argv[1]
 decal=int(22550)
 decal=int(sys.argv[2])
 #ratio de mesure
-ratioMesure=218
-ratioMesure=sys.argv[3]
+ratioMesure=float(218)
+ratioMesure=float(sys.argv[3])
 #ratio pression masse (3,1416kg pour 1 bar)
-ratioMassePression=3.1416
-ratioMassePression=sys.argv[4]
+ratioMassePression=float(3.1416)
+ratioMassePression=float(sys.argv[4])
 #Pression avant alarme
-pressionMax=1.8
-pressionMax=sys.argv[5]
+pressionMax=float(1.8)
+pressionMax=float(sys.argv[5])
 #adresse serveur MQTT
 hostMQTT="localhost"
 hostMQTT=sys.argv[6]
