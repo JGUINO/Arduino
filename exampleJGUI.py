@@ -154,9 +154,9 @@ class affichageOLED:
         self.affNettoie()
 ##       self.draw.text((self.x, self.top),       "IP: " + str(self.IP),  font=self.fontstandard, fill=255)
         self.draw.text((self.x, self.top),     "P.: "+str(int(val/self.ratioMP)/1000)+" bars", font=self.font, fill=255)
-        self.draw.rectangle((0,self+top+24,self.width,12),0,255)
+        self.draw.rectangle((0,self.top+24,self.width,12),0,255)
         ratioPression=val/self.ratioMP/1000/self.pressionMax
-        self.draw.rectangle((int(ratioPression*self.width),self+top+25,int((self.width-2)),10),0,0)
+        self.draw.rectangle((int(ratioPression*self.width),self.top+25,int((self.width-2)),10),0,0)
         self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
         self.draw.text((self.x, self.top+46),    "CMC(c) 2018",  font=self.font, fill=255)
         self.disp.image(self.image)
