@@ -23,22 +23,22 @@ import subprocess
 client=mqtt.Client()
 #parametres de lancement
 nomCapteur="CapteurX"
-nomCapteur=sys.argv[0]
+nomCapteur=sys.argv[1]
 #Offset
 decal=22550
-decal=sys.argv[1]
+decal=sys.argv[2]
 #ratio de mesure
 ratioMesure=218
-ratioMesure=sys.argv[2]
+ratioMesure=sys.argv[3]
 #ratio pression masse (3,1416kg pour 1 bar)
 ratioMassePression=3.1416
-ratioMassePression=sys.argv[3]
+ratioMassePression=sys.argv[4]
 #Pression avant alarme
 pressionMax=1.8
-pressionMax=sys.argv[4]
+pressionMax=sys.argv[5]
 #adresse serveur MQTT
 hostMQTT="localhost"
-hostMQTT=sys.argv[5]
+hostMQTT=sys.argv[6]
 #example de ligne de commande python3 "CapteurcleeD" 22550 218 3.1416 1.8 "192.168.0.31"
 
 
