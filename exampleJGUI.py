@@ -66,6 +66,7 @@ client.publish("capteurs/pression"+nomCapteur, "Demarrage capteur ", qos=0, reta
 # fonctions de publication
 def publier(client, message):
         client.publish("capteurs/pression/"+nomCapteur,message, qos=0, retain=False)
+        print("Publication: "+nomCapteur+" "+message)
 
 
 class alarmePression:
@@ -155,7 +156,7 @@ class affichageOLED:
 
     def affJauge(self, x1, y1, x2, y2, pourcentage=0.5):
         self.draw.rectangle((x1,y1,x2,y2),255,255)
-        self.draw.rectangle((x1+int(pourcentage*(y2-y1)),y1,x2,y2),0,255)
+        self.draw.rectangle((x1+int(pourcentage*(x2-x1)),y1,x2-2,y2),0,255)
         return True
 
     def affVal(self, val=0):
@@ -188,7 +189,7 @@ try:
 		print('Capteur pret')
 		publier(client,"Capteur pret")
 	else:
-		print('pas pret')
+		print('HX711 pas pret')
 	al=alarmePression(24,pressionMax)
 	#hx.set_gain_A(gain=64)		# You can change the gain for channel A  at any time.
 	#hx.select_channel(channel='A')	# Select desired channel. Either 'A' or 'B' at any time.
