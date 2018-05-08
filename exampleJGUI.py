@@ -57,7 +57,7 @@ client.reinitialise()
 client.on_connect = on_connect
 client.on_message = on_message
 client.on_publish = on_publish
-print("avant connection"+hostMQTT)
+print("avant connection "+hostMQTT)
 client.connect(hostMQTT, 1883, 60)
 print("apres connection")
 client.loop_start()
@@ -148,7 +148,7 @@ class affichageOLED:
         self.draw.text((self.x, self.top+8),"Tarage "+self.nomCapteur, font=self.petiteFont, fill=255)
         self.draw.text((self.x, self.top+18),"Decal:"+str(int(hx.get_current_offset())), font=self.font, fill=255)
         self.draw.text((self.x, self.top+32),"Ratio:"+str(int(hx.get_current_scale_ratio())), font=self.font, fill=255)
-        self.draw.text((self.x, self.top+46),"CMC(c) 2018",  font=self.petitefont, fill=255)
+        self.draw.text((self.x, self.top+46),"CMC(c) 2018",  font=self.petiteFont, fill=255)
         self.disp.image(self.image)
         self.disp.display()
         return True
