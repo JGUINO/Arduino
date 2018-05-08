@@ -261,19 +261,19 @@ try:
 	# desired units. In my case in grams.
 	compteurmqtt=0
 	while True :
-		valeurJGUI = hx.get_weight_mean(30)
+		valeurJGUI = hx.get_weight_mean(20)
 		print('Masse actuelle en grammes: '+str(int(valeurJGUI)) + ' g')
 		d.affVal(valeurJGUI)
 		pression=int(valeurJGUI/ratioMassePression/10)/100
 		if pression>d.pressionHaute:
 			d.pressionHaute=pression
 		al.alarmeSonne(pression)
-		time.sleep(3)
+		time.sleep(2)
 		compteurmqtt=compteurmqtt+1
 		if compteurmqtt==10:
 			#une publication toutes les 10 analyses de mesures
 			publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
-			publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
+			#publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
 			compteurmqtt=0
 
 	# if you need the data fast without doing average or filtering them.
