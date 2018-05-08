@@ -155,7 +155,7 @@ class affichageOLED:
 
     def affJauge(self, x1, y1, x2, y2, pourcentage=0.5):
         self.draw.rectangle((x1,y1,x2,y2),255,255)
-        self.draw.rectangle((x1+int(pourcentage*largeur),y1,x2,y2),0,255)
+        self.draw.rectangle((x1+int(pourcentage*(y2-y1),y1,x2,y2),0,255)
         return True
 
     def affVal(self, val=0):
@@ -258,9 +258,8 @@ try:
 	# desired units. In my case in grams.
 	compteurmqtt=0
 	while True :
-		print('Masse actuelle en grammes: ')
 		valeurJGUI = hx.get_weight_mean(30)
-		print(str(int(valeurJGUI)) + ' g') 
+		print('Masse actuelle en grammes: '+str(int(valeurJGUI)) + ' g')
 		d.affVal(valeurJGUI)
 		al.alarmeSonne(valeurJGUI/1000/ratioMassePression)
 		time.sleep(3)
