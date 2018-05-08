@@ -155,7 +155,7 @@ class affichageOLED:
 
     def affJauge(self, x1, y1, x2, y2, pourcentage=0.5):
         self.draw.rectangle((x1,y1,x2,y2),255,255)
-        self.draw.rectangle((x1+int(pourcentage*(y2-y1),y1,x2,y2),0,255)
+        self.draw.rectangle((x1+int(pourcentage*(y2-y1)),y1,x2,y2),0,255)
         return True
 
     def affVal(self, val=0):
