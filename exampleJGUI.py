@@ -132,9 +132,9 @@ class affichageOLED:
 
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
-        self.font = ImageFont.truetype('Starjedi.ttf', 16)
+        self.font = ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 16)
         self.petiteFont=ImageFont.truetype('Starjedi.ttf', 10)
-        self.trespetiteFont=ImageFont.truetype('Starjedi.ttf', 8)
+        self.trespetiteFont=ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 8)
         cmd = "hostname -I"# | cut -d\' \' -f1"
         self.IP = subprocess.check_output(cmd, shell = True )
     
