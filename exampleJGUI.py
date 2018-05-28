@@ -54,7 +54,7 @@ class MQTTclient:
 
 		self._client.subscribe('{0}/feeds/{1}'.format(self._username, '810827'))
 	def publish(self,feed_id,value):
-		self._client.publish('{0}/feeds/{1}'.format(self._username,feed_id),payload=value)
+		self._client.publish('{0}/feeds/{1}'.format(self._username,"3189pression"),payload=value)
 
 username="JGUI"
 key="c8cc39524d3b415f9fedf29b184ef47b"
