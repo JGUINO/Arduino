@@ -48,9 +48,16 @@ if hostMQTT=="" :
 
 # callbacks obligatoires
 def on_connect(client, userdata, flags, rc):
+    if rc!=0:
+        client.connecte = True
         print("Connecte avec le code retour "+str(rc))
+    else:
+        client.connecte = False
+    
+
 def on_message(client, userdata, msg):
         print("Message recu")
+
 def on_publish(client, obj , mid):
         print("Publication reussie")
 
@@ -62,11 +69,13 @@ client.on_publish = on_publish
 print("avant connection "+hostMQTT)
 client.connect(hostMQTT, 1883, 60)
 print("apres connection")
-client.loop_start()
-client.publish("capteurs/pression"+nomCapteur, "Demarrage capteur ", qos=0, retain=False)
+if client.connecte==True:
+    client.loop_start()
+    client.publish("capteurs/pression"+nomCapteur, "Demarrage capteur ", qos=0, retain=False)
 
 # fonctions de publication
 def publier(client, message):
+    if client.connecte==True:
         client.publish("capteurs/pression/"+nomCapteur,message, qos=0, retain=False)
         print("Publication: "+nomCapteur+" "+message)
 
