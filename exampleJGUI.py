@@ -10,6 +10,7 @@ import sys
 #sys.path.insert(0, "/home/pi/Adafruit_Python_PureIO")
 sys.path.insert(0, "/home/pi/Adafruit_Python_SSD1306")
 import Adafruit_SSD1306
+from Adafruit_IO import MQTTClient
 #import Adafruit_GPIO.SPI as SPI
 
 
