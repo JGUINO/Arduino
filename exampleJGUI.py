@@ -19,6 +19,24 @@ from PIL import ImageFont
 
 import subprocess
 
+class MQTTclient:
+	def __init__(self, username, key, service_host='io.adafruit.com', service_port=1883):
+		self._username = username
+		self._service_host = service_host
+		self._service_port = service_port
+		# Initialize event callbacks to be None so they don't fire.
+		self.on_message    = None
+        # Initialize MQTT client.
+		self._client = mqtt.Client()
+		self._client.username_pw_set(username, key)
+		self._client.on_connect    = self._mqtt_connect
+		self._client.on_disconnect = self._mqtt_disconnect
+		self._client.on_message    = self._mqtt_message
+
+		self._client.subscribe('{0}/feeds/{1}'.format(self._username, '810827'))
+	def publish(self,feed_id,value):
+		self._client.publish('{0}/feeds/{1}'.format(self._username,feed_id),payload=value)
+
 username="JGUI"
 key="c8cc39524d3b415f9fedf29b184ef47b"
 feed_id='810827'
@@ -101,23 +119,6 @@ class alarmePression:
 			GPIO.output(self.IOout, False)
 			print("Alarme annulee: "+str(Pression))
 
-class MQTTclient:
-	def __init__(self, username, key, service_host='io.adafruit.com', service_port=1883):
-		self._username = username
-		self._service_host = service_host
-		self._service_port = service_port
-		# Initialize event callbacks to be None so they don't fire.
-		self.on_message    = None
-        # Initialize MQTT client.
-		self._client = mqtt.Client()
-		self._client.username_pw_set(username, key)
-		self._client.on_connect    = self._mqtt_connect
-		self._client.on_disconnect = self._mqtt_disconnect
-		self._client.on_message    = self._mqtt_message
-
-		self._client.subscribe('{0}/feeds/{1}'.format(self._username, '810827'))
-	def publish(self,feed_id,value):
-		self._client.publish('{0}/feeds/{1}'.format(self._username,feed_id),payload=value)
 
 class affichageOLED:
 	def __init__(self, ratioMP=3.14,PressionMax=1.8,NomCapteur="CapteurX"):
