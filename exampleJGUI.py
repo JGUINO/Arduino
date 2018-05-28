@@ -311,8 +311,7 @@ try:
 		if compteurmqtt==2:
 			#une publication toutes les 10 analyses de mesures
 			#publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
-			client.publish(feed_id,pression)
-			print (str(feed_id)+str(pression))
+			print ('sending '+str(pression)+' to '+str(feed_id))
 			aio=Client(key)
 			aio.send('3189Pression',pression)
 			#publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
