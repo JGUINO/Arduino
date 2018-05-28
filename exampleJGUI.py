@@ -58,7 +58,7 @@ class MQTTclient:
 
 username="JGUI"
 key="c8cc39524d3b415f9fedf29b184ef47b"
-feed_id='810827'
+feed_id="810827"
 #client=mqtt.Client()
 client=MQTTclient(username,key,feed_id)
 client.connecte=False
@@ -313,6 +313,8 @@ try:
 			#publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
 			client.publish(feed_id,pression)
 			print (str(feed_id)+str(pression))
+			aio=Client(key)
+			aio.send('3189Pression',pression)
 			#publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
 			compteurmqtt=0
 
