@@ -91,16 +91,16 @@ if hostMQTT=="" :
 
 #client.reinitialise()
 #client.user_data_set()
-if hostMQTT!="":
-	client.on_connect = on_connect
-	client.on_message = on_message
-	client.on_publish = on_publish
-	print("avant connection "+hostMQTT)
-	client.connect(hostMQTT, 1883, 60)
-	print("apres connection")
-	if client.connecte==True:
-		client.loop_start()
-		client.publish("capteurs/pression"+nomCapteur,"Demarrage capteur", qos=0, retain=False)
+#if hostMQTT!="":
+#	client.on_connect = on_connect
+#	client.on_message = on_message
+#	client.on_publish = on_publish
+#	print("avant connection "+hostMQTT)
+#	client.connect(hostMQTT, 1883, 60)
+#	print("apres connection")
+#	if client.connecte==True:
+#		client.loop_start()
+#		client.publish("capteurs/pression"+nomCapteur,"Demarrage capteur", qos=0, retain=False)
 
 # fonctions de publication
 def publier(client, message):
