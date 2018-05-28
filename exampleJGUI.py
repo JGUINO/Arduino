@@ -21,6 +21,7 @@ import subprocess
 
 
 client=mqtt.Client()
+client.connecte=False
 #parametres de lancement
 nomCapteur="CapteurX"
 nomCapteur=sys.argv[1]
