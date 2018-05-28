@@ -308,10 +308,11 @@ try:
 		al.alarmeSonne(pression)
 		time.sleep(2)
 		compteurmqtt=compteurmqtt+1
-		if compteurmqtt==10:
+		if compteurmqtt==2:
 			#une publication toutes les 10 analyses de mesures
 			#publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
 			client.publish(feed_id,pression)
+			print (str(feed_id)+str(pression))
 			#publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
 			compteurmqtt=0
 
