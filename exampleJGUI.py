@@ -78,7 +78,7 @@ if hostMQTT!="":
 # fonctions de publication
 def publier(client, message):
 	if client.connecte==True:
-	    client.publish("capteurs/pression/"+nomCapteur,message, qos=0, retain=False)
+		client.publish("capteurs/pression/"+nomCapteur,message, qos=0, retain=False)
 		print("Publication: "+nomCapteur+" "+message)
 
 
@@ -123,81 +123,81 @@ class affichageOLED:
 		self.pressionHaute=0
 		self.nomCapteur=NomCapteur
 # Raspberry Pi pin configuration:
-        RST = None     # on the PiOLED this pin isnt used
+		RST = None     # on the PiOLED this pin isnt used
 
 # 128x32 display with hardware I2C:
-        self.disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
+		self.disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
 
 # Initialize library.
-        self.disp.begin()
+		self.disp.begin()
 
 # Clear display.
-        self.disp.clear()
-        self.disp.display()
+		self.disp.clear()
+		self.disp.display()
 
 # Create blank image for drawing.
 # Make sure to create image with mode '1' for 1-bit color.
-        self.width = self.disp.width
-        self.height = self.disp.height
-        self.image = Image.new('1', (self.width, self.height))
+		self.width = self.disp.width
+		self.height = self.disp.height
+		self.image = Image.new('1', (self.width, self.height))
 
 # Get drawing object to draw on image.
-        self.draw = ImageDraw.Draw(self.image)
+		self.draw = ImageDraw.Draw(self.image)
 
 # Draw a black filled box to clear the image.
-        self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
+		self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
 
 # Draw some shapes.
 # First define some constants to allow easy resizing of shapes.
-        padding = -2
-        self.top = padding
-        self.bottom = self.height-padding
+		padding = -2
+		self.top = padding
+		self.bottom = self.height-padding
 # Move left to right keeping track of the current x position for drawing shapes.
-        self.x = 2
+		self.x = 2
 
 # Load default font.
-        self.fontstandard = ImageFont.load_default()
+		self.fontstandard = ImageFont.load_default()
 
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
-        self.font = ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 16)
-        self.petiteFont=ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 10)
-        self.trespetiteFont=ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 8)
-        cmd = "hostname -I"# | cut -d\' \' -f1"
-        self.IP = subprocess.check_output(cmd, shell = True )
-    
-    def affNettoie(self):
-       self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
-       self.disp.image(self.image)
-       self.disp.display()
-       return True   
+		self.font = ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 16)
+		self.petiteFont=ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 10)
+		self.trespetiteFont=ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 8)
+		cmd = "hostname -I"# | cut -d\' \' -f1"
+		self.IP = subprocess.check_output(cmd, shell = True )
 
-    def affLancement(self, hx):
-        self.affNettoie()
-        self.draw.text((self.x, self.top),"IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-        self.draw.text((self.x, self.top+8),"Tarage "+self.nomCapteur, font=self.petiteFont, fill=255)
-        self.draw.text((self.x, self.top+18),"Decal:"+str(int(hx.get_current_offset())), font=self.font, fill=255)
-        self.draw.text((self.x, self.top+32),"Ratio:"+str(int(hx.get_current_scale_ratio())), font=self.font, fill=255)
-        self.draw.text((self.x, self.top+56),"CMC(c) 2018",  font=self.trespetiteFont, fill=255)
-        self.disp.image(self.image)
-        self.disp.display()
-        return True
+	def affNettoie(self):
+		self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
+		self.disp.image(self.image)
+		self.disp.display()
+		return True   
 
-    def affJauge(self, x1, y1, x2, y2, pourcentage=0.5):
-        self.draw.rectangle((x1,y1,x2,y2),255,255)
-        self.draw.rectangle((x1+int(pourcentage*(x2-x1)),y1,x2-2,y2),0,255)
-        return True
+	def affLancement(self, hx):
+		self.affNettoie()
+		self.draw.text((self.x, self.top),"IP: " + str(self.IP),  font=self.fontstandard, fill=255)
+		self.draw.text((self.x, self.top+8),"Tarage "+self.nomCapteur, font=self.petiteFont, fill=255)
+		self.draw.text((self.x, self.top+18),"Decal:"+str(int(hx.get_current_offset())), font=self.font, fill=255)
+		self.draw.text((self.x, self.top+32),"Ratio:"+str(int(hx.get_current_scale_ratio())), font=self.font, fill=255)
+		self.draw.text((self.x, self.top+56),"CMC(c) 2018",  font=self.trespetiteFont, fill=255)
+		self.disp.image(self.image)
+		self.disp.display()
+		return True
 
-    def affVal(self, val=0):
-        self.affNettoie()
-        self.draw.text((self.x, self.top),"P.: "+str(int(val/self.ratioMP/10)/100)+" bars", font=self.font, fill=255)
-        ratioPression=val/self.ratioMP/1000/self.pressionMax
-        self.affJauge(0,self.top+24,self.width,self.top+52,ratioPression)
-        #self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
-        self.draw.text((self.x, self.top+52),"CMC(c)2018"+" Pic: "+str(self.pressionHaute)+"b",  font=self.fontstandard, fill=255)
-        self.disp.image(self.image)
-        self.disp.display()
-        return True
+	def affJauge(self, x1, y1, x2, y2, pourcentage=0.5):
+		self.draw.rectangle((x1,y1,x2,y2),255,255)
+		self.draw.rectangle((x1+int(pourcentage*(x2-x1)),y1,x2-2,y2),0,255)
+		return True
+
+	def affVal(self, val=0):
+		self.affNettoie()
+		self.draw.text((self.x, self.top),"P.: "+str(int(val/self.ratioMP/10)/100)+" bars", font=self.font, fill=255)
+		ratioPression=val/self.ratioMP/1000/self.pressionMax
+		self.affJauge(0,self.top+24,self.width,self.top+52,ratioPression)
+		#self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
+		self.draw.text((self.x, self.top+52),"CMC(c)2018"+" Pic: "+str(self.pressionHaute)+"b",  font=self.fontstandard, fill=255)
+		self.disp.image(self.image)
+		self.disp.display()
+		return True
     
     
 
