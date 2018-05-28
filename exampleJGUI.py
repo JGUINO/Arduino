@@ -37,8 +37,10 @@ ratioMassePression=float(sys.argv[4])
 pressionMax=float(1.8)
 pressionMax=float(sys.argv[5])
 #adresse serveur MQTT
-hostMQTT="localhost"
 hostMQTT=sys.argv[6]
+if hostMQTT=="" :
+    hostMQTT="localhost"
+
 #example de ligne de commande python3 "CapteurcleeD" 22550 218 3.1416 1.8 "192.168.0.31"
 
 
