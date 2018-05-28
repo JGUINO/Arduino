@@ -40,8 +40,8 @@ pressionMax=float(sys.argv[5])
 hostMQTT=sys.argv[6]
 if hostMQTT=="" :
     hostMQTT="localhost"
-username=JGUI
-key=c8cc39524d3b415f9fedf29b184ef47b
+username="JGUI"
+key="c8cc39524d3b415f9fedf29b184ef47b"
 #example de ligne de commande python3 "CapteurcleeD" 22550 218 3.1416 1.8 "192.168.0.31"
 
 
