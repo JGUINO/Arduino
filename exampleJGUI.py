@@ -20,6 +20,21 @@ from PIL import ImageFont
 
 import subprocess
 
+# callbacks obligatoires
+def on_connect(client, userdata, flags, rc):
+    if rc!=0:
+        client.connecte = True
+        print("Connecte avec le code retour "+str(rc))
+    else:
+        client.connecte = False
+    
+
+def on_message(client, userdata, msg):
+        print("Message recu")
+
+def on_publish(client, obj , mid):
+        print("Publication reussie")
+
 class MQTTclient:
 	def __init__(self, username, key, service_host='io.adafruit.com', service_port=1883):
 		self._username = username
@@ -30,9 +45,9 @@ class MQTTclient:
         # Initialize MQTT client.
 		self._client = mqtt.Client()
 		self._client.username_pw_set(username, key)
-		self._client.on_connect    = self._mqtt_connect
-		self._client.on_disconnect = self._mqtt_disconnect
-		self._client.on_message    = self._mqtt_message
+		self._client.on_connect    = self.on_connect
+		#self._client.on_disconnect = self.__disconnect
+		self._client.on_message    = self.on_message
 
 		self._client.subscribe('{0}/feeds/{1}'.format(self._username, '810827'))
 	def publish(self,feed_id,value):
@@ -69,20 +84,7 @@ if hostMQTT=="" :
 
 
 
-# callbacks obligatoires
-def on_connect(client, userdata, flags, rc):
-    if rc!=0:
-        client.connecte = True
-        print("Connecte avec le code retour "+str(rc))
-    else:
-        client.connecte = False
-    
 
-def on_message(client, userdata, msg):
-        print("Message recu")
-
-def on_publish(client, obj , mid):
-        print("Publication reussie")
 
 client.reinitialise()
 #client.user_data_set()
