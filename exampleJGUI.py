@@ -20,22 +20,25 @@ from PIL import ImageFont
 
 import subprocess
 
-# callbacks obligatoires
-def on_connect(client, userdata, flags, rc):
-    if rc!=0:
-        client.connecte = True
-        print("Connecte avec le code retour "+str(rc))
-    else:
-        client.connecte = False
-    
 
-def on_message(client, userdata, msg):
-        print("Message recu")
 
-def on_publish(client, obj , mid):
-        print("Publication reussie")
+
 
 class MQTTclient:
+
+	# callbacks obligatoires
+def on_connect(client, userdata, flags, rc):
+	if rc!=0:
+		client.connecte = True
+		print("Connecte avec le code retour "+str(rc))
+	else:
+		client.connecte = False
+	def on_message(client, userdata, msg):
+		print("Message recu")
+
+def on_publish(client, obj , mid):
+		print("Publication reussie")
+
 	def __init__(self, username, key, service_host='io.adafruit.com', service_port=1883):
 		self._username = username
 		self._service_host = service_host
