@@ -19,8 +19,11 @@ from PIL import ImageFont
 
 import subprocess
 
-
-client=mqtt.Client()
+username="JGUI"
+key="c8cc39524d3b415f9fedf29b184ef47b"
+feed_id='810827'
+#client=mqtt.Client()
+client=MQTTclient(username,key,feed_id)
 client.connecte=False
 #parametres de lancement
 nomCapteur="CapteurX"
@@ -41,8 +44,7 @@ pressionMax=float(sys.argv[5])
 hostMQTT=sys.argv[6]
 if hostMQTT=="" :
     hostMQTT="localhost"
-username="JGUI"
-key="c8cc39524d3b415f9fedf29b184ef47b"
+
 #example de ligne de commande python3 "CapteurcleeD" 22550 218 3.1416 1.8 "192.168.0.31"
 
 
@@ -100,7 +102,7 @@ class alarmePression:
 			print("Alarme annulee: "+str(Pression))
 
 class MQTTclient:
-	def init(self, username, key, service_host='io.adafruit.com', service_port=1883):
+	def __init__(self, username, key, service_host='io.adafruit.com', service_port=1883):
 		self._username = username
 		self._service_host = service_host
 		self._service_port = service_port
@@ -113,9 +115,9 @@ class MQTTclient:
 		self._client.on_disconnect = self._mqtt_disconnect
 		self._client.on_message    = self._mqtt_message
 
-		self._client.subscribe('{0}/feeds/{1}'.format(self._username, '3189pression'))
+		self._client.subscribe('{0}/feeds/{1}'.format(self._username, '810827'))
 	def publish(self,feed_id,value):
-		self._client.publish('{0}/feeds/{1}'.format(self._username, '3189pression'),payload=value)
+		self._client.publish('{0}/feeds/{1}'.format(self._username,feed_id),payload=value)
 
 class affichageOLED:
 	def __init__(self, ratioMP=3.14,PressionMax=1.8,NomCapteur="CapteurX"):
