@@ -89,7 +89,7 @@ if hostMQTT=="" :
 
 
 
-client.reinitialise()
+#client.reinitialise()
 #client.user_data_set()
 if hostMQTT!="":
 	client.on_connect = on_connect
