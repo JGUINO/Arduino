@@ -310,7 +310,8 @@ try:
 		compteurmqtt=compteurmqtt+1
 		if compteurmqtt==10:
 			#une publication toutes les 10 analyses de mesures
-			publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
+			#publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
+			client.publish(feed_id,pression)
 			#publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
 			compteurmqtt=0
 
