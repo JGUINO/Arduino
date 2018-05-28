@@ -40,7 +40,8 @@ pressionMax=float(sys.argv[5])
 hostMQTT=sys.argv[6]
 if hostMQTT=="" :
     hostMQTT="localhost"
-
+username=JGUI
+key=c8cc39524d3b415f9fedf29b184ef47b
 #example de ligne de commande python3 "CapteurcleeD" 22550 218 3.1416 1.8 "192.168.0.31"
 
 
@@ -63,15 +64,16 @@ def on_publish(client, obj , mid):
 
 client.reinitialise()
 #client.user_data_set()
-client.on_connect = on_connect
-client.on_message = on_message
-client.on_publish = on_publish
-print("avant connection "+hostMQTT)
-client.connect(hostMQTT, 1883, 60)
-print("apres connection")
-if client.connecte==True:
-    client.loop_start()
-    client.publish("capteurs/pression"+nomCapteur, "Demarrage capteur ", qos=0, retain=False)
+if hostMQTT!="":
+	client.on_connect = on_connect
+	client.on_message = on_message
+	client.on_publish = on_publish
+	print("avant connection "+hostMQTT)
+	client.connect(hostMQTT, 1883, 60)
+	print("apres connection")
+	if client.connecte==True:
+    	client.loop_start()
+    	client.publish("capteurs/pression"+nomCapteur, "Demarrage capteur ", qos=0, retain=False)
 
 # fonctions de publication
 def publier(client, message):
@@ -96,8 +98,23 @@ class alarmePression:
             GPIO.output(self.IOout, False)
             print("Alarme annulee: "+str(Pression))
 
+class MQTTclient:
+	def init(self, username, key, service_host='io.adafruit.com', service_port=1883):
+		self._username = username
+        self._service_host = service_host
+        self._service_port = service_port
+		# Initialize event callbacks to be None so they don't fire.
+		self.on_message    = None
+        # Initialize MQTT client.
+        self._client = mqtt.Client()
+		self._client.username_pw_set(username, key)
+        self._client.on_connect    = self._mqtt_connect
+        self._client.on_disconnect = self._mqtt_disconnect
+        self._client.on_message    = self._mqtt_message
 
-
+		self._client.subscribe('{0}/feeds/{1}'.format(self._username, '3189pression'))
+	def publish(self,feed_id,value):
+		self._client.publish('{0}/feeds/{1}'.format(self._username, '3189pression'),payload=value)
 
 class affichageOLED:
     def __init__(self, ratioMP=3.14,PressionMax=1.8,NomCapteur="CapteurX"):
