@@ -331,13 +331,13 @@ try:
 		al.alarmeSonne(pression)
 		time.sleep(2)
 		compteurmqtt=compteurmqtt+1
-		if compteurmqtt==2:
+		if compteurmqtt==5:
 			#une publication toutes les 10 analyses de mesures
 			#publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
 			print ('sending '+str(pression)+' to '+'Capteur 1 feed')
 			aio=Client(key)
 			aio.send('3189Pression',pression)
-			client.send_event_async(MSG_TXT % (pression), send_confirmation_callback, None)
+			client.send_event_async(IoTHubMessage(MSG_TXT % (pression)), send_confirmation_callback, None)
 			#publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
 			compteurmqtt=0
 
