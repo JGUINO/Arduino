@@ -10,6 +10,7 @@ import sys
 #sys.path.insert(0, "/home/pi/Adafruit_Python_PureIO")
 sys.path.insert(0, "/home/pi/Adafruit_Python_SSD1306")
 import Adafruit_SSD1306
+from Adafruit_IO import *
 #import Adafruit_GPIO.SPI as SPI
 
 
@@ -18,9 +19,65 @@ from PIL import ImageDraw
 from PIL import ImageFont
 
 import subprocess
+import random
+
+# Using the Python Device SDK for IoT Hub:
+#   https://github.com/Azure/azure-iot-sdk-python
+# The sample connects to a device-specific MQTT endpoint on your IoT Hub.
+import iothub_client
+# pylint: disable=E0611
+from iothub_client import IoTHubClient, IoTHubClientError, IoTHubTransportProvider, IoTHubClientResult
+from iothub_client import IoTHubMessage, IoTHubMessageDispositionResult, IoTHubError, DeviceMethodReturnValue
 
 
-client=mqtt.Client()
+
+
+
+
+class MQTTclient:
+
+	# callbacks obligatoires
+	def on_connect(client, userdata, flags, rc):
+		if rc!=0:
+			client.connecte = True
+			print("Connecte avec le code retour "+str(rc))
+		else:
+			client.connecte = False
+		def on_message(client, userdata, msg):
+			print("Message recu")
+
+	def on_publish(client, obj , mid):
+			print("Publication reussie")
+
+	def __init__(self, username, key, service_host='io.adafruit.com', service_port=1883):
+		self._username = username
+		self._service_host = service_host
+		self._service_port = service_port
+		# Initialize event callbacks to be None so they don't fire.
+		self.on_message    = None
+        # Initialize MQTT client.
+		self._client = mqtt.Client()
+		self._client.username_pw_set(username, key)
+		self._client.on_connect    = self.on_connect
+		#self._client.on_disconnect = self.__disconnect
+		self._client.on_message    = self.on_message
+
+		self._client.subscribe('{0}/feeds/{1}'.format(self._username, '810827'))
+	def publish(self,feed_id,value):
+		self._client.publish('{0}/feeds/{1}'.format(self._username,"3189pression"),payload=value)
+
+username="JGUI"
+key="c8cc39524d3b415f9fedf29b184ef47b"
+feed_id="810827"
+CONNECTION_STRING = "HostName=hubcapteurs.azure-devices.net;DeviceId=raspberrycapteur;SharedAccessKey=ZrM7OgVF4y/dYV0KKWZ056VeKhyqCYfrIa+tcE4Owz0="
+
+# Using the MQTT protocol.
+PROTOCOL = IoTHubTransportProvider.MQTT
+MESSAGE_TIMEOUT = 10000
+
+#client=mqtt.Client()
+client=MQTTclient(username,key,feed_id)
+client.connecte=False
 #parametres de lancement
 nomCapteur="CapteurX"
 nomCapteur=sys.argv[1]
@@ -43,149 +100,142 @@ if hostMQTT=="" :
 
 #example de ligne de commande python3 "CapteurcleeD" 22550 218 3.1416 1.8 "192.168.0.31"
 
+def send_confirmation_callback(message, result, user_context):
+    print ( "IoT Hub responded to message with status: %s" % (result) )
+
+def iothub_client_init():
+    # Create an IoT Hub client
+    client = IoTHubClient(CONNECTION_STRING, PROTOCOL)
+    return client
 
 
 
-# callbacks obligatoires
-def on_connect(client, userdata, flags, rc):
-    if rc!=0:
-        client.connecte = True
-        print("Connecte avec le code retour "+str(rc))
-    else:
-        client.connecte = False
-    
 
-def on_message(client, userdata, msg):
-        print("Message recu")
-
-def on_publish(client, obj , mid):
-        print("Publication reussie")
-
-client.reinitialise()
+#client.reinitialise()
 #client.user_data_set()
-client.on_connect = on_connect
-client.on_message = on_message
-client.on_publish = on_publish
-print("avant connection "+hostMQTT)
-client.connect(hostMQTT, 1883, 60)
-print("apres connection")
-if client.connecte==True:
-	client.loop_start()
-	client.publish("capteurs/pression"+nomCapteur, "Demarrage capteur ", qos=0, retain=False)
+#if hostMQTT!="":
+#	client.on_connect = on_connect
+#	client.on_message = on_message
+#	client.on_publish = on_publish
+#	print("avant connection "+hostMQTT)
+#	client.connect(hostMQTT, 1883, 60)
+#	print("apres connection")
+#	if client.connecte==True:
+#		client.loop_start()
+#		client.publish("capteurs/pression"+nomCapteur,"Demarrage capteur", qos=0, retain=False)
 
 # fonctions de publication
 def publier(client, message):
-    if client.connecte==True:
-        client.publish("capteurs/pression/"+nomCapteur,message, qos=0, retain=False)
-        print("Publication: "+nomCapteur+" "+message)
+	if client.connecte==True:
+		client.publish("capteurs/pression/"+nomCapteur,message, qos=0, retain=False)
+		print("Publication: "+nomCapteur+" "+message)
 
 
 class alarmePression:
-    def __init__(self, IOout=24,PressionMax=1.8):
-        self.IOout=IOout
-        self.PressionMax=PressionMax
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.IOout,GPIO.OUT)
-        GPIO.output(self.IOout, False)
+	def __init__(self, IOout=24,PressionMax=1.8):
+		self.IOout=IOout
+		self.PressionMax=PressionMax
+		GPIO.setmode(GPIO.BCM)
+		GPIO.setup(self.IOout,GPIO.OUT)
+		GPIO.output(self.IOout, False)
 
-    def alarmeSonne(self, Pression=0):
-        if Pression > self.PressionMax:
-            GPIO.output(self.IOout, True)
-            print("Alarme activee: "+str(Pression))
-        else:
-            GPIO.output(self.IOout, False)
-            print("Alarme annulee: "+str(Pression))
-
-
+	def alarmeSonne(self, Pression=0):
+		if Pression > self.PressionMax:
+			GPIO.output(self.IOout, True)
+			print("Alarme activee: "+str(Pression))
+		else:
+			GPIO.output(self.IOout, False)
+			print("Alarme annulee: "+str(Pression))
 
 
 class affichageOLED:
-    def __init__(self, ratioMP=3.14,PressionMax=1.8,NomCapteur="CapteurX"):
-        self.ratioMP=ratioMP
-        self.pressionMax=PressionMax
-        self.pressionHaute=0
-        self.nomCapteur=NomCapteur
+	def __init__(self, ratioMP=3.14,PressionMax=1.8,NomCapteur="CapteurX"):
+		self.ratioMP=ratioMP
+		self.pressionMax=PressionMax
+		self.pressionHaute=0
+		self.nomCapteur=NomCapteur
 # Raspberry Pi pin configuration:
-        RST = None     # on the PiOLED this pin isnt used
+		RST = None     # on the PiOLED this pin isnt used
 
 # 128x32 display with hardware I2C:
-        self.disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
+		self.disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST)
 
 # Initialize library.
-        self.disp.begin()
+		self.disp.begin()
 
 # Clear display.
-        self.disp.clear()
-        self.disp.display()
+		self.disp.clear()
+		self.disp.display()
 
 # Create blank image for drawing.
 # Make sure to create image with mode '1' for 1-bit color.
-        self.width = self.disp.width
-        self.height = self.disp.height
-        self.image = Image.new('1', (self.width, self.height))
+		self.width = self.disp.width
+		self.height = self.disp.height
+		self.image = Image.new('1', (self.width, self.height))
 
 # Get drawing object to draw on image.
-        self.draw = ImageDraw.Draw(self.image)
+		self.draw = ImageDraw.Draw(self.image)
 
 # Draw a black filled box to clear the image.
-        self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
+		self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
 
 # Draw some shapes.
 # First define some constants to allow easy resizing of shapes.
-        padding = -2
-        self.top = padding
-        self.bottom = self.height-padding
+		padding = -2
+		self.top = padding
+		self.bottom = self.height-padding
 # Move left to right keeping track of the current x position for drawing shapes.
-        self.x = 2
+		self.x = 2
 
 # Load default font.
-        self.fontstandard = ImageFont.load_default()
+		self.fontstandard = ImageFont.load_default()
 
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
-        self.font = ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 16)
-        self.petiteFont=ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 10)
-        self.trespetiteFont=ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 8)
-        cmd = "hostname -I"# | cut -d\' \' -f1"
-        self.IP = subprocess.check_output(cmd, shell = True )
-    
-    def affNettoie(self):
-       self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
-       self.disp.image(self.image)
-       self.disp.display()
-       return True   
+		self.font = ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 16)
+		self.petiteFont=ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 10)
+		self.trespetiteFont=ImageFont.truetype('/home/pi/3189-capteurs-pressions/Starjedi.ttf', 8)
+		cmd = "hostname -I"# | cut -d\' \' -f1"
+		self.IP = subprocess.check_output(cmd, shell = True )
 
-    def affLancement(self, hx):
-        self.affNettoie()
-        self.draw.text((self.x, self.top),"IP: " + str(self.IP),  font=self.fontstandard, fill=255)
-        self.draw.text((self.x, self.top+8),"Tarage "+self.nomCapteur, font=self.petiteFont, fill=255)
-        self.draw.text((self.x, self.top+18),"Decal:"+str(int(hx.get_current_offset())), font=self.font, fill=255)
-        self.draw.text((self.x, self.top+32),"Ratio:"+str(int(hx.get_current_scale_ratio())), font=self.font, fill=255)
-        self.draw.text((self.x, self.top+56),"CMC(c) 2018",  font=self.trespetiteFont, fill=255)
-        self.disp.image(self.image)
-        self.disp.display()
-        return True
+	def affNettoie(self):
+		self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
+		self.disp.image(self.image)
+		self.disp.display()
+		return True   
 
-    def affJauge(self, x1, y1, x2, y2, pourcentage=0.5):
-        self.draw.rectangle((x1,y1,x2,y2),255,255)
-        self.draw.rectangle((x1+int(pourcentage*(x2-x1)),y1,x2-2,y2),0,255)
-        return True
+	def affLancement(self, hx):
+		self.affNettoie()
+		self.draw.text((self.x, self.top),"IP: " + str(self.IP),  font=self.fontstandard, fill=255)
+		self.draw.text((self.x, self.top+8),"Tarage "+self.nomCapteur, font=self.petiteFont, fill=255)
+		self.draw.text((self.x, self.top+18),"Decal:"+str(int(hx.get_current_offset())), font=self.font, fill=255)
+		self.draw.text((self.x, self.top+32),"Ratio:"+str(int(hx.get_current_scale_ratio())), font=self.font, fill=255)
+		self.draw.text((self.x, self.top+56),"CMC(c) 2018",  font=self.trespetiteFont, fill=255)
+		self.disp.image(self.image)
+		self.disp.display()
+		return True
 
-    def affVal(self, val=0):
-        self.affNettoie()
-        self.draw.text((self.x, self.top),"P.: "+str(int(val/self.ratioMP/10)/100)+" bars", font=self.font, fill=255)
-        ratioPression=val/self.ratioMP/1000/self.pressionMax
-        self.affJauge(0,self.top+24,self.width,self.top+52,ratioPression)
-        #self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
-        self.draw.text((self.x, self.top+52),"CMC(c)2018"+" Pic: "+str(self.pressionHaute)+"b",  font=self.fontstandard, fill=255)
-        self.disp.image(self.image)
-        self.disp.display()
-        return True
+	def affJauge(self, x1, y1, x2, y2, pourcentage=0.5):
+		self.draw.rectangle((x1,y1,x2,y2),255,255)
+		self.draw.rectangle((x1+int(pourcentage*(x2-x1)),y1,x2-2,y2),0,255)
+		return True
+
+	def affVal(self, val=0):
+		self.affNettoie()
+		self.draw.text((self.x, self.top),"P.: "+str(int(val/self.ratioMP/10)/100)+" bars", font=self.font, fill=255)
+		ratioPression=val/self.ratioMP/1000/self.pressionMax
+		self.affJauge(0,self.top+24,self.width,self.top+52,ratioPression)
+		#self.draw.text((self.x, self.top+24),    "Masse: "+str(int(val))+" g",  font=self.font, fill=255)
+		self.draw.text((self.x, self.top+52),"CMC(c)2018"+" Pic: "+str(self.pressionHaute)+"b",  font=self.fontstandard, fill=255)
+		self.disp.image(self.image)
+		self.disp.display()
+		return True
     
     
 
 try:
 	d=affichageOLED(ratioMassePression,pressionMax,nomCapteur)
+	client = iothub_client_init()
 	# Create an object hx which represents your real hx711 chip
 	# Required input parameters are only 'dout_pin' and 'pd_sck_pin'
 	# If you do not pass any argument 'gain_channel_A' then the default value is 128
@@ -281,9 +331,13 @@ try:
 		al.alarmeSonne(pression)
 		time.sleep(2)
 		compteurmqtt=compteurmqtt+1
-		if compteurmqtt==10:
+		if compteurmqtt==5:
 			#une publication toutes les 10 analyses de mesures
-			publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
+			#publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
+			print ('sending '+str(pression)+' to '+'Capteur 1 feed')
+			aio=Client(key)
+			aio.send('3189Pression',pression)
+			client.send_event_async(IoTHubMessage(MSG_TXT % (pression)), send_confirmation_callback, None)
 			#publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
 			compteurmqtt=0
 
