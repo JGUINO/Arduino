@@ -26,9 +26,7 @@ import random
 # The sample connects to a device-specific MQTT endpoint on your IoT Hub.
 import iothub_client
 # pylint: disable=E0611
-from iothub_client import IoTHubClient, IoTHubClientError, IoTHubTransportProvider, IoTHubClientResult
-from iothub_client import IoTHubMessage, IoTHubMessageDispositionResult, IoTHubError, DeviceMethodReturnValue
-
+from iothub_client import *
 
 
 
