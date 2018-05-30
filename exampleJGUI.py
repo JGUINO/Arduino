@@ -27,8 +27,13 @@ import random
 import iothub_client
 # pylint: disable=E0611
 from iothub_client import *
-from iothub_client import iothubtransportprovider
+from iothub_client import IoTHubClient, IoTHubClientError, IoTHubTransportProvider, IoTHubClientResult
+from iothub_client import IoTHubMessage, IoTHubMessageDispositionResult, IoTHubError
 
+RECEIVE_CONTEXT = 0
+WAIT_COUNT = 10
+RECEIVED_COUNT = 0
+RECEIVE_CALLBACKS = 0
 
 
 
