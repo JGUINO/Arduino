@@ -19,6 +19,16 @@ from PIL import ImageDraw
 from PIL import ImageFont
 
 import subprocess
+import random
+
+# Using the Python Device SDK for IoT Hub:
+#   https://github.com/Azure/azure-iot-sdk-python
+# The sample connects to a device-specific MQTT endpoint on your IoT Hub.
+import iothub_client
+# pylint: disable=E0611
+from iothub_client import IoTHubClient, IoTHubClientError, IoTHubTransportProvider, IoTHubClientResult
+from iothub_client import IoTHubMessage, IoTHubMessageDispositionResult, IoTHubError, DeviceMethodReturnValue
+
 
 
 
@@ -59,6 +69,12 @@ class MQTTclient:
 username="JGUI"
 key="c8cc39524d3b415f9fedf29b184ef47b"
 feed_id="810827"
+CONNECTION_STRING = "HostName=hubcapteurs.azure-devices.net;DeviceId=raspberrycapteur;SharedAccessKey=ZrM7OgVF4y/dYV0KKWZ056VeKhyqCYfrIa+tcE4Owz0="
+
+# Using the MQTT protocol.
+PROTOCOL = IoTHubTransportProvider.MQTT
+MESSAGE_TIMEOUT = 10000
+
 #client=mqtt.Client()
 client=MQTTclient(username,key,feed_id)
 client.connecte=False
@@ -84,7 +100,13 @@ if hostMQTT=="" :
 
 #example de ligne de commande python3 "CapteurcleeD" 22550 218 3.1416 1.8 "192.168.0.31"
 
+def send_confirmation_callback(message, result, user_context):
+    print ( "IoT Hub responded to message with status: %s" % (result) )
 
+def iothub_client_init():
+    # Create an IoT Hub client
+    client = IoTHubClient(CONNECTION_STRING, PROTOCOL)
+    return client
 
 
 
@@ -314,6 +336,7 @@ try:
 			print ('sending '+str(pression)+' to '+'Capteur 1 feed')
 			aio=Client(key)
 			aio.send('3189Pression',pression)
+			client.send_event_async(pression, send_confirmation_callback, None)
 			#publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
 			compteurmqtt=0
 
