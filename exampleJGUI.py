@@ -27,7 +27,7 @@ import random
 import iothub_client
 # pylint: disable=E0611
 from iothub_client import *
-from iothub_client import IoTHubTransportProvider
+from iothub_client import iothubtransportprovider
 
 
 
@@ -71,7 +71,7 @@ feed_id="810827"
 CONNECTION_STRING = "HostName=hubcapteurs.azure-devices.net;DeviceId=raspberrycapteur;SharedAccessKey=ZrM7OgVF4y/dYV0KKWZ056VeKhyqCYfrIa+tcE4Owz0="
 
 # Using the MQTT protocol.
-PROTOCOL = IoTHubTransportProvider.MQTT
+PROTOCOL = iothubtransportprovider.MQTT
 MESSAGE_TIMEOUT = 10000
 
 #client=mqtt.Client()
