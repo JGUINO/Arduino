@@ -27,6 +27,7 @@ import random
 import iothub_client
 # pylint: disable=E0611
 from iothub_client import *
+from iothub_client import IoTHubTransportProvider
 
 
 
