@@ -239,7 +239,7 @@ class affichageOLED:
 
 try:
 	d=affichageOLED(ratioMassePression,pressionMax,nomCapteur)
-	client = iothub_client_init()
+	client1 = iothub_client_init()
 	# Create an object hx which represents your real hx711 chip
 	# Required input parameters are only 'dout_pin' and 'pd_sck_pin'
 	# If you do not pass any argument 'gain_channel_A' then the default value is 128
@@ -341,7 +341,7 @@ try:
 			print ('sending '+str(pression)+' to '+'Capteur 1 feed')
 			aio=Client(key)
 			aio.send('3189Pression',pression)
-			client.send_event_async(IoTHubMessage(MSG_TXT % (pression)), send_confirmation_callback, None)
+			client1.send_event_async(IoTHubMessage(pression), send_confirmation_callback, None)
 			#publier(client,"ratio pression :"+str(ratioMassePression)+" pression max: "+str(d.pressionMax))
 			compteurmqtt=0
 
