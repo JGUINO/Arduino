@@ -338,6 +338,7 @@ try:
 		if compteurmqtt==2:
 			#une publication toutes les 10 analyses de mesures
 			#publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
+			MSG_TXT = "{\"pression\": %.2f"
 			print ('sending '+str(pression)+' to '+'Capteur 1 feed')
 			aio=Client(key)
 			aio.send('3189Pression',pression)
