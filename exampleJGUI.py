@@ -109,8 +109,8 @@ def send_confirmation_callback(message, result, user_context):
 
 def iothub_client_init():
     # Create an IoT Hub client
-    client = IoTHubClient(CONNECTION_STRING, PROTOCOL)
-    return client
+    client1 = IoTHubClient(CONNECTION_STRING, PROTOCOL)
+    return client1
 
 
 
