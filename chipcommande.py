@@ -72,7 +72,7 @@ class coffrage():
             GPIO.setup(self.i,GPIO.OUT)
             GPIO.output(self.i,False)
     for i in coffrage:
-        def activer(i)():
+        def activer(i):
             GPIO.output(self.i,True)
             print("Activation "+str(i))
 
