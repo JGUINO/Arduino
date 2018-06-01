@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO		# import GPIO
 #import paho.mqtt.client as mqtt
 from tkinter import *
+import Tkinter as tk
 
 coffrage=['IOoutlfu','IOoutlfd','IOoutrfu','IOoutrfd','IOoutlmu','IOoutlmd','IOoutrmu','IOoutrmd','IOoutltu','IOoutltd','IOoutrtu','IOoutrtd']
 pieds=['IOoutup1','IOoutdo1','IOoutup2','IOoutdo2','IOoutup3','IOoutdo3','IOoutup4','IOoutdo4']
@@ -77,7 +78,7 @@ class coffrage():
 
 fenetre = Tk()
 for i in [coffrage,pieds]:
-    buton[i]=Button(fenetre,text=str(i),command=lambda:activer(i))
+    tk.Button(fenetre,text=str(i),command=lambda:activer(i))
 n=0
 while n<100:
     for i in [pieds,coffrage]:
@@ -89,7 +90,7 @@ while n<100:
         activerdo1,activerdo2,activerdo3,activerdo4
     n=n+1
 
-
+fenetre.mainloop()
 
 d.affNettoie()
 GPIO.cleanup()
