@@ -78,7 +78,7 @@ class coffrage():
 
 fenetre = Tk()
 for i in [coffrage,pieds]:
-    'button'+str(i)=Button(fenetre,text=str(i),command=bouton+str(i))
+    str(button)+str(i)=Button(fenetre,text=str(i),command=bouton+str(i))
 n=0
 while n<100:
     for i in [pieds,coffrage]:
