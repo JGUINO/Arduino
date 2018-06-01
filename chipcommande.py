@@ -67,11 +67,11 @@ class pied():
 
 
 class coffrage:
-    def __init__(self,c):
-        for i in c:
-            self.i = i
-            GPIO.setup(self.i,GPIO.OUT)
-            GPIO.output(self.i,False)
+    #def __init__(self,c):
+        #for i in c:
+            #self.i = i
+            #GPIO.setup(self.i,GPIO.OUT)
+            #GPIO.output(self.i,False)
     def activer(self,x):
         GPIO.output(self.x,True)
         print("Activation de "+str(x))
