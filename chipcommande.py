@@ -81,7 +81,7 @@ coffrage3189=coffrage()
 fenetre = tk.Tk()
 buton=[]
 for i in c:
-    buton.append(tk.Button(fenetre,text=str(i),command=lambda : coffrage3189.activer(i)))
+    buton.append(tk.Button(fenetre,text=str(i),command=lambda : print("activation de "+str(i))))
 for i in pieds:
     buton.append(tk.Button(fenetre,text=str(i),command=lambda : coffrage3189.activer(i)))
 for i in buton:
