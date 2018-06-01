@@ -73,7 +73,8 @@ class coffrage:
             #GPIO.setup(self.i,GPIO.OUT)
             #GPIO.output(self.i,False)
     def activer(self,x):
-        GPIO.output(self.x,True)
+        self.x=x
+        #GPIO.output(self.x,True)
         print("Activation de "+str(x))
 
 coffrage3189=coffrage()
