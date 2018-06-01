@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO		# import GPIO
-import paho.mqtt.client as mqtt
+#import paho.mqtt.client as mqtt
 from tkinter import *
 
 coffrage=[IOoutlfu,IOoutlfd,IOoutrfu,IOoutrfd,IOoutlmu,IOoutlmd,IOoutrmu,IOoutrmd,IOoutltu,IOoutltd,IOoutrtu,IOoutrtd]
