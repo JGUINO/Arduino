@@ -2,8 +2,8 @@ import RPi.GPIO as GPIO		# import GPIO
 import paho.mqtt.client as mqtt
 from tkinter import *
 
-coffrage=[IOoutlfu=,IOoutlfd=,IOoutrfu=,IOoutrfd=,IOoutlmu=,IOoutlmd=,IOoutrmu=,IOoutrmd=,IOoutltu=,IOoutltd=,IOoutrtu=,IOoutrtd=]
-pieds=[IOoutup1=,IOoutdo1=,IOoutup2=,IOoutdo2=,IOoutup3=,IOoutdo3=,IOoutup4=,IOoutdo4=]
+coffrage=[IOoutlfu=1,IOoutlfd=2,IOoutrfu=3,IOoutrfd=4,IOoutlmu=5,IOoutlmd=6,IOoutrmu=7,IOoutrmd=8,IOoutltu=9,IOoutltd=10,IOoutrtu=11,IOoutrtd=12]
+pieds=[IOoutup1=21,IOoutdo1=22,IOoutup2=23,IOoutdo2=24,IOoutup3=25,IOoutdo3=26,IOoutup4=27,IOoutdo4=28]
 
 class pied():
     def __init__(self,pieds):
