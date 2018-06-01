@@ -76,7 +76,7 @@ class coffrage:
         GPIO.output(self.x,True)
         print("Activation de "+str(x))
 
-coffrage3189=coffrage(c)
+coffrage3189=coffrage()
 fenetre = tk.Tk()
 buton=[]
 for i in c:
