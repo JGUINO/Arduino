@@ -79,9 +79,9 @@ class coffrage():
 fenetre = tk.Tk()
 buton=[]
 for i in c:
-    buton.append(tk.Button(fenetre,text=str(i),command=lambda i=i:activer(i)))
+    buton.append(tk.Button(fenetre,text=str(i),command=lambda i=i: activer(i)))
 for i in pieds:
-    buton.append(tk.Button(fenetre,text=str(i),command=lambda i=i:activer(i)))
+    buton.append(tk.Button(fenetre,text=str(i),command=lambda i=i: activer(i)))
 for i in buton:
     i.pack()
 
