@@ -78,7 +78,7 @@ class coffrage():
 
 fenetre = tk.Tk()
 for i in [coffrage,pieds]:
-    tk.Button(fenetre,text=str(i),command=lambda:activer(i))
+    buton[i]=tk.Button(fenetre,text=str(i),command=lambda:activer(i))
 
 fenetre.mainloop()
 
