@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO		# import GPIO
 from tkinter import *
 import tkinter as tk
 
-coffrage=['IOoutlfu','IOoutlfd','IOoutrfu','IOoutrfd','IOoutlmu','IOoutlmd','IOoutrmu','IOoutrmd','IOoutltu','IOoutltd','IOoutrtu','IOoutrtd']
+c=['IOoutlfu','IOoutlfd','IOoutrfu','IOoutrfd','IOoutlmu','IOoutlmd','IOoutrmu','IOoutrmd','IOoutltu','IOoutltd','IOoutrtu','IOoutrtd']
 pieds=['IOoutup1','IOoutdo1','IOoutup2','IOoutdo2','IOoutup3','IOoutdo3','IOoutup4','IOoutdo4']
 
 class pied():
@@ -67,8 +67,8 @@ class pied():
 
 
 class coffrage():
-    def __init__(self,coffrage):
-        for i in coffrage:
+    def __init__(self,c):
+        for i in c:
             self.i = i
             GPIO.setup(self.i,GPIO.OUT)
             GPIO.output(self.i,False)
@@ -78,7 +78,7 @@ class coffrage():
 
 fenetre = tk.Tk()
 buton=[]
-for i in coffrage:
+for i in c:
     buton.append(tk.Button(fenetre,text=str(i),command=lambda:activer(i)))
 for i in buton:
     i.pack()
