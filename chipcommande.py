@@ -91,7 +91,7 @@ while n<100:
     n=n+1
 
 
-finally:
-	d.affNettoie()
-	GPIO.cleanup()
+
+d.affNettoie()
+GPIO.cleanup()
 
