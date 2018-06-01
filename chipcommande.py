@@ -76,7 +76,7 @@ class coffrage():
         GPIO.output(self.x,True)
         print("Activation "+str(x))
 
-fenetre = Tk()
+fenetre = tk.Tk()
 for i in [coffrage,pieds]:
     tk.Button(fenetre,text=str(i),command=lambda:activer(i))
 n=0
