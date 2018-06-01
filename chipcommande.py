@@ -66,7 +66,7 @@ class pied():
 
 
 
-class coffrage():
+class coffrage:
     def __init__(self,c):
         for i in c:
             self.i = i
@@ -76,7 +76,7 @@ class coffrage():
         GPIO.output(self.x,True)
         print("Activation de "+str(x))
 
-coffrage3189=coffrage()
+coffrage3189=coffrage(c)
 fenetre = tk.Tk()
 buton=[]
 for i in c:
