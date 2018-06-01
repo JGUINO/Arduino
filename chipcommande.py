@@ -82,6 +82,5 @@ for i in [coffrage,pieds]:
 
 fenetre.mainloop()
 
-d.affNettoie()
 GPIO.cleanup()
 
