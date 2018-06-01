@@ -76,12 +76,13 @@ class coffrage():
         GPIO.output(self.x,True)
         print("Activation de "+str(x))
 
+coffrage3189=coffrage()
 fenetre = tk.Tk()
 buton=[]
 for i in c:
-    buton.append(tk.Button(fenetre,text=str(i),command=lambda : activer(i),))
+    buton.append(tk.Button(fenetre,text=str(i),command=lambda : coffrage3189.activer(i),))
 for i in pieds:
-    buton.append(tk.Button(fenetre,text=str(i),command=lambda : activer(i),))
+    buton.append(tk.Button(fenetre,text=str(i),command=lambda : coffrage3189.activer(i),))
 for i in buton:
     i.pack()
 
