@@ -89,7 +89,7 @@ while True:
     if bouton4down:
         activerdo1,activerdo2,activerdo3,activerdo4
 
-except (KeyboardInterrupt, SystemExit):
+except(KeyboardInterrupt, SystemExit):
 	print(' Fin de commande')
 	
 finally:
