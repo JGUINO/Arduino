@@ -79,8 +79,8 @@ class coffrage():
 fenetre = Tk()
 for i in [coffrage,pieds]:
     'button'+str(i)=Button(fenetre,text=str(i),command=bouton+str(i))
-
-while True:
+n=0
+while n<100:
     for i in [pieds,coffrage]:
         if bouton+str(i) == True:
             activer+str(i)
@@ -88,6 +88,7 @@ while True:
         activerup1,activerup2,activerup3,activerup4
     if bouton4down:
         activerdo1,activerdo2,activerdo3,activerdo4
+    n=n+1
 
 except(KeyboardInterrupt, SystemExit):
 	print(' Fin de commande')
