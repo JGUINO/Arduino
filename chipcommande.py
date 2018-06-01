@@ -79,16 +79,6 @@ class coffrage():
 fenetre = tk.Tk()
 for i in [coffrage,pieds]:
     tk.Button(fenetre,text=str(i),command=lambda:activer(i))
-n=0
-while n<100:
-    for i in [pieds,coffrage]:
-        if bouton+str(i) == True:
-            activer+str(i)
-    if bouton4up :
-        activerup1,activerup2,activerup3,activerup4
-    if bouton4down:
-        activerdo1,activerdo2,activerdo3,activerdo4
-    n=n+1
 
 fenetre.mainloop()
 
