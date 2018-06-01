@@ -90,9 +90,7 @@ while n<100:
         activerdo1,activerdo2,activerdo3,activerdo4
     n=n+1
 
-except(KeyboardInterrupt, SystemExit):
-	print(' Fin de commande')
-	
+
 finally:
 	d.affNettoie()
 	GPIO.cleanup()
