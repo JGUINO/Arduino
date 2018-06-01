@@ -71,13 +71,13 @@ class coffrage():
             self.i = i
             GPIO.setup(self.i,GPIO.OUT)
             GPIO.output(self.i,False)
-    def activer(i):
-        GPIO.output(self.i,True)
-        print("Activation "+str(i))
+    def activer(x):
+        GPIO.output(self.x,True)
+        print("Activation "+str(x))
 
 fenetre = Tk()
 for i in [coffrage,pieds]:
-    buton[i]=Button(fenetre,text=str(i),command=activer(i))
+    buton[i]=Button(fenetre,text=str(i),command=lambda:activer(i))
 n=0
 while n<100:
     for i in [pieds,coffrage]:
