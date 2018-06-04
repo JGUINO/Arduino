@@ -4,7 +4,7 @@ from tkinter import *
 import tkinter as tk
 fenetre = tk.Tk()
 downarrow=PhotoImage(file='arrowup.gif')
-uparrow=PhotoImage(file='arrowup.gif')
+uparrow=PhotoImage(file='arrowdown.gif')
 
 c=['IOoutlfu','IOoutlfd','IOoutrfu','IOoutrfd','IOoutlmu','IOoutlmd','IOoutrmu','IOoutrmd','IOoutltu','IOoutltd','IOoutrtu','IOoutrtd']
 pieds=['IOoutup1','IOoutdo1','IOoutup2','IOoutdo2','IOoutup3','IOoutdo3','IOoutup4','IOoutdo4']
