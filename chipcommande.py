@@ -213,9 +213,9 @@ quitter.place(x=725,y=430)
 for i in boutons:
     i.config(state=NORMAL)
 
-bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=30,width=75)
+bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=10,width=30)
 bcoffr.place(x=100,y=435)
-bpie=tk.Button(fenetre,text='Pieds',font=(70),height=30,width=75)
+bpie=tk.Button(fenetre,text='Pieds',font=(70),height=10,width=30)
 bpie.place(x=250,y=435)
 
 fenetre.geometry("800x600+10+10")
