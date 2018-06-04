@@ -95,7 +95,7 @@ for i in c:
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.place(x=l,y=120)
+        p.place(x=l,y=150)
         l=l+100
     n=n+1
 
@@ -107,17 +107,17 @@ for i in pieds:
         p.config(image=uparrow)
         p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p))
         p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'))
-        p.place(x=l,y=200)
+        p.place(x=l,y=230)
         
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.place(x=l,y=270)
+        p.place(x=l,y=300)
         l=l+100
     n=n+1
 
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
-quitter.place(x=720,y=400)
+quitter.place(x=730,y=400)
 
 fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
