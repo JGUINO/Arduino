@@ -85,10 +85,12 @@ d=0
 def press(x):
     for i in c:
         if i!=x:
-            i.config(state=Disabled)
+            i.config(state=DISABLED)
     
 def release():
-    global d=d-1
+    for i in c:
+        if i!=x:
+            i.config(state=NORMAL)
 
 n=1
 l=0
@@ -107,15 +109,15 @@ for i in c:
     if n%2==1:
         p=tk.Button(fenetre)
         p.config(image=uparrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i,d=d:coffrage3189.activer(p),press(p))
-        p.bind('<ButtonRelease-1>',lambda event, p=i,d=d:print(p+' desactivé'),release)
+        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p),press(p))
+        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),release)
         p.place(x=l,y=50)
         
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i,d=d:coffrage3189.activer(p),press(p))
-        p.bind('<ButtonRelease-1>',lambda event, p=i,d=d:print(p+' desactivé'),release)
+        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p),press(p))
+        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),release)
         p.place(x=l,y=150)
         l=l+100
     n=n+1
@@ -126,15 +128,15 @@ for i in pieds:
     if n%2==1:
         p=tk.Button(fenetre)
         p.config(image=uparrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i,d=d:coffrage3189.activer(p),press(p))
-        p.bind('<ButtonRelease-1>',lambda event, p=i,d=d:print(p+' desactivé'),release)
+        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p),press(p))
+        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),release)
         p.place(x=l,y=250)
         
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i,d=d:coffrage3189.activer(p),press(p))
-        p.bind('<ButtonRelease-1>',lambda event, p=i,d=d:print(p+' desactivé'),release)
+        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p),press(p))
+        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),release)
         p.place(x=l,y=350)
         l=l+100
     n=n+1
@@ -183,8 +185,6 @@ fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
 fenetre.geometry("{0}x{1}+0+0".format(fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()))
 fenetre.mainloop()
-
-if d>1:
 
 
 GPIO.cleanup()
