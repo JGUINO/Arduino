@@ -214,8 +214,10 @@ for i in boutons:
     i.config(state=NORMAL)
 
 bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10)
+bcoffr.bind('<ButtonPress-1>',command=affichercoffrage)
 bcoffr.place(x=400,y=425)
 bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
+bpie.bind('<ButtonPress-1',command=afficherpieds)
 bpie.place(x=550,y=425)
 
 fenetre.geometry("800x600+10+10")
@@ -227,5 +229,19 @@ fenetre.mainloop()
 GPIO.cleanup()
 
 
+def affichercoffrage():
+    abscisse=10,ordonnee=40,n=1
+    for i in boutons:
+        i.place_forget()
+    for k in boutonscoffrage:
+        p=k
+        if n%2==1:
+            p.place(x=abcisse,y=ordonnee)
+        elif n%2==0:
+            p.place(x=abscisse,y=ordonnee+100)
+            abscisse=abscisse+100
+        n=n+1
+        if n==7:
+            ordonnee=ordonnee+100
 
 
