@@ -188,6 +188,7 @@ fenetre.overrideredirect(True)
 fenetre.geometry("{0}x{1}+0+0".format(fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()))
 fenetre.mainloop()
 
-
+for i in boutons:
+    i.config(state=NORMAL)
 GPIO.cleanup()
 
