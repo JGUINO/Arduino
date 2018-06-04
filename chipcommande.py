@@ -79,17 +79,35 @@ class coffrage:
         self.bout=bout
         self.nom=nom
         global boutons
+        global pieds
         #GPIO.output(self.x,True)
         print("Activation de "+str(nom))
         if nom in c:
             framec.config(bg='red')
+            for j in clab:
+                j.config(bg='red')
+        if nom in pieds:
+            framep.config(bg='red')
+            pieds1.config(bg='red')
+            pieds2.config(bg='red')
+            pieds3.config(bg='red')
+            pieds4.config(bg='red')
 
         for i in boutons:
             if i!=bout:
                 i.config(state=DISABLED)
     def release(self,nom):
         global boutons
+        global clab
         self.nom=nom
+        framec.config(bg='green')
+        framep.config(bg='blue')
+        for j in clab:
+            j.config(bg='green')
+        pieds1.config(bg='blue')
+        pieds2.config(bg='blue')
+        pieds3.config(bg='blue')
+        pieds4.config(bg='blue')
         print(str(nom)+' désactivé')
         for i in boutons:
             i.config(state=NORMAL)
@@ -175,6 +193,7 @@ clt1=Label(text="Arrière",bg='green')
 clt2=Label(text="gauche",bg='green')
 crt1=Label(text="Arrière",bg='green')
 crt2=Label(text="droit",bg='green')
+clab=[clf1,clf2,crf1,crf2clm1,clm2,crm1,crm2,clt1,clt2,crt1,crt2]
 clf1.place(x=5,y=110)
 clf2.place(x=5,y=130)
 crf1.place(x=105,y=110)
