@@ -103,7 +103,7 @@ for i in pieds:
     buton.append(tk.Button(fenetre,text=str(i),command=lambda : coffrage3189.activer(i)))
 for j in buton:
     j.pack()
-
+fenetre.geometry("800x600+10+10")
 fenetre.mainloop()
 
 top = Tk()
