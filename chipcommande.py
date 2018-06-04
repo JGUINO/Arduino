@@ -122,6 +122,11 @@ for i in pieds:
         l=l+100
     n=n+1
 
+framec=Frame(fenetre,height=90,width=700)
+framec.place(x=0,y=30)
+Label(framec,text='Coffrage').place(x=650,y=50)
+
+
 pied1=Label(text="Pied 1")
 pied1.place(x=5,y=320)
 pied2=Label(text="Pied 2")
