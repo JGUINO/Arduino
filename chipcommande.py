@@ -98,8 +98,8 @@ for i in c:
     if n%2==1:
         p=tk.Button(fenetre)
         p.config(image=uparrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p);'danger'=danger+1)
-        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé');'danger'=danger-1)
+        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p),'danger'=danger+1)
+        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),'danger'=danger-1)
         p.place(x=l,y=50)
         
     elif n%2==0:
