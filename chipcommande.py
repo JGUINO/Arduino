@@ -105,9 +105,10 @@ l=0
 for i in pieds:
     p=i
     if n%2==1:
-        p=tk.Button(fenetre,command=lambda p=i: activer(p) )
+        p=tk.Button(fenetre)
         p.config(image=uparrow)
-        p.bind('<ButtonPress-1>',lambda p=1:activer(p))
+        p.bind('<ButtonPress-1>',lambda event, p=i:activer(p))
+        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'))
         p.place(x=l,y=200)
         
     elif n%2==0:
