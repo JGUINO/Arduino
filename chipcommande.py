@@ -79,6 +79,8 @@ class coffrage:
         self.x=x
         #GPIO.output(self.x,True)
         print("Activation de "+str(x))
+
+danger=0
 n=1
 l=0
 h=0
@@ -96,15 +98,15 @@ for i in c:
     if n%2==1:
         p=tk.Button(fenetre)
         p.config(image=uparrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p))
-        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'))
+        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p),danger=danger+1)
+        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),danger=danger-1)
         p.place(x=l,y=50)
         
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p))
-        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'))
+        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p),danger=danger+1)
+        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),danger=danger-1)
         p.place(x=l,y=150)
         l=l+100
     n=n+1
@@ -115,15 +117,15 @@ for i in pieds:
     if n%2==1:
         p=tk.Button(fenetre)
         p.config(image=uparrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p))
-        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'))
+        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p),danger=danger+1)
+        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),danger=danger-1)
         p.place(x=l,y=250)
         
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p))
-        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'))
+        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p),danger=danger+1)
+        p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),danger=danger-1)
         p.place(x=l,y=350)
         l=l+100
     n=n+1
