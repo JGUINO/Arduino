@@ -214,9 +214,9 @@ for i in boutons:
     i.config(state=NORMAL)
 
 bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10)
-bcoffr.place(x=100,y=435)
+bcoffr.place(x=100,y=425)
 bpie=tk.Button(fenetre,text='Pieds',font=(70),height=3,width=10)
-bpie.place(x=250,y=435)
+bpie.place(x=250,y=425)
 
 fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
