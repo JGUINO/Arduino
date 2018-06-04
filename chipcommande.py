@@ -88,7 +88,6 @@ def press(x):
             i.config(state=DISABLED)
     
 def release():
-    boutons=global boutons
     for i in boutons:
         if i!=x:
             i.config(state=NORMAL)
