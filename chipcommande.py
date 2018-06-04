@@ -119,7 +119,7 @@ for i in c:
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p))
+        p.bind('<ButtonPress-1>',lambda event, p=i:c3189.activer(p))
         p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),c3189.release)
         p.place(x=l,y=150)
         l=l+100
@@ -132,14 +132,14 @@ for i in pieds:
     if n%2==1:
         p=tk.Button(fenetre)
         p.config(image=uparrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p))
+        p.bind('<ButtonPress-1>',lambda event, p=i:c3189.activer(p))
         p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),c3189.release)
         p.place(x=l,y=250)
         
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p))
+        p.bind('<ButtonPress-1>',lambda event, p=i:c3189.activer(p))
         p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),c3189.release)
         p.place(x=l,y=350)
         l=l+100
