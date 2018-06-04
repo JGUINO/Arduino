@@ -193,7 +193,7 @@ clt1=Label(text="Arrière",bg='green')
 clt2=Label(text="gauche",bg='green')
 crt1=Label(text="Arrière",bg='green')
 crt2=Label(text="droit",bg='green')
-clab=[clf1,clf2,crf1,crf2clm1,clm2,crm1,crm2,clt1,clt2,crt1,crt2]
+clab=[clf1,clf2,crf1,crf2,clm1,clm2,crm1,crm2,clt1,clt2,crt1,crt2]
 clf1.place(x=5,y=110)
 clf2.place(x=5,y=130)
 crf1.place(x=105,y=110)
