@@ -122,7 +122,7 @@ for i in pieds:
         l=l+100
     n=n+1
 
-framec=Frame(fenetre,height=90,width=700)
+framec=Frame(fenetre,height=90,width=700,bg=red)
 framec.place(x=0,y=30)
 Label(framec,text='Coffrage').place(x=650,y=50)
 
