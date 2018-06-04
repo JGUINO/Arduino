@@ -105,7 +105,7 @@ for i in pieds:
     if n%2==1:
         p=tk.Button(fenetre)
         p.config(image=uparrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i:activer(p))
+        p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p))
         p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'))
         p.place(x=l,y=200)
         
