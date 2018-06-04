@@ -95,8 +95,8 @@ for i in c:
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.place(x=l,y=100)
-        l=l+50
+        p.place(x=l,y=120)
+        l=l+100
     print(l)
     print(h)
     n=n+1
