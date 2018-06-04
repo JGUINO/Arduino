@@ -81,7 +81,7 @@ class coffrage:
         print("Activation de "+str(x))
 
 d=0
-
+boutons=[]
 def press(x):
     for i in boutons:
         if i!=x:
@@ -91,7 +91,7 @@ def release():
     for i in boutons:
         i.config(state=NORMAL)
 
-boutons=[]
+
 n=1
 l=0
 h=0
