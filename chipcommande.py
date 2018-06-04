@@ -208,7 +208,7 @@ crt1.place(x=505,y=110)
 crt2.place(x=505,y=130)
 
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
-quitter.place(x=725,y=430)
+quitter.place(x=725,y=440)
 
 for i in boutons:
     i.config(state=NORMAL)
