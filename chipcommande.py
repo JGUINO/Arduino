@@ -117,6 +117,9 @@ for i in pieds:
     print(l)
     print(h)
     n=n+1
+
+quitter=tk.Button(fenetre,text='Quitter',command=lambda:fenetre.destroy)
+
 fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
 fenetre.geometry("{0}x{1}+0+0".format(fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()))
