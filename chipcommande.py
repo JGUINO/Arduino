@@ -213,8 +213,8 @@ quitter.place(x=725,y=430)
 for i in boutons:
     i.config(state=NORMAL)
 
-bcoffr=tk.Button(fenetre,text='Coffrage',font=(70))
-bcoffr.place(x=100,y=430)
+bcoffr=tk.Button(fenetre,text='Coffrage',font=(120))
+bcoffr.place(x=100,y=450)
 
 fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
