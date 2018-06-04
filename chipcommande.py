@@ -100,6 +100,8 @@ for i in c:
     print(l)
     print(h)
     n=n+1
+
+l=0
 for i in pieds:
     p=i
     if n%2==1:
