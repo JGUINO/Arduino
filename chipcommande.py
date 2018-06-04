@@ -97,8 +97,6 @@ for i in c:
         p.config(image=downarrow)
         p.place(x=l,y=120)
         l=l+100
-    print(l)
-    print(h)
     n=n+1
 
 l=0
