@@ -208,12 +208,12 @@ crt1.place(x=505,y=110)
 crt2.place(x=505,y=130)
 
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
-quitter.place(x=730,y=400)
+quitter.place(x=725,y=430)
 
 for i in boutons:
     i.config(state=NORMAL)
 
-bcoffr=tk.Button(fenetre,text='Coffrage',font=(50))
+bcoffr=tk.Button(fenetre,text='Coffrage',font=(70))
 bcoffr.place(x=100,y=430)
 
 fenetre.geometry("800x600+10+10")
