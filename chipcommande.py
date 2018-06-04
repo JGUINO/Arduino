@@ -85,10 +85,10 @@ coffrage3189=coffrage()
 buton=[]
 for i in c:
     p=i
-    if n%2==n/2:
+    if n%2==1:
         p=tk.Button(fenetre,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=uparrow, width=2, height=2)
-    elif n%2!=n/2:
+    elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
     p.pack()
