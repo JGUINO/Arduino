@@ -87,7 +87,7 @@ for i in c:
     p=i
     if n%2==n/2:
         p=tk.Button(fenetre,command=lambda p=i: print("activation de "+str(p)))
-        p.config(image=uparrow)
+        p.config(image=uparrow, width="10", height="10")
     elif n%2!=n/2:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
