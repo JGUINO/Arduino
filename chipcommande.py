@@ -105,7 +105,7 @@ l=0
 for i in pieds:
     p=i
     if n%2==1:
-        p=tk.Button(fenetre,command=lambda p=i: print("activation de "+str(p)))
+        p=tk.Button(fenetre,command=lambda p=i: activer(p) )
         p.config(image=uparrow)
         p.place(x=l,y=200)
         
