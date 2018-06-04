@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO		# import GPIO
 #import paho.mqtt.client as mqtt
 from tkinter import *
 import tkinter as tk
-
+fenetre = tk.Tk()
 leftarrow=PhotoImage(file='arrow left.bmp')
 rightarrow=PhotoImage(file='arrow right.bmp')
 downarrow=PhotoImage(file='arrow up.bmp')
@@ -83,7 +83,7 @@ class coffrage:
         print("Activation de "+str(x))
 n=1
 coffrage3189=coffrage()
-fenetre = tk.Tk()
+
 buton=[]
 for i in c:
     p=i
