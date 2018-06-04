@@ -105,12 +105,12 @@ for i in pieds:
     if n%2==1:
         p=tk.Button(fenetre,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=uparrow)
-        p.place(x=l,y=300)
+        p.place(x=l,y=200)
         
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.place(x=l,y=420)
+        p.place(x=l,y=320)
         l=l+100
     print(l)
     print(h)
