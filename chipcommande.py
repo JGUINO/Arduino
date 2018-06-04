@@ -67,7 +67,7 @@ class pied():
         GPIO.output(self.IOoutdo, True)
         print("Activation down4")
 
-
+boutons=[]
 
 class coffrage:
     #def __init__(self,c):
@@ -77,19 +77,22 @@ class coffrage:
             #GPIO.output(self.i,False)
     def activer(self,x):
         self.x=x
+        global boutons
         #GPIO.output(self.x,True)
         print("Activation de "+str(x))
-
-d=0
-boutons=[]
-def press(x):
-    for i in boutons:
+        for i in boutons:
         if i!=x:
             i.config(state=DISABLED)
+    def release(self):
+        global boutons
+        for i in boutons:
+            i.config(state=NORMAL)
+
+d=0
+
     
-def release():
-    for i in boutons:
-        i.config(state=NORMAL)
+    
+
 
 
 n=1
@@ -142,7 +145,6 @@ for i in pieds:
         l=l+100
     n=n+1
     boutons.append(p)
-
 
 
 
