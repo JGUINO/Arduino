@@ -213,6 +213,9 @@ quitter.place(x=730,y=400)
 for i in boutons:
     i.config(state=NORMAL)
 
+bcoffr=tk.Button(fenetre,text='Coffrage',font=(30))
+bcoffr.place(x=100,y=430)
+
 fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
 fenetre.geometry("{0}x{1}+0+0".format(fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()))
@@ -220,4 +223,7 @@ fenetre.mainloop()
 
 
 GPIO.cleanup()
+
+
+
 
