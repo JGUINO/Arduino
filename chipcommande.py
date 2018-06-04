@@ -119,7 +119,7 @@ for i in pieds:
     n=n+1
 fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
-fenetre.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
+fenetre.geometry("{0}x{1}+0+0".format(fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()))
 fenetre.mainloop()
 
 
