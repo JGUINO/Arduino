@@ -90,7 +90,7 @@ for i in c:
     if n%2==1:
         p=tk.Button(fenetre,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=uparrow)
-        p.place(x=l,y=50,anchor=NE)
+        p.place(x=l,y=50)
         
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
