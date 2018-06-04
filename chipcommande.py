@@ -83,7 +83,7 @@ class coffrage:
 d=0
 
 def press(x):
-    for i in c:
+    for i in boutons:
         if i!=x:
             i.config(state=DISABLED)
     
