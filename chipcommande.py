@@ -89,8 +89,8 @@ def press(x):
     
 def release():
     for i in boutons:
-        if i!=x:
-            i.config(state=NORMAL)
+        i.config(state=NORMAL)
+
 boutons=[]
 n=1
 l=0
