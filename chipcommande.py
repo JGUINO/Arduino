@@ -84,8 +84,10 @@ class coffrage:
         for i in boutons:
             if i!=bout:
                 i.config(state=DISABLED)
-    def release(self):
+    def release(self,nom):
         global boutons
+        self.nom=nom
+        print(str(nom)+' désactivé')
         for i in boutons:
             i.config(state=NORMAL)
 
@@ -114,7 +116,7 @@ for i in c:
         p=tk.Button(fenetre)
         p.config(image=uparrow)
         p.bind('<ButtonPress-1>',lambda event, p=p,nom=i:c3189.activer(nom,p))
-        p.bind('<ButtonRelease-1>',lambda event, p=i:print(str(p)+' desactivé'),c3189.release)
+        p.bind('<ButtonRelease-1>',lambda event, nom=i:c3189.release(nom))
         p.place(x=l,y=50)
         
     elif n%2==0:
