@@ -118,8 +118,8 @@ for i in pieds:
     print(h)
     n=n+1
 
-quitter=tk.Button(fenetre,text='Quitter',command=lambda:fenetre.destroy)
-quitter.place(x=750,y=350)
+quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
+quitter.place(x=730,y=380)
 
 fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
