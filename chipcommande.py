@@ -85,11 +85,11 @@ h=0
 coffrage3189=coffrage()
 framec=Frame(fenetre,height=190,width=720,bg="green")
 framec.place(x=0,y=30)
-Label(framec,text='Coffrage',font=(25)).place(x=630,y=50)
+Label(framec,text='Coffrage',font=(25)).place(x=630,y=30)
 
 framep=Frame(fenetre,height=190,width=720,bg="blue")
 framep.place(x=0,y=230)
-Label(framec,text='Pieds',font=(25)).place(x=630,y=50)
+Label(framep,text='Pieds',font=(25)).place(x=630,y=30)
 
 for i in c:
     p=i
