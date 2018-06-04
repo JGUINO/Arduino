@@ -91,7 +91,7 @@ for i in c:
     elif n%2!=n/2:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-    p
+    p.pack()
     n=n+1
 for i in pieds:
     buton.append(tk.Button(fenetre,text=str(i),command=lambda : coffrage3189.activer(i)))
