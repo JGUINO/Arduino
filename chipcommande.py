@@ -81,8 +81,8 @@ class coffrage:
         #GPIO.output(self.x,True)
         print("Activation de "+str(x))
         for i in boutons:
-        if i!=x:
-            i.config(state=DISABLED)
+            if i!=x:
+                i.config(state=DISABLED)
     def release(self):
         global boutons
         for i in boutons:
