@@ -80,8 +80,8 @@ class coffrage:
         #GPIO.output(self.x,True)
         print("Activation de "+str(x))
 n=1
-x=0
-y=0
+l=0
+h=0
 coffrage3189=coffrage()
 
 buton=[]
@@ -90,13 +90,13 @@ for i in c:
     if n%2==1:
         p=tk.Button(fenetre,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=uparrow)
-        p.place(x=x,y=y)
-        x=x+50
+        p.place(x=l,y=h)
+        l=l+50
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.place(x=x,y=y)
-        y=y+50
+        p.place(x=l,y=h)
+        h=h+50
     p.pack()
     n=n+1
 for i in pieds:
