@@ -101,9 +101,20 @@ for i in c:
     print(h)
     n=n+1
 for i in pieds:
-    buton.append(tk.Button(fenetre,text=str(i),command=lambda : coffrage3189.activer(i)))
-for j in buton:
-    j.pack()
+    p=i
+    if n%2==1:
+        p=tk.Button(fenetre,command=lambda p=i: print("activation de "+str(p)))
+        p.config(image=uparrow)
+        p.place(x=l,y=300)
+        
+    elif n%2==0:
+        p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
+        p.config(image=downarrow)
+        p.place(x=l,y=420)
+        l=l+100
+    print(l)
+    print(h)
+    n=n+1
 fenetre.geometry("800x600+10+10")
 fenetre.mainloop()
 
