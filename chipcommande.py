@@ -88,10 +88,11 @@ def press(x):
             i.config(state=DISABLED)
     
 def release():
-    for i in c:
+    boutons=global boutons
+    for i in boutons:
         if i!=x:
             i.config(state=NORMAL)
-
+boutons=[]
 n=1
 l=0
 h=0
@@ -121,6 +122,7 @@ for i in c:
         p.place(x=l,y=150)
         l=l+100
     n=n+1
+    boutons.append(p)
 
 l=0
 for i in pieds:
@@ -140,6 +142,7 @@ for i in pieds:
         p.place(x=l,y=350)
         l=l+100
     n=n+1
+    boutons.append(p)
 
 
 
