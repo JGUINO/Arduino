@@ -118,6 +118,8 @@ for i in pieds:
     print(h)
     n=n+1
 fenetre.geometry("800x600+10+10")
+fenetre.overriderect(True)
+fenetre.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth(), root.winfo_screenheight()))
 fenetre.mainloop()
 
 
