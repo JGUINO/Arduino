@@ -107,12 +107,12 @@ for i in pieds:
         p.config(image=uparrow)
         p.bind('<ButtonPress-1>',lambda event, p=i:coffrage3189.activer(p))
         p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'))
-        p.place(x=l,y=230)
+        p.place(x=l,y=250)
         
     elif n%2==0:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
         p.config(image=downarrow)
-        p.place(x=l,y=300)
+        p.place(x=l,y=350)
         l=l+100
     n=n+1
 
