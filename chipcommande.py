@@ -3,8 +3,8 @@ import RPi.GPIO as GPIO		# import GPIO
 from tkinter import *
 import tkinter as tk
 fenetre = tk.Tk()
-downarrow=PhotoImage(file='arrow up.gif')
-uparrow=PhotoImage(file='arrow up.gif')
+downarrow=PhotoImage(file='arrowup.gif')
+uparrow=PhotoImage(file='arrowup.gif')
 
 c=['IOoutlfu','IOoutlfd','IOoutrfu','IOoutrfd','IOoutlmu','IOoutlmd','IOoutrmu','IOoutrmd','IOoutltu','IOoutltd','IOoutrtu','IOoutrtd']
 pieds=['IOoutup1','IOoutdo1','IOoutup2','IOoutdo2','IOoutup3','IOoutdo3','IOoutup4','IOoutdo4']
@@ -86,9 +86,11 @@ buton=[]
 for i in c:
     p=i
     if n%2==n/2:
-        p=tk.Button(fenetre,image=uparrow,command=lambda p=i: print("activation de "+str(p)))
+        p=tk.Button(fenetre,command=lambda p=i: print("activation de "+str(p)))
+        p.config(image=uparrow)
     elif n%2!=n/2:
         p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
+        p.config(image=downarrow)
     p
     n=n+1
 for i in pieds:
