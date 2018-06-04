@@ -83,8 +83,10 @@ n=1
 l=0
 h=0
 coffrage3189=coffrage()
+framec=Frame(fenetre,height=200,width=720,bg="red")
+framec.place(x=0,y=20)
+Label(framec,text='Coffrage').place(x=650,y=50)
 
-buton=[]
 for i in c:
     p=i
     if n%2==1:
@@ -122,9 +124,7 @@ for i in pieds:
         l=l+100
     n=n+1
 
-framec=Frame(fenetre,height=220,width=720,bg="red")
-framec.place(x=0,y=20)
-Label(framec,text='Coffrage').place(x=650,y=50)
+
 
 
 pied1=Label(text="Pied 1")
