@@ -3,10 +3,8 @@ import RPi.GPIO as GPIO		# import GPIO
 from tkinter import *
 import tkinter as tk
 fenetre = tk.Tk()
-leftarrow=PhotoImage(file='arrow left.bmp')
-rightarrow=PhotoImage(file='arrow right.bmp')
-downarrow=PhotoImage(file='arrow up.bmp')
-uparrow=PhotoImage(file='arrow up.bmp')
+downarrow=PhotoImage(file='arrow up.gif')
+uparrow=PhotoImage(file='arrow up.gif')
 
 c=['IOoutlfu','IOoutlfd','IOoutrfu','IOoutrfd','IOoutlmu','IOoutlmd','IOoutrmu','IOoutrmd','IOoutltu','IOoutltd','IOoutrtu','IOoutrtd']
 pieds=['IOoutup1','IOoutdo1','IOoutup2','IOoutdo2','IOoutup3','IOoutdo3','IOoutup4','IOoutdo4']
