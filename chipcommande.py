@@ -3,6 +3,11 @@ import RPi.GPIO as GPIO		# import GPIO
 from tkinter import *
 import tkinter as tk
 
+leftarrow=PhotoImage(file='arrow left.bmp')
+rightarrow=PhotoImage(file='arrow right.bmp')
+downarrow=PhotoImage(file='arrow up.bmp')
+uparrow=PhotoImage(file='arrow up.bmp')
+
 c=['IOoutlfu','IOoutlfd','IOoutrfu','IOoutrfd','IOoutlmu','IOoutlmd','IOoutrmu','IOoutrmd','IOoutltu','IOoutltd','IOoutrtu','IOoutrtd']
 pieds=['IOoutup1','IOoutdo1','IOoutup2','IOoutdo2','IOoutup3','IOoutdo3','IOoutup4','IOoutdo4']
 
@@ -76,12 +81,18 @@ class coffrage:
         self.x=x
         #GPIO.output(self.x,True)
         print("Activation de "+str(x))
-
+n=1
 coffrage3189=coffrage()
 fenetre = tk.Tk()
 buton=[]
 for i in c:
-    tk.Button(fenetre,text=str(i),command=lambda p=i: print("activation de "+str(p))).pack()
+    p=i
+    if n%2==n/2:
+        p=tk.Button(fenetre,image=uparrow,command=lambda p=i: print("activation de "+str(p)))
+    elif n%2!=n/2:
+        p=tk.Button(fenetre,image=downarrow,command=lambda p=i: print("activation de "+str(p)))
+    p
+    n=n+1
 for i in pieds:
     buton.append(tk.Button(fenetre,text=str(i),command=lambda : coffrage3189.activer(i)))
 for j in buton:
