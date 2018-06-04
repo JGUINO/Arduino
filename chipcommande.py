@@ -112,7 +112,7 @@ for i in c:
     if n%2==1:
         p=tk.Button(fenetre)
         p.config(image=uparrow)
-        p.bind('<ButtonPress-1>',lambda event, p=i:c3189.activer(p))
+        p.bind('<ButtonPress-1>',lambda event, p=p:c3189.activer(p))
         p.bind('<ButtonRelease-1>',lambda event, p=i:print(p+' desactivé'),c3189.release)
         p.place(x=l,y=50)
         
