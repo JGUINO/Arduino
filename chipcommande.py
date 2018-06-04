@@ -117,13 +117,13 @@ for i in pieds:
     n=n+1
 
 pied1=Label(text="Pied 1")
-pied1.place(x=10,y=320)
+pied1.place(x=5,y=320)
 pied2=Label(text="Pied 2")
-pied2.place(x=110,y=320)
+pied2.place(x=105,y=320)
 pied3=Label(text="Pied 3")
-pied3.place(x=210,y=320)
+pied3.place(x=205,y=320)
 pied4=Label(text="Pied 4")
-pied4.place(x=310,y=320)
+pied4.place(x=305,y=320)
 
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
 quitter.place(x=730,y=400)
