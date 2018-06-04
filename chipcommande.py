@@ -81,6 +81,9 @@ class coffrage:
         global boutons
         #GPIO.output(self.x,True)
         print("Activation de "+str(nom))
+        if nom in c:
+            framec.config(bg='red')
+
         for i in boutons:
             if i!=bout:
                 i.config(state=DISABLED)
