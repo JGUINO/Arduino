@@ -114,12 +114,10 @@ for i in pieds:
         p.config(image=downarrow)
         p.place(x=l,y=270)
         l=l+100
-    print(l)
-    print(h)
     n=n+1
 
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
-quitter.place(x=730,y=380)
+quitter.place(x=720,y=400)
 
 fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
