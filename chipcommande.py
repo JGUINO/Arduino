@@ -189,8 +189,8 @@ def afficherpieds():
     n=1
     global boutonspieds
     global plab
-    bcoffr.config(bg='azure')
     bpie.config(bg='yellow')
+    bcoffr.config(bg='azure')
 
     for i in boutons:
         i.place_forget()
