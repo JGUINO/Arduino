@@ -174,7 +174,7 @@ def affichercoffrage():
             cl.place(x=5+u*100,y=110)
         elif u%2==1:
             cl.place(x=5+u*100,y=130)
-        u=u+1
+            u=u+1
 
     fenetre.mainloop()
 
@@ -200,7 +200,7 @@ def afficherpieds():
             a=10
     u=0
     for pied in plab:
-        pied.place(x=5+u*100,y=320)
+        pied.place(x=5+u*100,y=120)
         u=u+100
     
     fenetre.mainloop()
