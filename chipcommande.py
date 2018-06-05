@@ -201,8 +201,8 @@ def afficherpieds():
             o=o+200
             a=10
     u=0
-    for pied in plab:
-        pied.place(x=10+u*100,y=120)
+    for p in plab:
+        p.place(x=10+u*100,y=120)
         u=u+100
     
     fenetre.mainloop()
