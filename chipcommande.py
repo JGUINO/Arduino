@@ -69,6 +69,28 @@ class pied():
 
 boutons=[]
 
+clf1=Label(text="Avant",bg='green')
+clf2=Label(text="gauche",bg='green')
+crf1=Label(text="Avant",bg='green')
+crf2=Label(text="droit",bg='green')
+clm1=Label(text="Milieu",bg='green')
+clm2=Label(text="gauche",bg='green')
+crm1=Label(text="Milieu",bg='green')
+crm2=Label(text="droit",bg='green')
+clt1=Label(text="Arrière",bg='green')
+clt2=Label(text="gauche",bg='green')
+crt1=Label(text="Arrière",bg='green')
+crt2=Label(text="droit",bg='green')
+clab=[clf1,clf2,crf1,crf2,clm1,clm2,crm1,crm2,clt1,clt2,crt1,crt2]
+global clab
+
+pied1=Label(text="Pied 1")
+pied2=Label(text="Pied 2")
+pied3=Label(text="Pied 3")
+pied4=Label(text="Pied 4")
+plab=[pied1,pied2,pied3,pied4]
+global plab
+
 class coffrage:
     #def __init__(self,c):
         #for i in c:
@@ -225,27 +247,7 @@ for i in pieds:
     boutonspieds.append(p)
     boutons.append(p)
 
-clf1=Label(text="Avant",bg='green')
-clf2=Label(text="gauche",bg='green')
-crf1=Label(text="Avant",bg='green')
-crf2=Label(text="droit",bg='green')
-clm1=Label(text="Milieu",bg='green')
-clm2=Label(text="gauche",bg='green')
-crm1=Label(text="Milieu",bg='green')
-crm2=Label(text="droit",bg='green')
-clt1=Label(text="Arrière",bg='green')
-clt2=Label(text="gauche",bg='green')
-crt1=Label(text="Arrière",bg='green')
-crt2=Label(text="droit",bg='green')
-clab=[clf1,clf2,crf1,crf2,clm1,clm2,crm1,crm2,clt1,clt2,crt1,crt2]
-global clab
 
-pied1=Label(text="Pied 1")
-pied2=Label(text="Pied 2")
-pied3=Label(text="Pied 3")
-pied4=Label(text="Pied 4")
-plab=[pied1,pied2,pied3,pied4]
-global plab
 
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
 quitter.place(x=725,y=440)
