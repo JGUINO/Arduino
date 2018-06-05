@@ -73,11 +73,11 @@ boutonspieds=[]
 
 framec=Frame(fenetre,height=190,width=720,bg="green")
 framec.place(x=0,y=30)
-Label(framec,text='Coffrage',font=(25)).place(x=630,y=30)
+Label(framec,text='Simple',font=(25)).place(x=630,y=30)
 
 framep=Frame(fenetre,height=190,width=720,bg="blue")
 framep.place(x=0,y=230)
-Label(framep,text='Pieds',font=(25)).place(x=630,y=30)
+Label(framep,text='Multi',font=(25)).place(x=630,y=30)
 
 clf1=Label(text="Avant",bg='green')
 clf2=Label(text="gauche",bg='green')
@@ -177,6 +177,8 @@ def affichercoffrage():
             cl.place(x=5+u*100,y=120)
             u=u+1
         n=n+1
+    bcoffr.config(bg='yellow')
+    bpie.config(bg=none)
 
     fenetre.mainloop()
 
@@ -205,7 +207,8 @@ def afficherpieds():
     for p in plab:
         p.place(x=10+u*100,y=120)
         u=u+100
-    
+    bcoffr.config(bg=none)
+    bpie.config(bg='yellow')
     fenetre.mainloop()
 
 
