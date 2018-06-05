@@ -115,7 +115,9 @@ d=0
 
 
 def affichercoffrage():
-    abscisse=10,ordonnee=40,n=1
+    a=10
+    o=40
+    n=1
     for i in boutons:
         i.place_forget()
     for j in plab:
@@ -123,13 +125,13 @@ def affichercoffrage():
     for k in boutonscoffrage:
         p=k
         if n%2==1:
-            p.place(x=abcisse,y=ordonnee)
+            p.place(x=a,y=o)
         elif n%2==0:
-            p.place(x=abscisse,y=ordonnee+100)
+            p.place(x=a,y=o+100)
             abscisse=abscisse+100
         n=n+1
         if n==7:
-            ordonnee=ordonnee+100
+            o=o+100
     
     clf1.place(x=5,y=110)
     clf2.place(x=5,y=130)
@@ -145,7 +147,9 @@ def affichercoffrage():
     crt2.place(x=505,y=130)
 
 def afficherpieds():
-    abscisse=10,ordonnee=40,n=1
+    a10
+    o=40
+    n=1
     for i in boutons:
         i.place_forget()
     for j in clab:
@@ -153,13 +157,13 @@ def afficherpieds():
     for k in boutonspieds:
         p=k
         if n%2==1:
-            p.place(x=abcisse,y=ordonnee)
+            p.place(x=a,y=o)
         elif n%2==0:
-            p.place(x=abscisse,y=ordonnee+100)
-            abscisse=abscisse+100
+            p.place(x=a,y=o+100)
+            a=a+100
         n=n+1
         if n==5:
-            ordonnee=ordonnee+100
+            o=o+100
     
     pied1.place(x=5,y=320)
     
