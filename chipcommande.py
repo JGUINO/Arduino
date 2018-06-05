@@ -185,6 +185,7 @@ def afficherpieds():
     o=40
     n=1
     global boutonspieds
+    global plab
     for i in boutons:
         i.place_forget()
     for j in clab:
