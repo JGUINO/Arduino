@@ -209,7 +209,7 @@ def afficherpieds():
             a=10
     u=0
     for p in plab:
-        p.place(x=10+u*100,y=120)
+        p.place(x=10+u*100,y=110)
         u=u+100
     
 
@@ -268,9 +268,11 @@ quitter.place(x=725,y=440)
 for i in boutons:
     i.config(state=NORMAL)
 
-bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10,command=affichercoffrage)
+bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10)
+bcoffr.bind('<ButtonPress-1>',lambda event:affichercoffrage)
 bcoffr.place(x=400,y=425)
-bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10,command=afficherpieds)
+bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
+bpie.bind('<ButtonPress-1>',lambda event:afficherpieds)
 bpie.place(x=550,y=425)
 
 fenetre.geometry("800x600+10+10")
