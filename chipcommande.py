@@ -268,11 +268,9 @@ quitter.place(x=725,y=440)
 for i in boutons:
     i.config(state=NORMAL)
 
-bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10)
-bcoffr.bind('<ButtonRelease-1>',lambda event :affichercoffrage)
+bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10,command=affichercoffrage)
 bcoffr.place(x=400,y=425)
-bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
-bpie.bind('<ButtonRelease-1>',lambda event :afficherpieds)
+bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10,command=afficherpieds)
 bpie.place(x=550,y=425)
 
 fenetre.geometry("800x600+10+10")
