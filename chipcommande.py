@@ -155,7 +155,7 @@ def affichercoffrage():
             p.place(x=a,y=o+100)
             a=a+100
         n=n+1
-        if n==7:
+        if n==13:
             o=o+100
             a=10
     
@@ -191,7 +191,7 @@ def afficherpieds():
             p.place(x=a,y=o+100)
             a=a+100
         n=n+1
-        if n==5:
+        if n==9:
             o=o+200
             a=10
     
