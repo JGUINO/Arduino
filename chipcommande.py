@@ -172,9 +172,9 @@ def affichercoffrage():
     for cl in clab:
         
         if n%2==0:
-            cl.place(x=5+u*100,y=110)
+            cl.place(x=5+u*100,y=100)
         elif n%2==1:
-            cl.place(x=5+u*100,y=130)
+            cl.place(x=5+u*100,y=120)
             u=u+1
         n=n+1
 
