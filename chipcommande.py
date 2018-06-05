@@ -153,7 +153,7 @@ def affichercoffrage():
     global plab
     global clab
     bcoffr.config(bg='yellow')
-    bpie.config(bg='azure')
+    bpie.config(bg='grey')
     for i in boutons:
         i.place_forget()
     for j in plab:
@@ -190,7 +190,7 @@ def afficherpieds():
     global boutonspieds
     global plab
     bpie.config(bg='yellow')
-    bcoffr.config(bg='azure')
+    bcoffr.config(bg='grey')
 
     for i in boutons:
         i.place_forget()
