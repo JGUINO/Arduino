@@ -157,6 +157,7 @@ def affichercoffrage():
         n=n+1
         if n==7:
             o=o+100
+            a=10
     
     clf1.place(x=5,y=110)
     clf2.place(x=5,y=130)
@@ -174,7 +175,7 @@ def affichercoffrage():
     fenetre.mainloop()
 
 def afficherpieds():
-    a10
+    a=10
     o=40
     n=1
     global boutonspieds
@@ -191,7 +192,8 @@ def afficherpieds():
             a=a+100
         n=n+1
         if n==5:
-            o=o+100
+            o=o+200
+            a=10
     
     pied1.place(x=5,y=320)
     
