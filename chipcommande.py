@@ -143,6 +143,7 @@ def affichercoffrage():
     global boutonscoffrage
     global boutons
     global plab
+    global clab
     for i in boutons:
         i.place_forget()
     for j in plab:
@@ -158,19 +159,14 @@ def affichercoffrage():
         if n==13:
             o=o+100
             a=10
-    
-    clf1.place(x=5,y=110)
-    clf2.place(x=5,y=130)
-    crf1.place(x=105,y=110)
-    crf2.place(x=105,y=130)
-    clm1.place(x=205,y=110)
-    clm2.place(x=205,y=130)
-    crm1.place(x=305,y=110)
-    crm2.place(x=305,y=130)
-    clt1.place(x=405,y=110)
-    clt2.place(x=405,y=130)
-    crt1.place(x=505,y=110)
-    crt2.place(x=505,y=130)
+    u=1
+    for cl in clab:
+        
+        if u%2==1:
+            cl.place(x=5+u*100,y=110)
+        elif u%2==0:
+            cl.place(x=5+u*100,y=130)
+        u=u+1
 
     fenetre.mainloop()
 
@@ -194,14 +190,10 @@ def afficherpieds():
         if n==9:
             o=o+200
             a=10
-    
-    pied1.place(x=5,y=320)
-    
-    pied2.place(x=105,y=320)
-    
-    pied3.place(x=205,y=320)
-    
-    pied4.place(x=305,y=320)
+    u=0
+    for pied in plab:
+        pied.place(x=5+u*100,y=320)
+        u=u+100
     
     fenetre.mainloop()
 
