@@ -179,7 +179,7 @@ def affichercoffrage():
             cl.place(x=5+u*100,y=120)
             u=u+1
         n=n+1
-    
+    fenetre.mainloop()
 
     
 
@@ -211,7 +211,7 @@ def afficherpieds():
     for p in plab:
         p.place(x=10+u*100,y=110)
         u=u+100
-    
+    fenetre.mainloop()
 
 
 
