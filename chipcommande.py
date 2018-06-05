@@ -181,7 +181,7 @@ def affichercoffrage():
         n=n+1
     
 
-    fenetre.mainloop()
+    
 
 def afficherpieds():
     a=10
@@ -212,7 +212,7 @@ def afficherpieds():
         p.place(x=10+u*100,y=120)
         u=u+100
     
-    fenetre.mainloop()
+
 
 
 n=1
