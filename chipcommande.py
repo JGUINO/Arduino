@@ -136,7 +136,7 @@ class coffrage:
         for j in clab:
             j.config(bg='green')
         for k in plab:
-            k.config(bg='blue')
+            k.config(bg='green')
         print(str(nom)+' désactivé')
         for i in boutons:
             i.config(state=NORMAL)
