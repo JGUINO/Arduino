@@ -68,6 +68,8 @@ class pied():
         print("Activation down4")
 
 boutons=[]
+boutonscoffrage=[]
+boutonspieds=[]
 
 clf1=Label(text="Avant",bg='green')
 clf2=Label(text="gauche",bg='green')
@@ -82,14 +84,12 @@ clt2=Label(text="gauche",bg='green')
 crt1=Label(text="Arrière",bg='green')
 crt2=Label(text="droit",bg='green')
 clab=[clf1,clf2,crf1,crf2,clm1,clm2,crm1,crm2,clt1,clt2,crt1,crt2]
-global clab
 
 pied1=Label(text="Pied 1")
 pied2=Label(text="Pied 2")
 pied3=Label(text="Pied 3")
 pied4=Label(text="Pied 4")
 plab=[pied1,pied2,pied3,pied4]
-global plab
 
 class coffrage:
     #def __init__(self,c):
@@ -140,6 +140,7 @@ def affichercoffrage():
     a=10
     o=40
     n=1
+    global boutonscoffrage
     for i in boutons:
         i.place_forget()
     for j in plab:
@@ -172,6 +173,7 @@ def afficherpieds():
     a10
     o=40
     n=1
+    global boutonspieds
     for i in boutons:
         i.place_forget()
     for j in clab:
