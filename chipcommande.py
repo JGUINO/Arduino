@@ -71,6 +71,14 @@ boutons=[]
 boutonscoffrage=[]
 boutonspieds=[]
 
+framec=Frame(fenetre,height=190,width=720,bg="green")
+framec.place(x=0,y=30)
+Label(framec,text='Coffrage',font=(25)).place(x=630,y=30)
+
+framep=Frame(fenetre,height=190,width=720,bg="blue")
+framep.place(x=0,y=230)
+Label(framep,text='Pieds',font=(25)).place(x=630,y=30)
+
 clf1=Label(text="Avant",bg='green')
 clf2=Label(text="gauche",bg='green')
 crf1=Label(text="Avant",bg='green')
@@ -159,12 +167,12 @@ def affichercoffrage():
         if n==13:
             o=o+100
             a=10
-    u=1
+    u=0
     for cl in clab:
         
-        if u%2==1:
+        if u%2==0:
             cl.place(x=5+u*100,y=110)
-        elif u%2==0:
+        elif u%2==1:
             cl.place(x=5+u*100,y=130)
         u=u+1
 
@@ -202,13 +210,7 @@ n=1
 l=0
 h=0
 c3189=coffrage()
-framec=Frame(fenetre,height=190,width=720,bg="green")
-framec.place(x=0,y=30)
-Label(framec,text='Coffrage',font=(25)).place(x=630,y=30)
 
-framep=Frame(fenetre,height=190,width=720,bg="blue")
-framep.place(x=0,y=230)
-Label(framep,text='Pieds',font=(25)).place(x=630,y=30)
 
 for i in c:
     p=i
