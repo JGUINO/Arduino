@@ -169,6 +169,8 @@ def affichercoffrage():
     crt1.place(x=505,y=110)
     crt2.place(x=505,y=130)
 
+    fenetre.mainloop()
+
 def afficherpieds():
     a10
     o=40
@@ -196,6 +198,8 @@ def afficherpieds():
     pied3.place(x=205,y=320)
     
     pied4.place(x=305,y=320)
+    
+    fenetre.mainloop()
 
 
 n=1
