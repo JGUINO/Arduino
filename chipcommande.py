@@ -113,9 +113,61 @@ class coffrage:
 
 d=0
 
-    
-    
 
+def affichercoffrage():
+    abscisse=10,ordonnee=40,n=1
+    for i in boutons:
+        i.place_forget()
+    for j in plab:
+        j.place_forget()
+    for k in boutonscoffrage:
+        p=k
+        if n%2==1:
+            p.place(x=abcisse,y=ordonnee)
+        elif n%2==0:
+            p.place(x=abscisse,y=ordonnee+100)
+            abscisse=abscisse+100
+        n=n+1
+        if n==7:
+            ordonnee=ordonnee+100
+    
+    clf1.place(x=5,y=110)
+    clf2.place(x=5,y=130)
+    crf1.place(x=105,y=110)
+    crf2.place(x=105,y=130)
+    clm1.place(x=205,y=110)
+    clm2.place(x=205,y=130)
+    crm1.place(x=305,y=110)
+    crm2.place(x=305,y=130)
+    clt1.place(x=405,y=110)
+    clt2.place(x=405,y=130)
+    crt1.place(x=505,y=110)
+    crt2.place(x=505,y=130)
+
+def afficherpieds():
+    abscisse=10,ordonnee=40,n=1
+    for i in boutons:
+        i.place_forget()
+    for j in clab:
+        j.place_forget()
+    for k in boutonspieds:
+        p=k
+        if n%2==1:
+            p.place(x=abcisse,y=ordonnee)
+        elif n%2==0:
+            p.place(x=abscisse,y=ordonnee+100)
+            abscisse=abscisse+100
+        n=n+1
+        if n==5:
+            ordonnee=ordonnee+100
+    
+    pied1.place(x=5,y=320)
+    
+    pied2.place(x=105,y=320)
+    
+    pied3.place(x=205,y=320)
+    
+    pied4.place(x=305,y=320)
 
 
 n=1
@@ -137,16 +189,16 @@ for i in c:
         p.config(image=uparrow)
         p.bind('<ButtonPress-1>',lambda event, p=p,nom=i:c3189.activer(nom,p))
         p.bind('<ButtonRelease-1>',lambda event, nom=i:c3189.release(nom))
-        p.place(x=l,y=50)
+        
         
     elif n%2==0:
         p=tk.Button(fenetre)
         p.config(image=downarrow)
         p.bind('<ButtonPress-1>',lambda event, p=p,nom=i:c3189.activer(nom,p))
         p.bind('<ButtonRelease-1>',lambda event, nom=i:c3189.release(nom))
-        p.place(x=l,y=150)
-        l=l+100
+        
     n=n+1
+    boutonscoffrage.append(p)
     boutons.append(p)
 
 l=0
@@ -157,29 +209,17 @@ for i in pieds:
         p.config(image=uparrow)
         p.bind('<ButtonPress-1>',lambda event, p=p,nom=i:c3189.activer(nom,p))
         p.bind('<ButtonRelease-1>',lambda event, nom=i:c3189.release(nom))
-        p.place(x=l,y=250)
+        
         
     elif n%2==0:
         p=tk.Button(fenetre)
         p.config(image=downarrow)
         p.bind('<ButtonPress-1>',lambda event, p=p,nom=i:c3189.activer(nom,p))
         p.bind('<ButtonRelease-1>',lambda event, nom=i:c3189.release(nom))
-        p.place(x=l,y=350)
-        l=l+100
+        
     n=n+1
+    boutonspieds.append(p)
     boutons.append(p)
-
-
-
-pied1=Label(text="Pied 1")
-pied1.place(x=5,y=320)
-pied2=Label(text="Pied 2")
-pied2.place(x=105,y=320)
-pied3=Label(text="Pied 3")
-pied3.place(x=205,y=320)
-pied4=Label(text="Pied 4")
-pied4.place(x=305,y=320)
-plab=[pied1,pied2,pied3,pied4]
 
 clf1=Label(text="Avant",bg='green')
 clf2=Label(text="gauche",bg='green')
@@ -194,18 +234,14 @@ clt2=Label(text="gauche",bg='green')
 crt1=Label(text="Arrière",bg='green')
 crt2=Label(text="droit",bg='green')
 clab=[clf1,clf2,crf1,crf2,clm1,clm2,crm1,crm2,clt1,clt2,crt1,crt2]
-clf1.place(x=5,y=110)
-clf2.place(x=5,y=130)
-crf1.place(x=105,y=110)
-crf2.place(x=105,y=130)
-clm1.place(x=205,y=110)
-clm2.place(x=205,y=130)
-crm1.place(x=305,y=110)
-crm2.place(x=305,y=130)
-clt1.place(x=405,y=110)
-clt2.place(x=405,y=130)
-crt1.place(x=505,y=110)
-crt2.place(x=505,y=130)
+global clab
+
+pied1=Label(text="Pied 1")
+pied2=Label(text="Pied 2")
+pied3=Label(text="Pied 3")
+pied4=Label(text="Pied 4")
+plab=[pied1,pied2,pied3,pied4]
+global plab
 
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
 quitter.place(x=725,y=440)
@@ -229,19 +265,7 @@ fenetre.mainloop()
 GPIO.cleanup()
 
 
-def affichercoffrage():
-    abscisse=10,ordonnee=40,n=1
-    for i in boutons:
-        i.place_forget()
-    for k in boutonscoffrage:
-        p=k
-        if n%2==1:
-            p.place(x=abcisse,y=ordonnee)
-        elif n%2==0:
-            p.place(x=abscisse,y=ordonnee+100)
-            abscisse=abscisse+100
-        n=n+1
-        if n==7:
-            ordonnee=ordonnee+100
+
+    
 
 

@@ -335,7 +335,7 @@ try:
 		al.alarmeSonne(pression)
 		time.sleep(2)
 		compteurmqtt=compteurmqtt+1
-		if compteurmqtt==2:
+		if compteurmqtt==10:
 			#une publication toutes les 10 analyses de mesures
 			#publier(client,str(pression)+" bars"+" (pics :"+str(d.pressionHaute)+" bars)")
 			MSG_TXT = "{\"pression\": %.2f"
