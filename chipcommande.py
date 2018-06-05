@@ -113,11 +113,11 @@ class coffrage:
             framep.config(bg='red')
             for k in plab:
                 k.config(bg='red')
-            
 
         for i in boutons:
             if i!=bout:
                 i.config(state=DISABLED)
+
     def release(self,nom):
         global boutons
         global clab
@@ -141,6 +141,8 @@ def affichercoffrage():
     o=40
     n=1
     global boutonscoffrage
+    global boutons
+    global plab
     for i in boutons:
         i.place_forget()
     for j in plab:
@@ -151,7 +153,7 @@ def affichercoffrage():
             p.place(x=a,y=o)
         elif n%2==0:
             p.place(x=a,y=o+100)
-            abscisse=abscisse+100
+            a=a+100
         n=n+1
         if n==7:
             o=o+100
@@ -261,11 +263,9 @@ quitter.place(x=725,y=440)
 for i in boutons:
     i.config(state=NORMAL)
 
-bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10)
-bcoffr.bind('<ButtonPress-1>',lambda event:affichercoffrage)
+bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10,command=affichercoffrage)
 bcoffr.place(x=400,y=425)
-bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
-bpie.bind('<ButtonPress-1>',lambda event:afficherpieds)
+bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10,command=afficherpieds)
 bpie.place(x=550,y=425)
 
 fenetre.geometry("800x600+10+10")
