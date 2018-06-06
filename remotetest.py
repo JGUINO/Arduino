@@ -13,7 +13,7 @@ while True:
     for i in p:
         i.on()
     sleep(1)
-    for in in p:
+    for i in p:
         i.off()
     sleep(1)
 
