@@ -61,12 +61,7 @@ p26=LED(26,pin_factory=factory)
 p.append(p26)
 p27=LED(27,pin_factory=factory)
 p.append(p27)
-p34=LED(34,pin_factory=factory)
-p.append(p34)
-p35=LED(35,pin_factory=factory)
-p.append(p35)
-p36=LED(36,pin_factory=factory)
-p.append(p36)
+
 
 while True:
     for i in p:
