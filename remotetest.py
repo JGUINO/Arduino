@@ -5,8 +5,6 @@ from time import sleep
 factory = PiGPIOFactory(host='192.168.1.124')
 p=[]
 
-p0=LED(0,pin_factory=factory)
-p.append(p0)
 p1=LED(1,pin_factory=factory)
 p.append(p1)
 p2=LED(2,pin_factory=factory)
@@ -31,8 +29,6 @@ p11=LED(11,pin_factory=factory)
 p.append(p11)
 p12=LED(12,pin_factory=factory)
 p.append(p12)
-p13=LED(13,pin_factory=factory)
-p.append(p13)
 p14=LED(14,pin_factory=factory)
 p.append(p14)
 p15=LED(15,pin_factory=factory)
