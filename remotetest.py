@@ -3,7 +3,7 @@ from gpiozero import Motor
 from gpiozero import LED
 from time import sleep
 factory = PiGPIOFactory(host='192.168.1.124')
-red=LED(7,25,pin_factory=factory)
+red=LED(4,pin_factory=factory)
 
 while True:
     red.on()
