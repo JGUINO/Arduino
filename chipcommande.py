@@ -55,7 +55,7 @@ class bouton():
             if i.nom!=self.nom:
                 i.button.config(state=DISABLED)
         
-        def release(self):
+        def release():
             framec.config(bg='green')
             framep.config(bg='blue')
             f1.config(bg='blue')
