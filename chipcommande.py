@@ -177,7 +177,6 @@ def affichercoffrage():
     a=10
     o=40
     n=1
-    global boutonscoffrage
     global boutons
     global plab
     global clab
@@ -219,7 +218,6 @@ def afficherpieds():
     a=10
     o=40
     n=1
-    global boutonspieds
     global plab
     bpie.config(bg='yellow')
     bcoffr.config(bg='grey')
@@ -230,7 +228,7 @@ def afficherpieds():
         i.button.place_forget()
     for j in clab:
         j.place_forget()
-    for k in boutonspieds:
+    for k in pieds:
         if n%2==1:
             k.button.place(x=a,y=o)
         elif n%2==0:
