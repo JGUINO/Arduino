@@ -76,7 +76,7 @@ class bouton():
 
 lf=bouton('Left Front',1,'192.168.1.117',10,10)
 rf=bouton('Right Front',2,'192.168.1.117',350,10)
-lb=bouton('Left Back',3,'192.168.1.117'10,350)
+lb=bouton('Left Back',3,'192.168.1.117',10,350)
 rb=bouton('Right Back',4,'192.168.1.117',350,350)
 fw=bouton('Forward',5,'192.168.1.117',180,50)
 bw=bouton('Backward',6,'192.168.1.117',180,310)
