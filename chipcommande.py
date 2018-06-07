@@ -69,9 +69,9 @@ class bouton():
                 i.button.config(state=NORMAL)
 
     def affich(self):
-        if self.dire==up:
+        if self.dire=='up':
             self.button.place(x=5,y=0)
-        elif self.dire==down:
+        elif self.dire=='down':
             self.button.place(x=5,y=100)
 
 
