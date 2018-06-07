@@ -41,7 +41,7 @@ class bouton():
             GPIO.output(self.sortie, False)
 
     def press(self):
-            self.led.on()
+        self.led.on()
 
         if type(self.sortie)==list:
             for i in self.sortie:
