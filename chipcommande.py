@@ -44,6 +44,7 @@ class bouton():
             GPIO.output(self.sortie, False)
 
     def press(self):
+        global led
         if type(self.sortie)==list:
             if len(self.sortie)==2:
                 led=LED(self.sortie[0],self.sortie[1],pin_factory=factory)
@@ -69,6 +70,7 @@ class bouton():
                 i.button.config(state=DISABLED)
         
     def release():
+        global led
         framec.config(bg='green')
         framep.config(bg='blue')
         f1.config(bg='blue')
