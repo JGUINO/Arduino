@@ -68,6 +68,8 @@ class bouton():
         f1.config(bg='blue')
         b1.config(bg='blue')
         tt.config(bg='blue')
+        for l in boutons:
+            GPIO.output(l.sortie,False)
         for j in clab:
             j.config(bg='green')
         for k in plab:
