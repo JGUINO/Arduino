@@ -248,7 +248,7 @@ def afficherpieds():
 
 
 
-
+print (boutons)
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
 quitter.place(x=725,y=440)
 
