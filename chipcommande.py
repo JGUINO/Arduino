@@ -22,7 +22,7 @@ class bouton():
         self.typ=typ
         self.nom=nom
         self.dire=dire
-        self.led=LED(self.sortie,pin_factory=factory)
+        
         GPIO.setmode(GPIO.BCM)
         self.button=tk.Button(fenetre)
         if self.dire=='up':
@@ -33,9 +33,11 @@ class bouton():
         self.button.bind('<ButtonRelease-1>',lambda event:bouton.release())
 
         if type(self.sortie)==list:
+            self.led=LED(self.sortie[1],self.sortie[2],pin_factory=factory)
             for i in self.sortie:
                 GPIO.setup(i,GPIO.OUT)
                 GPIO.output(i, False)
+                
         elif type(self.sortie)==int:
             GPIO.setup(self.sortie,GPIO.OUT)
             GPIO.output(self.sortie, False)
