@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO		# import GPIO
 from tkinter import *
 import tkinter as tk
 from gpiozero.pins.pigpio import PiGPIOFactory
+from gpiozero import LED
 
 fenetre = tk.Tk()
 downarrow=PhotoImage(file='arrowdown.gif')
@@ -40,6 +41,8 @@ class bouton():
             GPIO.output(self.sortie, False)
 
     def press(self):
+        if self.sortie==4:
+            LED(4,pin_factory=factory)
         if type(self.sortie)==list:
             for i in self.sortie:
                 GPIO.output(i,True)
