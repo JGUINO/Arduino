@@ -44,18 +44,15 @@ class bouton():
         else:
             GPIO.output(self.sortie, True)
         print('Activation de {}'.format(self.sortie))
-        frame.config(bg='red')
+        frame1.config(bg='red')
 
         for i in boutons:
             if i.nom!=self.nom:
                 i.button.config(state=DISABLED)
         
     def release():
-        framec.config(bg='green')
-        framep.config(bg='blue')
-        f1.config(bg='blue')
-        b1.config(bg='blue')
-        tt.config(bg='blue')
+        frame1.config(bg='yellow')
+        
         for l in boutons:
             GPIO.output(l.sortie,False)
             l.button.config(state=NORMAL)
