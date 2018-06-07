@@ -66,45 +66,46 @@ class bouton():
                 i.button.config(state=NORMAL)
 
 
-pfw1=pied(,,,pied)
+pfw1=pied(fw1,1,'192.168.1.117',pied)
 pieds.append(pfw1)
-pbw1=pied(,,,pied)
+pbw1=pied(bw1,2,'192.168.1.117',pied)
 pieds.append(pbw1)
-pfw2=pied(,,,pied)
+pfw2=pied(fw2,3,'192.168.1.117',pied)
 pieds.append(pfw2)
-pbw2=pied(,,,pied)
+pbw2=pied(bw2,4,'192.168.1.117',pied)
 pieds.append(pbw2)
-pfw3=pied(,,,pied)
+pfw3=pied(fw3,5,'192.168.1.117',pied)
 pieds.append(pfw3)
-pbw3=pied(,,,pied)
+pbw3=pied(bw3,6,'192.168.1.117',pied)
 pieds.append(pbw3)
-pfw4=pied(,,,pied)
+pfw4=pied(fw4,7,'192.168.1.117',pied)
 pieds.append(pfw4)
-pbw4=pied(,,,pied)
+pbw4=pied(bw4,8,'192.168.1.117',pied)
 pieds.append(pbw4)
-pfw=pied(,,,pied)
-pbw=pied(,,,pied)
+
+pfw=pied(pw,[1,3,5,7],,pied)
+pbw=pied(bw,[2,4,6,8],,pied)
 pieds.append(pfw)
 pieds.append(pbw)
 
-clfu=bouton(lfu,,,coffrage)
-clfd=bouton(lfd,,,coffrage)
-crfu=bouton(rfu,,,coffrage)
-crfd=bouton(rfd,,,coffrage)
-clmu=bouton(lmu,,,coffrage)
-clmd=bouton(lmd,,,coffrage)
-crmu=bouton(rmu,,,coffrage)
-crmd=bouton(rmd,,,coffrage)
-clbu=bouton(lbu,,,coffrage)
-clbd=bouton(lbd,,,coffrage)
-crbu=bouton(rbu,,,coffrage)
-crbd=bouton(rbd,,,coffrage)
-cfu=bouton(fu,,,coffrage)
-cfd=bouton(fd,,,coffrage)
-cbu=bouton(bu,,,coffrage)
-cbd=bouton(bd,,,coffrage)
-cup=bouton(up,,,coffrage)
-cdo=bouton(do,,,coffrage)
+clfu=bouton(lfu,9,'192.168.1.117',coffrage)
+clfd=bouton(lfd,10,'192.168.1.117',coffrage)
+crfu=bouton(rfu,11,'192.168.1.117',coffrage)
+crfd=bouton(rfd,12,'192.168.1.117',coffrage)
+clmu=bouton(lmu,13,'192.168.1.117',coffrage)
+clmd=bouton(lmd,14,'192.168.1.117',coffrage)
+crmu=bouton(rmu,15,'192.168.1.117',coffrage)
+crmd=bouton(rmd,16,'192.168.1.117',coffrage)
+clbu=bouton(lbu,17,'192.168.1.117',coffrage)
+clbd=bouton(lbd,18,'192.168.1.117',coffrage)
+crbu=bouton(rbu,19,'192.168.1.117',coffrage)
+crbd=bouton(rbd,20,'192.168.1.117',coffrage)
+cfu=bouton(fu,[9,11],'192.168.1.117',coffrage)
+cfd=bouton(fd,[10,12],'192.168.1.117',coffrage)
+cbu=bouton(bu,[17,19],'192.168.1.117',coffrage)
+cbd=bouton(bd,[18,20],'192.168.1.117',coffrage)
+cup=bouton(up,[9,11,17,19],'192.168.1.117',coffrage)
+cdo=bouton(do,[10,12,18,20],'192.168.1.117',coffrage)
 
 coffrage.append(clfu)
 coffrage.append(clfd)
@@ -179,8 +180,6 @@ def affichercoffrage():
     global clab
     bcoffr.config(bg='yellow')
     bpie.config(bg='grey')
-    f1.place_forget()
-    b1.place_forget()
     tt.place_forget()
     for i in boutons:
         i.place_forget()
@@ -199,9 +198,9 @@ def affichercoffrage():
             a=10
     u=0
     n=0
-    f1.place(x=5,y=300)
-    b1.place(x=105,y=300)
-    tt.place(x=205,y=300)
+    f1.place(x=105,y=300)
+    b1.place(x=205,y=300)
+    tt.place(x=5,y=300)
     for cl in clab:
         
         if n%2==0:
@@ -241,9 +240,7 @@ def afficherpieds():
             o=o+200
             a=10
     u=0
-    f1.place(x=5,y=300)
-    b1.place(x=105,y=300)
-    tt.place(x=205,y=300)
+    tt.place(x=5,y=300)
     for p in plab:
         p.place(x=10+u*100,y=110)
         u=u+100
