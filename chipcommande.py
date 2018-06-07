@@ -236,7 +236,7 @@ def afficherpieds():
         j.place_forget()
     for k in pieds:
         k.affich()
-            a=a+100
+        a=a+100
         n=n+1
         if n==9:
             o=o+200
