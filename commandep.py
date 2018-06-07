@@ -28,8 +28,6 @@ class bouton():
         self.button=tk.Button(text=str(self.nom))
         self.button.bind('<ButtonPress-1>',lambda event,self=self:self.press())
         self.button.bind('<ButtonRelease-1>',lambda event:bouton.release())
-        self.button.place(fenetre
-    ,x=10,y=10)
 
         if type(self.sortie)==list:
             for i in self.sortie:
@@ -93,7 +91,8 @@ boutons.append(bw)
 boutons.append(fl)
 boutons.append(fr)
 
-
+lf.button.place(fenetre,x=10,y=10)
+rf.button.place(frame,x=10,y=10)
 
 #bouton.placer()
 
