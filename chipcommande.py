@@ -15,9 +15,7 @@ pieds=[]
 boutons=[]
 global led
 global led1
-global led2
-global led3
-global led4
+
 
 class bouton():
     def __init__(self,nom,sortie,ip,typ,dire):
@@ -89,6 +87,10 @@ class bouton():
         
     def release():
         global led
+        global led1
+        global led2
+        global led3
+        global led4
         framec.config(bg='green')
         framep.config(bg='blue')
         f1.config(bg='blue')
