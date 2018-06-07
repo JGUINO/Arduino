@@ -60,15 +60,15 @@ class bouton():
 
             
 
-    def placer():
-        lf.button.place(fenetre,x=10,y=10)
-        rf.button.place(frame,padx=350,pady=10)
-        lb.button.place(frame,padx=10,pady=350)
-        rb.button.place(frame,padx=350,pady=350)
-        fw.button.place(frame,padx=180,pady=50)
-        bw.button.place(frame,padx=180,pady=310)
-        fl.button.place(frame,padx=50,pady=180)
-        fr.button.place(frame,padx=310,pady=180)
+def placer():
+    lf.button.place(fenetre,x=10,y=10)
+    rf.button.place(frame,padx=350,pady=10)
+    lb.button.place(frame,padx=10,pady=350)
+    rb.button.place(frame,padx=350,pady=350)
+    fw.button.place(frame,padx=180,pady=50)
+    bw.button.place(frame,padx=180,pady=310)
+    fl.button.place(frame,padx=50,pady=180)
+    fr.button.place(frame,padx=310,pady=180)
 
 lf=bouton('Left Front',1,'192.168.1.117')
 rf=bouton('Right Front',2,'192.168.1.117')
@@ -90,7 +90,7 @@ boutons.append(fr)
 
 frame=Frame(fenetre,height=400,width=400,bg=('yellow'))
 frame.place(x=100,y=200)
-bouton.placer()
+placer()
 
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
 quitter.place(x=725,y=440)
