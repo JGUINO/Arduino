@@ -42,7 +42,7 @@ class bouton():
     def press(self):
         if type(self.sortie)==list:
             for i in self.sortie:
-                GPIO.output(self.i,True)
+                GPIO.output(i,True)
         else:
             GPIO.output(self.sortie, True)
         print('Activation de {}'.format(self.sortie))
