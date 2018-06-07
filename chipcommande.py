@@ -42,7 +42,8 @@ class bouton():
 
     def press(self):
         if self.sortie==21:
-            LED(self.sortie,pin_factory=factory)
+            LED(self.sortie,pin_factory=factory).on()
+
         if type(self.sortie)==list:
             for i in self.sortie:
                 GPIO.output(i,True)
