@@ -71,6 +71,7 @@ class bouton():
         tt.config(bg='blue')
         for l in boutons:
             GPIO.output(l.sortie,False)
+        LED(21,pin_factory=factory).off()
         for j in clab:
             j.config(bg='green')
         for k in plab:
