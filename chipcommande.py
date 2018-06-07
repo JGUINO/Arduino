@@ -16,7 +16,7 @@ boutons=[]
 
 
 class bouton():
-    def __init__(self,,nom,sortie,ip,typ):
+    def __init__(self,nom,sortie,ip,typ):
         self.sortie=sortie
         self.ip=ip
         self.typ=typ
