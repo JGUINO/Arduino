@@ -31,7 +31,11 @@ class bouton():
         self.button.bind('<ButtonPress-1>',lambda event:nom.activer())
         self.button.bind('<ButtonRelease-1>',lambda event:nom.release())
 
-        for i in self.sortie:
+        if type(self.sortie)==list:
+            for i in self.sortie:
+                GPIO.setup(self.i,GPIO.OUT)
+                GPIO.output(self.i, False)
+        elif type(self.sortie)==int:
             GPIO.setup(self.i,GPIO.OUT)
             GPIO.output(self.i, False)
 
