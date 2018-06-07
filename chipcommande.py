@@ -33,7 +33,10 @@ class bouton():
         self.button.bind('<ButtonRelease-1>',lambda event:bouton.release())
 
         if type(self.sortie)==list:
-            self.led=LED(self.sortie[1],self.sortie[2],pin_factory=factory)
+            if len(self.sortie)==2:
+                self.led=LED(self.sortie[0],self.sortie[1],pin_factory=factory)
+            if len(self.sortie)==4:
+                self.led=LED(self.sortie[0],self.sortie[1],self.sortie[2],self.sortie[3],pin_factory=factory)
             for i in self.sortie:
                 GPIO.setup(i,GPIO.OUT)
                 GPIO.output(i, False)
