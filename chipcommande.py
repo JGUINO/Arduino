@@ -257,7 +257,7 @@ quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
 quitter.place(x=725,y=440)
 
 for i in boutons:
-    i.config(state=NORMAL)
+    i.button.config(state=NORMAL)
 
 bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10,command=affichercoffrage)
 bcoffr.place(x=400,y=425)
