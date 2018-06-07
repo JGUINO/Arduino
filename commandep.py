@@ -63,13 +63,13 @@ class bouton():
 
     def placer():
         lf.button.place(x=10,y=10)
-        rf.button.place(x=350,y=10)
-        lb.button.place(x=10,y=330)
-        rb.button.place(x=350,y=330)
-        fw.button.place(x=180,y=50)
-        bw.button.place(x=180,y=290)
+        rf.button.place(x=330,y=10)
+        lb.button.place(x=10,y=350)
+        rb.button.place(x=330,y=350)
+        fw.button.place(x=170,y=50)
+        bw.button.place(x=170,y=310)
         fl.button.place(x=50,y=180)
-        fr.button.place(x=310,y=180)
+        fr.button.place(x=280,y=180)
 
 lf=bouton('Left Front',1,'192.168.1.117')
 rf=bouton('Right Front',2,'192.168.1.117')
