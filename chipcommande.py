@@ -114,7 +114,7 @@ pieds.append(pfw4)
 pbw4=bouton('bw4',8,'192.168.1.117','pied','down')
 pieds.append(pbw4)
 
-pfw=bouton('pw',[1,3,5,7],'192.168.1.117','pied','up')
+pfw=bouton('pw',[21,20,5,7],'192.168.1.117','pied','up')
 pbw=bouton('bw',[2,4,6,8],'192.168.1.117','pied','down')
 pieds.append(pfw)
 pieds.append(pbw)
