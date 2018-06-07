@@ -18,7 +18,6 @@ class bouton():
         self.sortie=sortie
         self.ip=ip
         self.nom=nom
-        self.dire=dire
         GPIO.setmode(GPIO.BCM)
         self.button=tk.Button(text=str(self.nom))
         self.button.bind('<ButtonPress-1>',lambda event,self=self:self.press())
