@@ -55,18 +55,18 @@ class bouton():
             if i.nom!=self.nom:
                 i.button.config(state=DISABLED)
         
-        def release():
-            framec.config(bg='green')
-            framep.config(bg='blue')
-            f1.config(bg='blue')
-            b1.config(bg='blue')
-            tt.config(bg='blue')
-            for j in clab:
-                j.config(bg='green')
-            for k in plab:
-                k.config(bg='green')
-            for i in boutons:
-                i.button.config(state=NORMAL)
+    def release():
+        framec.config(bg='green')
+        framep.config(bg='blue')
+        f1.config(bg='blue')
+        b1.config(bg='blue')
+        tt.config(bg='blue')
+        for j in clab:
+            j.config(bg='green')
+        for k in plab:
+            k.config(bg='green')
+        for i in boutons:
+            i.button.config(state=NORMAL)
                 
 
 framec=Frame(fenetre,height=190,width=720,bg="green")
