@@ -17,7 +17,7 @@ boutons=[]
 frame=Frame(fenetre,height=400,width=400,bg=('yellow'))
 frame.place(x=100,y=200)
 
-class bouton():
+class bouton(Tk):
     def __init__(self,nom,sortie,ip,x,y):
         self.sortie=sortie
         self.ip=ip
