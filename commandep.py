@@ -61,7 +61,7 @@ class bouton():
             
 
     def placer():
-        lf.button.place(frame,padx=10,pady=10)
+        lf.button.place(fenetre,x=10,y=10)
         rf.button.place(frame,padx=350,pady=10)
         lb.button.place(frame,padx=10,pady=350)
         rb.button.place(frame,padx=350,pady=350)
