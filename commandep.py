@@ -61,14 +61,14 @@ class bouton():
             
 
     def placer():
-        lf.button.place(frame,x=10,y=10)
-        rf.button.place(frame,x=350,y=10)
-        lb.button.place(frame,x=10,y=350)
-        rb.button.place(frame,x=350,y=350)
-        fw.button.place(frame,x=180,y=50)
-        bw.button.place(frame,x=180,y=310)
-        fl.button.place(frame,x=50,y=180)
-        fr.button.place(frame,x=310,y=180)
+        lf.button.place(frame,padx=10,pady=10)
+        rf.button.place(frame,padx=350,pady=10)
+        lb.button.place(frame,padx=10,pady=350)
+        rb.button.place(frame,padx=350,pady=350)
+        fw.button.place(frame,padx=180,pady=50)
+        bw.button.place(frame,padx=180,pady=310)
+        fl.button.place(frame,padx=50,pady=180)
+        fr.button.place(frame,padx=310,pady=180)
 
 lf=bouton('Left Front',1,'192.168.1.117')
 rf=bouton('Right Front',2,'192.168.1.117')
