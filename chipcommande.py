@@ -53,7 +53,7 @@ class bouton():
         tt.config(bg='red')
         for i in boutons:
             if i.nom!=self.nom:
-                i.config(state=DISABLED)
+                i.button.config(state=DISABLED)
         
         def release(self):
             framec.config(bg='green')
