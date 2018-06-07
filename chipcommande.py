@@ -39,6 +39,7 @@ class bouton():
                 GPIO.output(i, False)
                 
         elif type(self.sortie)==int:
+            self.led=LED(self.sortie,pin_factory=factory)
             GPIO.setup(self.sortie,GPIO.OUT)
             GPIO.output(self.sortie, False)
 
