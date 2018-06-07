@@ -44,7 +44,7 @@ class bouton():
             GPIO.output(self.sortie, False)
 
     def press(self):
-        self.led.on()
+        
         if len(self.sortie)==2:
                 led=LED(self.sortie[0],self.sortie[1],pin_factory=factory)
         if len(self.sortie)==4:
