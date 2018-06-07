@@ -231,8 +231,10 @@ def afficherpieds():
     for k in pieds:
         if n%2==1:
             k.button.place(x=a,y=o)
+            print('Bouton {} setup'.format(k.nom))
         elif n%2==0:
             k.button.place(x=a,y=o+100)
+            print('Bouton {} setup'.format(k.nom))
             a=a+100
         n=n+1
         if n==9:
@@ -254,7 +256,6 @@ quitter.place(x=725,y=440)
 
 for i in boutons:
     i.button.config(state=NORMAL)
-    print('Bouton {} setup'.format(i.nom))
 
 bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10,command=affichercoffrage)
 bcoffr.place(x=400,y=425)
