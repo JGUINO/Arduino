@@ -14,7 +14,7 @@ factory = PiGPIOFactory(host='192.168.1.117')
 boutons=[]
 
 frame1=Frame(fenetre,height=400,width=400,bg=('yellow'))
-frame1.place(x=100,y=200)
+frame1.place(x=100,y=100)
 
 class bouton():
     def __init__(self,nom,sortie,ip):
