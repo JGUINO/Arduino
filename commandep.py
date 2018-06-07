@@ -1,7 +1,8 @@
 import RPi.GPIO as GPIO		# import GPIO
 #import paho.mqtt.client as mqtt
-from tkinter import *
 import tkinter as tk
+from tkinter import *
+
 from gpiozero.pins.pigpio import PiGPIOFactory
 from gpiozero import LED
 
