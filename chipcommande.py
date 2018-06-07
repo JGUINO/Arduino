@@ -14,6 +14,10 @@ coffrage=[]
 pieds=[]
 boutons=[]
 global led
+global led1
+global led2
+global led3
+global led4
 
 class bouton():
     def __init__(self,nom,sortie,ip,typ,dire):
