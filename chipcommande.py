@@ -13,7 +13,8 @@ factory = PiGPIOFactory(host='192.168.1.117')
 coffrage=[]
 pieds=[]
 boutons=[]
-
+led=0
+global led
 
 class bouton():
     def __init__(self,nom,sortie,ip,typ,dire):
