@@ -25,9 +25,9 @@ class bouton():
         GPIO.setmode(GPIO.BCM)
         self.button=tk.Button(fenetre)
         if self.dire=='up':
-            button.config(image=uparrow)
+            self.button.config(image=uparrow)
         elif self.dire=='down':
-            button.config(image=downarrow)
+            self.button.config(image=downarrow)
         button.bind('<ButtonPress-1>',lambda event:nom.activer())
         button.bind('<ButtonRelease-1>',lambda event:nom.release())
 
