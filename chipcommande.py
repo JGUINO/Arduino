@@ -45,11 +45,25 @@ class bouton():
 
     def press(self):
         global led
+        global led1
+        global led2
+        global led3
+        global led4
         if type(self.sortie)==list:
             if len(self.sortie)==2:
-                led=LED(self.sortie[0],self.sortie[1],pin_factory=factory)
+                led1=LED(self.sortie[0],self.sortie[1],pin_factory=factory)
+                led2=LED(self.sortie[1],pin_factory=factory)
+                led1.on()
+                led2.on()
             if len(self.sortie)==4:
-                led=LED(self.sortie[0],self.sortie[1],self.sortie[2],self.sortie[3],pin_factory=factory)
+                led1=LED(self.sortie[0],pin_factory=factory)
+                led2=LED(self.sortie[1],pin_factory=factory)
+                led3=LED(self.sortie[2],pin_factory=factory)
+                led4=LED(self.sortie[3],pin_factory=factory)
+                led1.on()
+                led2.on()
+                led3.on()
+                led4.on()
 
         else:
             led=LED(self.sortie,pin_factory=factory)
@@ -78,6 +92,11 @@ class bouton():
         tt.config(bg='blue')
         led.off()
         led=[]
+        led1=[]
+        led2=[]
+        led3=[]
+        led4=[]
+
         for l in boutons:
             GPIO.output(l.sortie,False)
             
