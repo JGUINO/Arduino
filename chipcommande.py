@@ -68,6 +68,12 @@ class bouton():
             for i in boutons:
                 i.button.config(state=NORMAL)
 
+    def affich(self):
+        if self.dire==up:
+            self.button.place(x=5,y=0)
+        elif self.dire==down:
+            self.button.place(x=5,y=100)
+
 
 pfw1=bouton('fw1',1,'192.168.1.117','pied','up')
 pieds.append(pfw1)
@@ -229,12 +235,7 @@ def afficherpieds():
     for j in clab:
         j.place_forget()
     for k in pieds:
-        if n%2==1:
-            k.button.place(x=a,y=o)
-            print('Bouton {} setup'.format(k.nom))
-        elif n%2==0:
-            k.button.place(x=a,y=o+100)
-            print('Bouton {} setup'.format(k.nom))
+        k.affich()
             a=a+100
         n=n+1
         if n==9:
