@@ -41,8 +41,8 @@ class bouton():
             GPIO.output(self.sortie, False)
 
     def press(self):
-        if self.sortie==4:
-            LED(4,pin_factory=factory)
+        if self.sortie==21:
+            LED(self.sortie,pin_factory=factory)
         if type(self.sortie)==list:
             for i in self.sortie:
                 GPIO.output(i,True)
@@ -84,7 +84,7 @@ framep=Frame(fenetre,height=190,width=720,bg="blue")
 framep.place(x=0,y=230)
 Label(framep,text='Multi',font=(25)).place(x=630,y=30)
 
-pfw1=bouton('fw1',1,'192.168.1.117','pied','up')
+pfw1=bouton('fw1',21,'192.168.1.117','pied','up')
 pieds.append(pfw1)
 pbw1=bouton('bw1',2,'192.168.1.117','pied','down')
 pieds.append(pbw1)
