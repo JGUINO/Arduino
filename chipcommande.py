@@ -189,11 +189,10 @@ def affichercoffrage():
     for j in plab:
         j.place_forget()
     for k in coffrage:
-        p=k.button
         if n%2==1:
-            p.place(x=a,y=o)
+            k.button.place(x=a,y=o)
         elif n%2==0:
-            p.place(x=a,y=o+100)
+            k.button.place(x=a,y=o+100)
             a=a+100
         n=n+1
         if n==13:
@@ -232,11 +231,10 @@ def afficherpieds():
     for j in clab:
         j.place_forget()
     for k in boutonspieds:
-        p=k
         if n%2==1:
-            p.place(x=a,y=o)
+            k.button.place(x=a,y=o)
         elif n%2==0:
-            p.place(x=a,y=o+100)
+            k.button.place(x=a,y=o+100)
             a=a+100
         n=n+1
         if n==9:
