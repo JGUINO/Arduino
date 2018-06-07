@@ -27,7 +27,7 @@ class bouton():
         self.button=tk.Button(text=str(self.nom))
         self.button.bind('<ButtonPress-1>',lambda event,self=self:self.press())
         self.button.bind('<ButtonRelease-1>',lambda event:bouton.release())
-        self.button.place(frame,x=self.x,y=self.y)
+        self.button.pack(frame,padx=self.x,pady=self.y)
 
         if type(self.sortie)==list:
             for i in self.sortie:
