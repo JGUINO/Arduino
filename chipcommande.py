@@ -28,13 +28,12 @@ class bouton():
             self.button.config(image=uparrow)
         elif self.dire=='down':
             self.button.config(image=downarrow)
-        button.bind('<ButtonPress-1>',lambda event:nom.activer())
-        button.bind('<ButtonRelease-1>',lambda event:nom.release())
+        self.button.bind('<ButtonPress-1>',lambda event:nom.activer())
+        self.button.bind('<ButtonRelease-1>',lambda event:nom.release())
 
-        if type(self.sortie)==list:
-            for i in sortie:
-                GPIO.setup(self.i,GPIO.OUT)
-                GPIO.output(self.i, False)
+        for i in self.sortie:
+            GPIO.setup(self.i,GPIO.OUT)
+            GPIO.output(self.i, False)
 
     def press(self):
         if type(self.sortie)==list:
