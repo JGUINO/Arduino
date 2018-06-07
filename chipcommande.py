@@ -15,6 +15,14 @@ pieds=[]
 boutons=[]
 global led
 global led1
+global led2
+global led3
+global led4
+led=[]
+led2=[]
+led1=[]
+led3=[]
+led4=[]
 
 
 class bouton():
