@@ -161,7 +161,7 @@ tt=Label(text='Tous',bg='blue')
 
 
 pied1=Label(text="Pied 1",bg="green")
-pied2=Label(text="Pied 2",gb="green")
+pied2=Label(text="Pied 2",bg="green")
 pied3=Label(text="Pied 3",bg="green")
 pied4=Label(text="Pied 4",bg="green")
 plab=[pied1,pied2,pied3,pied4]
