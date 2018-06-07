@@ -13,15 +13,21 @@ factory = PiGPIOFactory(host='192.168.1.117')
 
 boutons=[]
 
+frame=Frame(fenetre,height=400,width=400,bg=('yellow'))
+frame.place(x=100,y=200)
+
 class bouton():
-    def __init__(self,nom,sortie,ip):
+    def __init__(self,nom,sortie,ip,x,y):
         self.sortie=sortie
         self.ip=ip
         self.nom=nom
+        self.x=x
+        self.y=y
         GPIO.setmode(GPIO.BCM)
         self.button=tk.Button(text=str(self.nom))
         self.button.bind('<ButtonPress-1>',lambda event,self=self:self.press())
         self.button.bind('<ButtonRelease-1>',lambda event:bouton.release())
+        self.button.place(frame,x=self.x,y=self.y)
 
         if type(self.sortie)==list:
             for i in self.sortie:
@@ -58,24 +64,24 @@ class bouton():
             l.button.config(state=NORMAL)
         LED(21,pin_factory=factory).off()
 
-    def placer():
-        lf.button.place(fenetre,x=10,y=10)
-        rf.button.place(frame,padx=350,pady=10)
-        lb.button.place(frame,padx=10,pady=350)
-        rb.button.place(frame,padx=350,pady=350)
-        fw.button.place(frame,padx=180,pady=50)
-        bw.button.place(frame,padx=180,pady=310)
-        fl.button.place(frame,padx=50,pady=180)
-        fr.button.place(frame,padx=310,pady=180)
+    #def placer():
+        #lf.button.place(fenetre,x=10,y=10)
+        #rf.button.place(frame,padx=350,pady=10)
+        #lb.button.place(frame,padx=10,pady=350)
+        #rb.button.place(frame,padx=350,pady=350)
+        #fw.button.place(frame,padx=180,pady=50)
+        #bw.button.place(frame,padx=180,pady=310)
+        #fl.button.place(frame,padx=50,pady=180)
+        #fr.button.place(frame,padx=310,pady=180)
 
-lf=bouton('Left Front',1,'192.168.1.117')
-rf=bouton('Right Front',2,'192.168.1.117')
-lb=bouton('Left Back',3,'192.168.1.117')
-rb=bouton('Right Back',4,'192.168.1.117')
-fw=bouton('Forward',5,'192.168.1.117')
-bw=bouton('Backward',6,'192.168.1.117')
-fl=bouton('Full Left',7,'192.168.1.117')
-fr=bouton('Full Right',8,'192.168.1.117')
+lf=bouton('Left Front',1,'192.168.1.117',10,10)
+rf=bouton('Right Front',2,'192.168.1.117',350,10)
+lb=bouton('Left Back',3,'192.168.1.117'10,350)
+rb=bouton('Right Back',4,'192.168.1.117',350,350)
+fw=bouton('Forward',5,'192.168.1.117',180,50)
+bw=bouton('Backward',6,'192.168.1.117',180,310)
+fl=bouton('Full Left',7,'192.168.1.117',50,180)
+fr=bouton('Full Right',8,'192.168.1.117',310,180)
 boutons.append(lf)
 boutons.append(rf)
 boutons.append(lb)
@@ -86,9 +92,8 @@ boutons.append(fl)
 boutons.append(fr)
 
 
-frame=Frame(fenetre,height=400,width=400,bg=('yellow'))
-frame.place(x=100,y=200)
-bouton.placer()
+
+#bouton.placer()
 
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
 quitter.place(x=725,y=440)
