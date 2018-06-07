@@ -51,6 +51,10 @@ class bouton():
         f1.config(bg='red')
         b1.config(bg='red')
         tt.config(bg='red')
+        for p in plab:
+            p.config(bg='red')
+        for q in clab:
+            p.config(bg='red')
         for i in boutons:
             if i.nom!=self.nom:
                 i.button.config(state=DISABLED)
