@@ -83,8 +83,8 @@ pieds.append(pfw4)
 pbw4=pied(bw4,8,'192.168.1.117',pied)
 pieds.append(pbw4)
 
-pfw=pied(pw,[1,3,5,7],,pied)
-pbw=pied(bw,[2,4,6,8],,pied)
+pfw=pied(pw,[1,3,5,7],'192.168.1.117',pied)
+pbw=pied(bw,[2,4,6,8],'192.168.1.117',pied)
 pieds.append(pfw)
 pieds.append(pbw)
 
