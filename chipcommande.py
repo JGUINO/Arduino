@@ -10,7 +10,6 @@ downarrow=PhotoImage(file='arrowdown.gif')
 uparrow=PhotoImage(file='arrowup.gif')
 
 factory = PiGPIOFactory(host='192.168.1.117')
-
 coffrage=[]
 pieds=[]
 boutons=[]
@@ -23,6 +22,7 @@ class bouton():
         self.typ=typ
         self.nom=nom
         self.dire=dire
+        self.led=LED(self.sortie,pin_factory=factory)
         GPIO.setmode(GPIO.BCM)
         self.button=tk.Button(fenetre)
         if self.dire=='up':
@@ -41,8 +41,7 @@ class bouton():
             GPIO.output(self.sortie, False)
 
     def press(self):
-        if self.sortie==21:
-            LED(self.sortie,pin_factory=factory).on()
+            self.led.on()
 
         if type(self.sortie)==list:
             for i in self.sortie:
@@ -71,7 +70,7 @@ class bouton():
         tt.config(bg='blue')
         for l in boutons:
             GPIO.output(l.sortie,False)
-        LED(21,pin_factory=factory).off()
+            l.led.off()
         for j in clab:
             j.config(bg='green')
         for k in plab:
