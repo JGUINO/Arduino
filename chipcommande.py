@@ -243,10 +243,14 @@ def afficherpieds():
             o=o+200
             a=10
     u=0
-    tt.place(x=5,y=300)
+    tt.place(x=10,y=305)
     for p in plab:
         p.place(x=10+u*100,y=110)
         u=u+100
+    pied1.place(x=10,y=105)
+    pied2.place(x=110,y=105)
+    pied3.place(x=210,y=105)
+    pied4.place(x=310,y=105)
 
 
 
