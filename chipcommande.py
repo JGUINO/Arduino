@@ -36,8 +36,8 @@ class bouton():
                 GPIO.setup(self.i,GPIO.OUT)
                 GPIO.output(self.i, False)
         elif type(self.sortie)==int:
-            GPIO.setup(self.i,GPIO.OUT)
-            GPIO.output(self.i, False)
+            GPIO.setup(self.sortie,GPIO.OUT)
+            GPIO.output(self.sortie, False)
 
     def press(self):
         if type(self.sortie)==list:
