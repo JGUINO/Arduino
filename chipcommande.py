@@ -28,8 +28,8 @@ class bouton():
             self.button.config(image=uparrow)
         elif self.dire=='down':
             self.button.config(image=downarrow)
-        self.button.bind('<ButtonPress-1>',lambda event:self.press())
-        self.button.bind('<ButtonRelease-1>',lambda event:self.release())
+        self.button.bind('<ButtonPress-1>',lambda event,self=self:self.press())
+        self.button.bind('<ButtonRelease-1>',lambda event,self=self:self.release())
 
         if type(self.sortie)==list:
             for i in self.sortie:
