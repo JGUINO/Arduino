@@ -67,13 +67,15 @@ class bouton():
                 k.config(bg='green')
             for i in boutons:
                 i.button.config(state=NORMAL)
+                
 
-    def affich(self):
-        if self.dire=='up':
-            self.button.place(x=5,y=0)
-        elif self.dire=='down':
-            self.button.place(x=5,y=100)
+framec=Frame(fenetre,height=190,width=720,bg="green")
+framec.place(x=0,y=30)
+Label(framec,text='Simple',font=(25)).place(x=630,y=30)
 
+framep=Frame(fenetre,height=190,width=720,bg="blue")
+framep.place(x=0,y=230)
+Label(framep,text='Multi',font=(25)).place(x=630,y=30)
 
 pfw1=bouton('fw1',1,'192.168.1.117','pied','up')
 pieds.append(pfw1)
@@ -140,13 +142,7 @@ for i in coffrage:
 for i in pieds:
     boutons.append(i)
 
-framec=Frame(fenetre,height=190,width=720,bg="green")
-framec.place(x=0,y=30)
-Label(framec,text='Simple',font=(25)).place(x=630,y=30)
 
-framep=Frame(fenetre,height=190,width=720,bg="blue")
-framep.place(x=0,y=230)
-Label(framep,text='Multi',font=(25)).place(x=630,y=30)
 
 clf1=Label(text="Avant",bg='green')
 clf2=Label(text="gauche",bg='green')
@@ -235,8 +231,13 @@ def afficherpieds():
     for j in clab:
         j.place_forget()
     for k in pieds:
-        k.affich()
-        a=a+100
+        if n%2==1:
+            k.button.place(x=a,y=o)
+            print('Bouton {} setup'.format(k.nom))
+        elif n%2==0:
+            k.button.place(x=a,y=o+100)
+            print('Bouton {} setup'.format(k.nom))
+            a=a+100
         n=n+1
         if n==9:
             o=o+200
