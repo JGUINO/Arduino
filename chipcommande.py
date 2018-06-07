@@ -39,17 +39,20 @@ class bouton():
                 GPIO.output(i, False)
                 
         elif type(self.sortie)==int:
-            self.led=LED(self.sortie,pin_factory=factory)
+            
             GPIO.setup(self.sortie,GPIO.OUT)
             GPIO.output(self.sortie, False)
 
     def press(self):
         self.led.on()
+        
 
         if type(self.sortie)==list:
             for i in self.sortie:
                 GPIO.output(i,True)
         else:
+            led=LED(self.sortie,pin_factory=factory)
+            led.on()
             GPIO.output(self.sortie, True)
         print('Activation de {}'.format(self.sortie))
         framec.config(bg='red')
@@ -71,9 +74,10 @@ class bouton():
         f1.config(bg='blue')
         b1.config(bg='blue')
         tt.config(bg='blue')
+        led.off()
         for l in boutons:
             GPIO.output(l.sortie,False)
-            l.led.off()
+            
         for j in clab:
             j.config(bg='green')
         for k in plab:
