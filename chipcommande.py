@@ -93,7 +93,11 @@ class bouton():
             for i in boutons:
                 if i.nom!=self.nom:
                     i.button.config(state=DISABLED)
-        
+        except:
+            fenetre.kill()
+            fenetre.mainloop()
+
+
     def release():
         global led
         global led1
@@ -105,16 +109,21 @@ class bouton():
         f1.config(bg='blue')
         b1.config(bg='blue')
         tt.config(bg='blue')
-        if type(led)!=list:
-            led.off()
-        if type(led1)!=list:
-            led1.off()
-        if type(led2)!=list:
-            led2.off()
-        if type(led3)!=list:
-            led3.off()
-        if type(led4)!=list:
-            led4.off()
+        try:
+            if type(led)!=list:
+                led.off()
+            if type(led1)!=list:
+                led1.off()
+            if type(led2)!=list:
+                led2.off()
+            if type(led3)!=list:
+                led3.off()
+            if type(led4)!=list:
+                led4.off()
+        except:
+            fenetre.kill()
+            fenetre.mainloop()
+            
         led=[]
         led1=[]
         led2=[]
@@ -332,9 +341,7 @@ fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
 fenetre.geometry("{0}x{1}+0+0".format(fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()))
 fenetre.mainloop()
-except:
-    fenetre.kill()
-    fenetre.mainloop()
+
 
 GPIO.cleanup()
 
