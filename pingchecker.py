@@ -1,7 +1,7 @@
 import shlex
 import subprocess
 import time
-import RPI.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 
 def ping (a):
