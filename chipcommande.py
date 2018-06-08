@@ -59,39 +59,40 @@ class bouton():
         global led2
         global led3
         global led4
-        if type(self.sortie)==list:
-            if len(self.sortie)==2:
-                led1=LED(self.sortie[0],self.sortie[1],pin_factory=factory)
-                led2=LED(self.sortie[1],pin_factory=factory)
-                led1.on()
-                led2.on()
-            if len(self.sortie)==4:
-                led1=LED(self.sortie[0],pin_factory=factory)
-                led2=LED(self.sortie[1],pin_factory=factory)
-                led3=LED(self.sortie[2],pin_factory=factory)
-                led4=LED(self.sortie[3],pin_factory=factory)
-                led1.on()
-                led2.on()
-                led3.on()
-                led4.on()
+        try:
+            if type(self.sortie)==list:
+                if len(self.sortie)==2:
+                    led1=LED(self.sortie[0],self.sortie[1],pin_factory=factory)
+                    led2=LED(self.sortie[1],pin_factory=factory)
+                    led1.on()
+                    led2.on()
+                if len(self.sortie)==4:
+                    led1=LED(self.sortie[0],pin_factory=factory)
+                    led2=LED(self.sortie[1],pin_factory=factory)
+                    led3=LED(self.sortie[2],pin_factory=factory)
+                    led4=LED(self.sortie[3],pin_factory=factory)
+                    led1.on()
+                    led2.on()
+                    led3.on()
+                    led4.on()
 
-        else:
-            led=LED(self.sortie,pin_factory=factory)
-            led.on()
-            GPIO.output(self.sortie, True)
-        print('Activation de {}'.format(self.sortie))
-        framec.config(bg='red')
-        framep.config(bg='red')
-        f1.config(bg='red')
-        b1.config(bg='red')
-        tt.config(bg='red')
-        for p in plab:
-            p.config(bg='red')
-        for q in clab:
-            p.config(bg='red')
-        for i in boutons:
-            if i.nom!=self.nom:
-                i.button.config(state=DISABLED)
+            else:
+                led=LED(self.sortie,pin_factory=factory)
+                led.on()
+                GPIO.output(self.sortie, True)
+            print('Activation de {}'.format(self.sortie))
+            framec.config(bg='red')
+            framep.config(bg='red')
+            f1.config(bg='red')
+            b1.config(bg='red')
+            tt.config(bg='red')
+            for p in plab:
+                p.config(bg='red')
+            for q in clab:
+                p.config(bg='red')
+            for i in boutons:
+                if i.nom!=self.nom:
+                    i.button.config(state=DISABLED)
         
     def release():
         global led
@@ -331,7 +332,9 @@ fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
 fenetre.geometry("{0}x{1}+0+0".format(fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()))
 fenetre.mainloop()
-
+except:
+    fenetre.kill()
+    fenetre.mainloop()
 
 GPIO.cleanup()
 
