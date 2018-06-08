@@ -2,6 +2,7 @@ import shlex
 import subprocess
 from time import sleep
 import RPi.GPIO as GPIO
+from gpiozero import LED
 
 
 def ping (a):
