@@ -16,7 +16,9 @@ def ping (a):
 
 while True:
     if ping('192.168.1.124'):
+        print ('Bonne connexion')
         sleep(0.5)
     else:
         LED(16).off()
+        print('Perte de connexion')
         sleep(5)
