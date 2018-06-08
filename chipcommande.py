@@ -94,7 +94,7 @@ class bouton():
                 if i.nom!=self.nom:
                     i.button.config(state=DISABLED)
         except:
-            fenetre.kill()
+            fenetre.destroy()
             fenetre.mainloop()
 
 
@@ -121,9 +121,9 @@ class bouton():
             if type(led4)!=list:
                 led4.off()
         except:
-            fenetre.kill()
+            fenetre.destroy()
             fenetre.mainloop()
-            
+
         led=[]
         led1=[]
         led2=[]
