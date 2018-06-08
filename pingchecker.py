@@ -24,4 +24,5 @@ while True:
         print('Perte de connexion')
         file=open(log.txt)
         file.write(time.strftime("%H:%M:%S")))
+        file.close
         sleep(5)
