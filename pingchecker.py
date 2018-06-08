@@ -1,6 +1,6 @@
 import shlex
 import subprocess
-import time
+from time import sleep
 import RPi.GPIO as GPIO
 
 
