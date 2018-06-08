@@ -3,6 +3,7 @@ import subprocess
 from time import sleep
 import RPi.GPIO as GPIO
 from gpiozero import LED
+import time
 
 
 def ping (a):
@@ -21,4 +22,6 @@ while True:
     else:
         LED(16).off()
         print('Perte de connexion')
+        file=open(log.txt)
+        file.write(time.strftime("%H:%M:%S")))
         sleep(5)
