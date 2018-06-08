@@ -8,7 +8,7 @@ def ping (a):
 	cmd=shlex.split("ping -c1 %s" % a)
 	try:
 	   output = subprocess.check_output(cmd)
-	except subprocess.CalledProcessError,e:
+	except subprocess.CalledProcessError as e:
 		return False
 	else:
 		return True
