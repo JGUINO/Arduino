@@ -5,7 +5,6 @@ from matplotlib.figure import Figure
 import matplotlib.pyplot as pltlib
 import Tkinter
 from Tkinter import *
-import numpy as np
 import scipy as sc
 #import matplotlib.pyplot as pltlib
 # lmfit is imported becuase parameters are allowed to depend on each other along with bounds, etc.
@@ -47,8 +46,8 @@ class App_Window(Tkinter.Tk):
         for num in range(0,1000):x.append(num*.001+1)
         # just some random function is given here, the real data is a UV-Vis spectrum
         for num2 in range(0,1000):y.append(sc.math.sin(num2*.06)+sc.math.e**(num2*.001))
-        X = np.array(x)
-        Y = np.array(y)
+        X = x
+        Y = y
         self.refreshFigure(X,Y)
 
 if __name__ == "__main__":
