@@ -4,7 +4,7 @@ from tkinter import *
 import tkinter as tk
 from gpiozero.pins.pigpio import PiGPIOFactory
 from gpiozero import LED
-from gpiozero import Motor
+from gpiozero import Servo
 
 fenetre = tk.Tk()
 downarrow=PhotoImage(file='arrowdown.gif')
@@ -14,7 +14,7 @@ factory = PiGPIOFactory(host='192.168.1.127')
 coffrage=[]
 pieds=[]
 boutons=[]
-global motor
+global servo
 global led
 global led1
 global led2
@@ -56,7 +56,7 @@ class bouton():
             GPIO.output(self.sortie, False)
 
     def press(self):
-        global motor
+        global servo
         global led
         global led1
         global led2
@@ -80,8 +80,8 @@ class bouton():
                     led4.on()
 
             else:
-                motor=Motor(21,pin_factory=factory)
-                motor.forward()
+                servo=Servo(21,pin_factory=factory)
+                servo.max()
                 #led=LED(self.sortie,pin_factory=factory)
                 #led.on()
                 GPIO.output(self.sortie, True)
@@ -104,7 +104,7 @@ class bouton():
 
 
     def release():
-        global motor
+        global servo
         global led
         global led1
         global led2
@@ -116,8 +116,8 @@ class bouton():
         b1.config(bg='blue')
         tt.config(bg='blue')
         try:
-            if type(motor)!=list:
-                motor.stop()
+            if type(servo)!=list:
+                servo.min()
             if type(led)!=list:
                 led.off()
             if type(led1)!=list:
@@ -132,7 +132,7 @@ class bouton():
             fenetre.destroy()
             fenetre.mainloop()
 
-        motor=[]
+        servo=[]
         led=[]
         led1=[]
         led2=[]
