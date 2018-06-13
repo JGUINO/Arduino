@@ -82,8 +82,8 @@ class bouton():
             else:
                 motor=Motor(21,pin_factory=factory)
                 motor.forward()
-                led=LED(self.sortie,pin_factory=factory)
-                led.on()
+                #led=LED(self.sortie,pin_factory=factory)
+                #led.on()
                 GPIO.output(self.sortie, True)
             print('Activation de {}'.format(self.sortie))
             framec.config(bg='red')
