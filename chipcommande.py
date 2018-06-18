@@ -200,12 +200,12 @@ class numpad(tk.Frame):
         self.pw.append(b)
     def valider(self):
         if self.pw==['1','2','3','4']:
-            afficheroutil(self.outil)
+            afficheroutil()
             return 'OK'
         elif self.pw!=[] and ['1','2','3','4']:
             self.pw==[]
             return 'incorrect'
-    def afficheroutil(self,outil):
+    def afficheroutil(self):
         if self.outil=='coffrage':
             a=10
             o=40
