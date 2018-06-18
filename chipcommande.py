@@ -162,7 +162,7 @@ class numpad(tk.Frame):
         r=1
         c=0
         for b in numpadb:
-            self.b=tk.Button(self,text=b,width=5,lambda event, p=b:onPress(p)).grid(row=r,column=c)
+            self.b=tk.Button(self,text=b,lambda event, p=b:onPress(p)).grid(row=r,column=c)
             c += 1
             if c>4:
                 c=0
