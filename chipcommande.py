@@ -194,8 +194,8 @@ class numpad(tk.Frame):
                 c=0
                 r += 1
         self.valid=tk.Button(fenetre,text='Valider',width=6)
-        self.valid.bind('<ButtonPress-1>',lambda event:self.valider(self.pw))
-        self.valid.grid(row=5,column=2)
+        self.valid.bind('<ButtonPress-1>',lambda event:self.valider())
+        self.valid.grid(row=5,column=1)
     def onPress(self,b):
         self.pw.append(b)
     def valider(self):
