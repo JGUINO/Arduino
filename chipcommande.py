@@ -165,6 +165,7 @@ b1=Label(text='Arrière',bg='blue')
 tt=Label(text='Tous',bg='blue')
 
 
+
 pied1=Label(text="Pied 1",bg="green")
 pied2=Label(text="Pied 2",bg="green")
 pied3=Label(text="Pied 3",bg="green")
@@ -194,7 +195,7 @@ class numpad(tk.Frame):
                 r += 1
         self.valid=tk.Button(fenetre,text='Valider',width=6)
         self.valid.bind('<ButtonPress-1>',lambda event:self.valider(self.pw))
-        self.valid.grid(row=5;column=2)
+        self.valid.grid(row=5,column=2)
     def onPress(self,b):
         self.pw.append(b)
     def valider(self):
