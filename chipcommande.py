@@ -171,7 +171,7 @@ class numpad(tk.Frame):
     def onPress(self,b):
         self.pw.append(b)
     def valider(self):
-        if self.pw==['1','2','3','4']
+        if self.pw==['1','2','3','4']:
             return 'OK'
         else:
             self.pw==[]
