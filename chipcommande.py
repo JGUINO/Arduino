@@ -325,10 +325,10 @@ def affichercoffrage():
                     u=u+1
                 n=n+1
             break
-            elif nump.valider()=='incorrect':
-                print(nump.valider)
-            else:
-                sleep(1)
+        elif nump.valider()=='incorrect':
+            print(nump.valider)
+        else:
+            sleep(1)
 
 
     
