@@ -212,8 +212,8 @@ class numpad(tk.Frame):
     def afficheroutil(self):
         if self.outil=='coffrage':
             for i in numpadb:
-                i.button.grid_forget()
-            valid.button.grid_forget()
+                i.b.grid_forget()
+            valid.grid_forget()
             a=10
             o=40
             n=1
