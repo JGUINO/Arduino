@@ -27,7 +27,7 @@ class App_Window(tkinter.Tk):
         y=[]
         self.line1, = FigSubPlot.plot(x,y,'r-')
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=self)
-        self.canvas.show()
+        self.canvas.draw()
         self.canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
         self.canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
         self.resizable(True,False)
