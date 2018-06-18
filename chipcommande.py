@@ -186,17 +186,17 @@ class numpad(tk.Frame):
         r=1
         c=0
         for b in numpadb:
-            self.b=tk.Button(fenetre,text=str(b),width=10,height=10)
+            self.b=tk.Button(fenetre,text=str(b),width=10,height=5)
             self.b.bind('<ButtonPress-1>',lambda event, p=b:self.onPress(p))
             self.b.grid(row=r,column=c)
             c += 1
             if c>2:
                 c=0
                 r += 1
-        self.valid=tk.Button(fenetre,text='Valider',width=10,height=10)
+        self.valid=tk.Button(fenetre,text='Valider',width=10,height=5)
         self.valid.bind('<ButtonPress-1>',lambda event:self.valider())
         self.valid.grid(row=5,column=1)
-        self.corriger=tk.Button(fenetre,text='Corriger',width=10,height=10)
+        self.corriger=tk.Button(fenetre,text='Corriger',width=10,height=5)
         self.corriger.bind('<ButtonPress-1>',lambda event:self.corrige())
     def corrige():
         self.pw=[]
