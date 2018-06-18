@@ -150,7 +150,7 @@ class bouton():
                 
 class numpad(tk.Frame):
     def __init__(self,fenetre):
-        tk.Frame.__inti__(self,fenetre)
+        tk.Frame.__init__(self,fenetre)
         self.grid()
         self.numpad_create()
         self.pw=[]
