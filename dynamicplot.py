@@ -19,7 +19,7 @@ class App_Window(tkinter.Tk):
         self.parent = parent
         self.initialize()
     def initialize(self):
-        button = tkinter.Button(self,text="Open File",command=self.OnButtonClick).pack(side=Tkinter.TOP)
+        button = tkinter.Button(self,text="Open File",command=self.OnButtonClick).pack(side=tkinter.TOP)
         self.canvasFig=pltlib.figure(1)
         Fig = matplotlib.figure.Figure(figsize=(5,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
@@ -28,8 +28,8 @@ class App_Window(tkinter.Tk):
         self.line1, = FigSubPlot.plot(x,y,'r-')
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=self)
         self.canvas.show()
-        self.canvas.get_tk_widget().pack(side=Tkinter.TOP, fill=Tkinter.BOTH, expand=1)
-        self.canvas._tkcanvas.pack(side=Tkinter.TOP, fill=Tkinter.BOTH, expand=1)
+        self.canvas.get_tk_widget().pack(side=Tkinter.TOP, fill=tkinter.BOTH, expand=1)
+        self.canvas._tkcanvas.pack(side=Tkinter.TOP, fill=tkinter.BOTH, expand=1)
         self.resizable(True,False)
         self.update()
     def refreshFigure(self,x,y):
