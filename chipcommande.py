@@ -149,14 +149,18 @@ class bouton():
             i.button.config(state=NORMAL)
                 
 class numpad(tk.Frame):
-    def __init__(self,fenetre):
+    def __init__(self,fenetre,outil):
+        self.outil=outil
+        framec.place_forget()
+        framep.place_forget()
         tk.Frame.__init__(self,fenetre)
         self.grid()
         self.numpad_create()
         self.pw=[]
     
-    def numpad_create(self):
+    def numpad_create(self,outil):
         r=1
+        self.outil=outil
         c=0
         for b in numpadb:
             self.b=tk.Button(fenetre,text=str(b),width=5)
@@ -172,10 +176,82 @@ class numpad(tk.Frame):
         self.pw.append(b)
     def valider(self):
         if self.pw==['1','2','3','4']:
+            afficheroutil(self.outil)
             return 'OK'
         elif self.pw!=[] and ['1','2','3','4']:
             self.pw==[]
             return 'incorrect'
+    def afficheroutil(self,outil):
+        if self.outil=='coffrage':
+            a=10
+            o=40
+            n=1
+            global boutons
+            global plab
+            global clab
+            bcoffr.config(bg='yellow')
+            bpie.config(bg='grey')
+            tt.place_forget()
+            for i in boutons:
+                i.button.place_forget()
+            for j in plab:
+                j.place_forget()
+            nump=numpad(fenetre)
+            for k in coffrage:
+                if n%2==1:
+                    k.button.place(x=a,y=o)
+                elif n%2==0:
+                    k.button.place(x=a,y=o+100)
+                    a=a+100
+                n=n+1
+                if n==13:
+                    o=o+200
+                    a=10
+            u=0
+            n=0
+            f1.place(x=105,y=300)
+            b1.place(x=205,y=300)
+            tt.place(x=5,y=300)
+            for cl in clab:
+        
+                if n%2==0:
+                    cl.place(x=5+u*100,y=100)
+                elif n%2==1:
+                    cl.place(x=5+u*100,y=120)
+                    u=u+1
+                n=n+1
+        if self.outil=='pieds':
+            a=10
+            o=40
+            n=1
+            global plab
+            bpie.config(bg='yellow')
+            bcoffr.config(bg='grey')
+            f1.place_forget()
+            b1.place_forget()
+            tt.place_forget()
+            for i in boutons:
+                i.button.place_forget()
+            for j in clab:
+                j.place_forget()
+            for k in pieds:
+                if n%2==1:
+                    k.button.place(x=a,y=o)
+                    print('Bouton {} setup'.format(k.nom))
+                elif n%2==0:
+                    k.button.place(x=a,y=o+100)
+                    print('Bouton {} setup'.format(k.nom))
+                    a=a+100
+                n=n+1
+                if n==9:
+                    o=o+200
+                    a=10
+            u=0
+            tt.place(x=10,y=305)
+            pied1.place(x=10,y=105)
+            pied2.place(x=110,y=105)
+            pied3.place(x=210,y=105)
+            pied4.place(x=310,y=105)
 
 
 framec=Frame(fenetre,height=190,width=720,bg="green")
@@ -284,87 +360,13 @@ plab=[pied1,pied2,pied3,pied4]
 d=0
 
 
-def affichercoffrage():
-    a=10
-    o=40
-    n=1
-    global boutons
-    global plab
-    global clab
-    bcoffr.config(bg='yellow')
-    bpie.config(bg='grey')
-    tt.place_forget()
-    for i in boutons:
-        i.button.place_forget()
-    for j in plab:
-        j.place_forget()
-    nump=numpad(fenetre)
-    while 1:
-        if nump.valider()=='OK':
-            for k in coffrage:
-                if n%2==1:
-                    k.button.place(x=a,y=o)
-                elif n%2==0:
-                    k.button.place(x=a,y=o+100)
-                    a=a+100
-                n=n+1
-                if n==13:
-                    o=o+200
-                    a=10
-            u=0
-            n=0
-            f1.place(x=105,y=300)
-            b1.place(x=205,y=300)
-            tt.place(x=5,y=300)
-            for cl in clab:
-        
-                if n%2==0:
-                    cl.place(x=5+u*100,y=100)
-                elif n%2==1:
-                    cl.place(x=5+u*100,y=120)
-                    u=u+1
-                n=n+1
-            break
-        elif nump.valider()=='incorrect':
-            print(nump.valider)
-        else:
-            sleep(1)
+
+
 
 
     
 
-def afficherpieds():
-    a=10
-    o=40
-    n=1
-    global plab
-    bpie.config(bg='yellow')
-    bcoffr.config(bg='grey')
-    f1.place_forget()
-    b1.place_forget()
-    tt.place_forget()
-    for i in boutons:
-        i.button.place_forget()
-    for j in clab:
-        j.place_forget()
-    for k in pieds:
-        if n%2==1:
-            k.button.place(x=a,y=o)
-            print('Bouton {} setup'.format(k.nom))
-        elif n%2==0:
-            k.button.place(x=a,y=o+100)
-            print('Bouton {} setup'.format(k.nom))
-            a=a+100
-        n=n+1
-        if n==9:
-            o=o+200
-            a=10
-    u=0
-    tt.place(x=10,y=305)
-    pied1.place(x=10,y=105)
-    pied2.place(x=110,y=105)
-    pied3.place(x=210,y=105)
-    pied4.place(x=310,y=105)
+
 
 
 
@@ -377,9 +379,9 @@ quitter.place(x=725,y=440)
 for i in boutons:
     i.button.config(state=NORMAL)
 
-bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10,command=affichercoffrage)
+bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10,command=numpad(fenetre,'coffrage'))
 bcoffr.place(x=400,y=425)
-bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10,command=afficherpieds)
+bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10,command=numpad(fenetre,'pieds'))
 bpie.place(x=550,y=425)
 
 fenetre.geometry("800x600+10+10")
