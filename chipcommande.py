@@ -5,6 +5,7 @@ import tkinter as tk
 from gpiozero.pins.pigpio import PiGPIOFactory
 from gpiozero import LED
 from gpiozero import Servo
+from time import sleep
 
 fenetre = tk.Tk()
 downarrow=PhotoImage(file='arrowdown.gif')
@@ -13,6 +14,7 @@ uparrow=PhotoImage(file='arrowup.gif')
 factory = PiGPIOFactory(host='192.168.1.127')
 coffrage=[]
 pieds=[]
+numpadb=['7','8','9','4','5','6','1','2','3','0']
 boutons=[]
 global servo
 global led
@@ -149,6 +151,32 @@ class bouton():
         for i in boutons:
             i.button.config(state=NORMAL)
                 
+class numpad(tk.Frame):
+    def __init__(self,fenetre):
+        tk.Frame.__inti__(self,fenetre)
+        self.grid()
+        self.numpad_create()
+        self.pw=[]
+    
+    def numpad_create(self):
+        r=1
+        c=0
+        for b in numpadb:
+            self.b=tk.Button(self,text=b,width=5,lambda event, p=b:onPress(p)).grid(row=r,column=c)
+            c += 1
+            if c>4:
+                c=0
+                r += 1
+        self.valid=tk.Button(self,text='Valider',width=6,lambda event:valider(self.pw))
+    def onPress(self,b):
+        self.pw.append(b)
+    def valider(self):
+        if self.pw==['1','2','3','4']
+            return 'OK'
+        else:
+            self.pw==[]
+            return 'incorrect'
+
 
 framec=Frame(fenetre,height=190,width=720,bg="green")
 framec.place(x=0,y=30)
@@ -270,29 +298,37 @@ def affichercoffrage():
         i.button.place_forget()
     for j in plab:
         j.place_forget()
-    for k in coffrage:
-        if n%2==1:
-            k.button.place(x=a,y=o)
-        elif n%2==0:
-            k.button.place(x=a,y=o+100)
-            a=a+100
-        n=n+1
-        if n==13:
-            o=o+200
-            a=10
-    u=0
-    n=0
-    f1.place(x=105,y=300)
-    b1.place(x=205,y=300)
-    tt.place(x=5,y=300)
-    for cl in clab:
+    nump=numpad()
+    while 1:
+        if nump.valider()=='OK':
+            for k in coffrage:
+                if n%2==1:
+                    k.button.place(x=a,y=o)
+                elif n%2==0:
+                    k.button.place(x=a,y=o+100)
+                    a=a+100
+                n=n+1
+                if n==13:
+                    o=o+200
+                    a=10
+            u=0
+            n=0
+            f1.place(x=105,y=300)
+            b1.place(x=205,y=300)
+            tt.place(x=5,y=300)
+            for cl in clab:
         
-        if n%2==0:
-            cl.place(x=5+u*100,y=100)
-        elif n%2==1:
-            cl.place(x=5+u*100,y=120)
-            u=u+1
-        n=n+1
+                if n%2==0:
+                    cl.place(x=5+u*100,y=100)
+                elif n%2==1:
+                    cl.place(x=5+u*100,y=120)
+                    u=u+1
+                n=n+1
+            break
+        elif nump.valider()=='incorrect':
+            print(nump.valider)
+        else:
+            sleep(1)
 
 
     
