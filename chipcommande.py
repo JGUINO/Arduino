@@ -173,7 +173,7 @@ class numpad(tk.Frame):
     def valider(self):
         if self.pw==['1','2','3','4']:
             return 'OK'
-        else:
+        elif self.pw!=[] and ['1','2','3','4']:
             self.pw==[]
             return 'incorrect'
 
