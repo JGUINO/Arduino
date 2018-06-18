@@ -19,7 +19,7 @@ class App_Window(tkinter.Tk):
         self.parent = parent
         self.initialize()
     def initialize(self):
-        button = Tkinter.Button(self,text="Open File",command=self.OnButtonClick).pack(side=Tkinter.TOP)
+        button = tkinter.Button(self,text="Open File",command=self.OnButtonClick).pack(side=Tkinter.TOP)
         self.canvasFig=pltlib.figure(1)
         Fig = matplotlib.figure.Figure(figsize=(5,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
