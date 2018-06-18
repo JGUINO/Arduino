@@ -81,7 +81,7 @@ class bouton():
 
             else:
                 servo=Servo(21,pin_factory=factory)
-                servo.max()
+                servo.value(1)
                 #led=LED(self.sortie,pin_factory=factory)
                 #led.on()
                 GPIO.output(self.sortie, True)
@@ -117,7 +117,7 @@ class bouton():
         tt.config(bg='blue')
         try:
             if type(servo)!=list:
-                servo.min()
+                servo.value(-1)
             if type(led)!=list:
                 led.off()
             if type(led1)!=list:

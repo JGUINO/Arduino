@@ -3,8 +3,8 @@ matplotlib.use('TKAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 from matplotlib.figure import Figure
 import matplotlib.pyplot as pltlib
-import Tkinter
-from Tkinter import *
+import tkinter
+from tkinter import *
 import scipy as sc
 #import matplotlib.pyplot as pltlib
 # lmfit is imported becuase parameters are allowed to depend on each other along with bounds, etc.
@@ -13,9 +13,9 @@ from lmfit import minimize, Parameters, Minimizer
 
 
 #Make object for application
-class App_Window(Tkinter.Tk):
+class App_Window(tkinter.Tk):
     def __init__(self,parent):
-        Tkinter.Tk.__init__(self,parent)
+        tkinter.Tk.__init__(self,parent)
         self.parent = parent
         self.initialize()
     def initialize(self):
