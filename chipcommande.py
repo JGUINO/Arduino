@@ -147,7 +147,30 @@ class bouton():
             k.config(bg='green')
         for i in boutons:
             i.button.config(state=NORMAL)
-                
+clf1=Label(text="Avant",bg='green')
+clf2=Label(text="gauche",bg='green')
+crf1=Label(text="Avant",bg='green')
+crf2=Label(text="droit",bg='green')
+clm1=Label(text="Milieu",bg='green')
+clm2=Label(text="gauche",bg='green')
+crm1=Label(text="Milieu",bg='green')
+crm2=Label(text="droit",bg='green')
+clt1=Label(text="Arrière",bg='green')
+clt2=Label(text="gauche",bg='green')
+crt1=Label(text="Arrière",bg='green')
+crt2=Label(text="droit",bg='green')
+clab=[clf1,clf2,crf1,crf2,clm1,clm2,crm1,crm2,clt1,clt2,crt1,crt2]
+f1=Label(text="Avant",bg='blue')
+b1=Label(text='Arrière',bg='blue')
+tt=Label(text='Tous',bg='blue')
+
+
+pied1=Label(text="Pied 1",bg="green")
+pied2=Label(text="Pied 2",bg="green")
+pied3=Label(text="Pied 3",bg="green")
+pied4=Label(text="Pied 4",bg="green")
+plab=[pied1,pied2,pied3,pied4]
+
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
         self.outil=outil
@@ -166,7 +189,7 @@ class numpad(tk.Frame):
             self.b.bind('<ButtonPress-1>',lambda event, p=b:self.onPress(p))
             self.b.grid(row=r,column=c)
             c += 1
-            if c>3:
+            if c>2:
                 c=0
                 r += 1
         self.valid=tk.Button(fenetre,text='Valider',width=6)
@@ -328,29 +351,7 @@ for i in pieds:
 
 
 
-clf1=Label(text="Avant",bg='green')
-clf2=Label(text="gauche",bg='green')
-crf1=Label(text="Avant",bg='green')
-crf2=Label(text="droit",bg='green')
-clm1=Label(text="Milieu",bg='green')
-clm2=Label(text="gauche",bg='green')
-crm1=Label(text="Milieu",bg='green')
-crm2=Label(text="droit",bg='green')
-clt1=Label(text="Arrière",bg='green')
-clt2=Label(text="gauche",bg='green')
-crt1=Label(text="Arrière",bg='green')
-crt2=Label(text="droit",bg='green')
-clab=[clf1,clf2,crf1,crf2,clm1,clm2,crm1,crm2,clt1,clt2,crt1,crt2]
-f1=Label(text="Avant",bg='blue')
-b1=Label(text='Arrière',bg='blue')
-tt=Label(text='Tous',bg='blue')
 
-
-pied1=Label(text="Pied 1",bg="green")
-pied2=Label(text="Pied 2",bg="green")
-pied3=Label(text="Pied 3",bg="green")
-pied4=Label(text="Pied 4",bg="green")
-plab=[pied1,pied2,pied3,pied4]
 
 
 
