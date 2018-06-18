@@ -298,7 +298,7 @@ def affichercoffrage():
         i.button.place_forget()
     for j in plab:
         j.place_forget()
-    nump=numpad()
+    nump=numpad(fenetre)
     while 1:
         if nump.valider()=='OK':
             for k in coffrage:
