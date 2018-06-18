@@ -158,9 +158,8 @@ class numpad(tk.Frame):
         self.numpad_create()
         self.pw=[]
     
-    def numpad_create(self,outil):
+    def numpad_create(self):
         r=1
-        self.outil=outil
         c=0
         for b in numpadb:
             self.b=tk.Button(fenetre,text=str(b),width=5)
