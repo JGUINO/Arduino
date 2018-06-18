@@ -200,7 +200,7 @@ class numpad(tk.Frame):
         self.pw.append(b)
     def valider(self):
         if self.pw==['1','2','3','4']:
-            afficheroutil()
+            self.afficheroutil()
             return 'OK'
         elif self.pw!=[] and ['1','2','3','4']:
             self.pw==[]
