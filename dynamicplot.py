@@ -8,7 +8,7 @@ from tkinter import *
 import scipy as sc
 #import matplotlib.pyplot as pltlib
 # lmfit is imported becuase parameters are allowed to depend on each other along with bounds, etc.
-from lmfit import minimize, Parameters, Minimizer
+#from lmfit import minimize, Parameters, Minimizer
 
 
 
