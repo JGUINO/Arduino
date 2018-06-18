@@ -143,9 +143,6 @@ class bouton():
 
         for l in boutons:
             GPIO.output(l.sortie,False)
-            
-        for j in clab:
-            j.config(bg='green')
         for k in plab:
             k.config(bg='green')
         for i in boutons:
@@ -162,12 +159,15 @@ class numpad(tk.Frame):
         r=1
         c=0
         for b in numpadb:
-            self.b=tk.Button(fenetre,text=str(b),width=5,lambda event, p=b:onPress(p)).grid(row=r,column=c)
+            self.b=tk.Button(fenetre,text=str(b),width=5)
+            self.b.bind('<ButtonPress-1>',lambda event, p=b:onPress(p))
+            self.b.grid(row=r,column=c)
             c += 1
             if c>4:
                 c=0
                 r += 1
-        self.valid=tk.Button(fenetre,text='Valider',width=6,lambda event:valider(self.pw))
+        self.valid=tk.Button(fenetre,text='Valider',width=6)
+        self.valid.bind('<ButtonPress-1>',lambda event:valider(self.pw))
     def onPress(self,b):
         self.pw.append(b)
     def valider(self):
