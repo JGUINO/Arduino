@@ -35,8 +35,8 @@ class App_Window(tkinter.Tk):
     def refreshFigure(self,x,y):
         self.line1.set_data(x,y)
         ax = self.canvas.figure.axes[0]
-        ax.set_xlim(x.min(), x.max())
-        ax.set_ylim(y.min(), y.max())        
+        ax.set_xlim(min(x), max(x))
+        ax.set_ylim(min(y), max(y))        
         self.canvas.draw()
     def OnButtonClick(self):
         # file is opened here and some data is taken
