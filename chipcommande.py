@@ -184,10 +184,10 @@ plab=[pied1,pied2,pied3,pied4]
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
         self.outil=outil
-        self.pw1=Label(text="*",font=(50),height=5,width=20,bg='grey')
-        self.pw2=Label(text="**",font=(50),height=5,width=20,bg='grey')
-        self.pw3=Label(text="***",font=(50),height=5,width=20,bg='grey')
-        self.pw4=Label(text="****",font=(50),height=5,width=20,bg='grey')
+        self.pw1=Label(text="*",font=(50),height=4,width=10,bg='grey')
+        self.pw2=Label(text="**",font=(50),height=4,width=10,bg='grey')
+        self.pw3=Label(text="***",font=(50),height=4,width=10,bg='grey')
+        self.pw4=Label(text="****",font=(50),height=4,width=10,bg='grey')
         framec.place_forget()
         framep.place_forget()
         tk.Frame.__init__(self,fenetre)
