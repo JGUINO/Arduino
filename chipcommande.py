@@ -279,8 +279,7 @@ class numpad(tk.Frame):
         self.oublie()
         self.valid.grid_forget()
         self.corriger.grid_forget()
-        framec.place(x=0,y=30)
-        framep.place(x=0,y=230)
+        
         if self.outil=='coffrage':
             
             a=10
@@ -343,6 +342,8 @@ class numpad(tk.Frame):
             pied2.place(x=110,y=105)
             pied3.place(x=210,y=105)
             pied4.place(x=310,y=105)
+        framec.place(x=0,y=30)
+        framep.place(x=0,y=230)
 
 
 framec=Frame(fenetre,height=190,width=720,bg="green")
