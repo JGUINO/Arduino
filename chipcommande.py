@@ -16,6 +16,8 @@ coffrage=[]
 pieds=[]
 numpadb=['7','8','9','4','5','6','1','2','3','0']
 boutons=[]
+global clab
+global plab
 global servo
 global led
 global led1
@@ -211,10 +213,12 @@ class numpad(tk.Frame):
             self.pw==[]
             return 'incorrect'
     def afficheroutil(self):
+        for b in numpadb:
+            self.b.grid_forget()
+        self.valid.grid_forget()
+        self.corriger.grid_forget()
         if self.outil=='coffrage':
-            for i in numpadb:
-                i.b.grid_forget()
-            self.valid.grid_forget()
+            
             a=10
             o=40
             n=1
@@ -228,7 +232,6 @@ class numpad(tk.Frame):
                 i.button.place_forget()
             for j in plab:
                 j.place_forget()
-            nump=numpad(fenetre)
             for k in coffrage:
                 if n%2==1:
                     k.button.place(x=a,y=o)
@@ -389,9 +392,11 @@ quitter.place(x=725,y=440)
 for i in boutons:
     i.button.config(state=NORMAL)
 
-bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10,command=numpad(fenetre,'coffrage'))
+bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10)
+bcoffr.bind('<ButtonPress-1',lambda event:numpad(fenetre,'coffrage'))
 bcoffr.place(x=400,y=425)
-bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10,command=numpad(fenetre,'pieds'))
+bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
+bpie.bind('<ButtonPress-1',lambda event:numpad(fenetre,'pieds'))
 bpie.place(x=550,y=425)
 
 fenetre.geometry("800x600+10+10")
