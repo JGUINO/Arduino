@@ -184,13 +184,13 @@ class numpad(tk.Frame):
         self.pw=[]
         self.numpad_create()
         for i in boutons:
-                i.button.place_forget()
-            for j in plab:
-                j.place_forget()
+            i.button.place_forget()
+        for j in plab:
+            j.place_forget()
         for i in boutons:
-                i.button.place_forget()
-            for j in clab:
-                j.place_forget()
+            i.button.place_forget()
+        for j in clab:
+            j.place_forget()
     
     def numpad_create(self):
         r=1
