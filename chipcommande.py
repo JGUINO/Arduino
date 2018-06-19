@@ -14,7 +14,7 @@ uparrow=PhotoImage(file='arrowup.gif')
 factory = PiGPIOFactory(host='192.168.1.127')
 coffrage=[]
 pieds=[]
-numpadb=['7','8','9','4','5','6','1','2','3','0']
+numpadb=[7,8,9,4,5,6,1,2,3,0]
 boutons=[]
 global clab
 global plab
