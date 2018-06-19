@@ -252,8 +252,16 @@ class numpad(tk.Frame):
         self.pw=[]
 
     def oublie(self):
-        for t in self.nump:
-            t.grid_forget()
+        self.pad0.grid_forget()
+        self.pad1.grid_forget()
+        self.pad2.grid_forget()
+        self.pad3.grid_forget()
+        self.pad4.grid_forget()
+        self.pad5.grid_forget()
+        self.pad6.grid_forget()
+        self.pad7.grid_forget()
+        self.pad8.grid_forget()
+        self.pad9.grid_forget()
 
 
     def afficheroutil(self):
