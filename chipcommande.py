@@ -188,7 +188,7 @@ class numpad(tk.Frame):
     def numpad_create(self):
         r=1
         c=0
-        for t in self.numpadb:
+        for t in numpadb:
             t
             t=tk.Button(fenetre,text=str(b),width=10,height=5)
             t.bind('<ButtonPress-1>',lambda event, p=b:self.onPress(p))
