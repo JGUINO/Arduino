@@ -206,6 +206,7 @@ class numpad(tk.Frame):
         self.pw=[]
     def onPress(self,b):
         self.pw.append(b)
+        self.
     def valider(self):
         if self.pw==[1,2,3,4]:
             self.afficheroutil()
@@ -213,11 +214,15 @@ class numpad(tk.Frame):
         elif self.pw!=[] and [1,2,3,4]:
             self.pw==[]
             return 'incorrect'
+    def oublie(self):
+        g=0
+        for p in range(len(self.nump)):
+            g=nump[p]
+            self.g.grid_forget()
 
-        print('oublie 9')
+
     def afficheroutil(self):
-        for t in self.nump:
-            self.t.grid_forget()
+        self.oublie()
         self.valid.grid_forget()
         self.corriger.grid_forget()
         if self.outil=='coffrage':
