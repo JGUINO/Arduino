@@ -183,7 +183,14 @@ class numpad(tk.Frame):
         self.grid()
         self.pw=[]
         self.numpad_create()
-        
+        for i in boutons:
+                i.button.place_forget()
+            for j in plab:
+                j.place_forget()
+        for i in boutons:
+                i.button.place_forget()
+            for j in clab:
+                j.place_forget()
     
     def numpad_create(self):
         r=1
@@ -281,10 +288,7 @@ class numpad(tk.Frame):
             bcoffr.config(bg='yellow')
             bpie.config(bg='grey')
             tt.place_forget()
-            for i in boutons:
-                i.button.place_forget()
-            for j in plab:
-                j.place_forget()
+            
             for k in coffrage:
                 if n%2==1:
                     k.button.place(x=a,y=o)
@@ -318,10 +322,7 @@ class numpad(tk.Frame):
             f1.place_forget()
             b1.place_forget()
             tt.place_forget()
-            for i in boutons:
-                i.button.place_forget()
-            for j in clab:
-                j.place_forget()
+            
             for k in pieds:
                 if n%2==1:
                     k.button.place(x=a,y=o)
