@@ -30,6 +30,13 @@ led1=[]
 led3=[]
 led4=[]
 
+framec=Frame(fenetre,height=190,width=720,bg="green")
+framec.place(x=0,y=30)
+Label(framec,text='Simple',font=(25)).place(x=630,y=30)
+
+framep=Frame(fenetre,height=190,width=720,bg="blue")
+framep.place(x=0,y=230)
+Label(framep,text='Multi',font=(25)).place(x=630,y=30)
 
 class bouton():
     def __init__(self,nom,sortie,ip,typ,dire):
@@ -346,13 +353,7 @@ class numpad(tk.Frame):
         framep.place(x=0,y=230)
 
 
-framec=Frame(fenetre,height=190,width=720,bg="green")
-framec.place(x=0,y=30)
-Label(framec,text='Simple',font=(25)).place(x=630,y=30)
 
-framep=Frame(fenetre,height=190,width=720,bg="blue")
-framep.place(x=0,y=230)
-Label(framep,text='Multi',font=(25)).place(x=630,y=30)
 
 pfw1=bouton('fw1',21,'192.168.1.117','pied','up')
 pieds.append(pfw1)
