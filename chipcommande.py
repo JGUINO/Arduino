@@ -217,7 +217,7 @@ class numpad(tk.Frame):
         print('oublie 9')
     def afficheroutil(self):
         for t in self.nump:
-            t.grid_forget()
+            self.t.grid_forget()
         self.valid.grid_forget()
         self.corriger.grid_forget()
         if self.outil=='coffrage':
