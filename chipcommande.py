@@ -184,16 +184,18 @@ plab=[pied1,pied2,pied3,pied4]
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
         self.outil=outil
-        self.pw1=Label(text="*",font=(50),height=4,width=10,bg='grey')
-        self.pw2=Label(text="**",font=(50),height=4,width=10,bg='grey')
-        self.pw3=Label(text="***",font=(50),height=4,width=10,bg='grey')
-        self.pw4=Label(text="****",font=(50),height=4,width=10,bg='grey')
+        self.pw1=Label(text="*",font=(50),height=3,width=9,bg='grey')
+        self.pw2=Label(text="**",font=(50),height=3,width=9,bg='grey')
+        self.pw3=Label(text="***",font=(50),height=3,width=9,bg='grey')
+        self.pw4=Label(text="****",font=(50),height=3,width=9,bg='grey')
         framec.place_forget()
         framep.place_forget()
         tk.Frame.__init__(self,fenetre)
         self.grid()
         self.pw=[]
         self.numpad_create()
+        self.correct=Label(text='Correct',font=50,height=3,width=9,bg='grey',fg='green')
+        self.incorrect=Label(text='Incorrect',font=50,height=3,width=9,bg='grey',fg='red')
         
     
     def numpad_create(self):
@@ -290,13 +292,18 @@ class numpad(tk.Frame):
             self.pw4.grid_forget()
         
         if self.pw==[1,2,3,4]:
+            self.correct.grid(row=2,column=0)
+            sleep(2)
+            self.correct.grid_forget()
             self.afficheroutil()
             self.pw=[]
-            return 'OK'
+
         elif self.pw!=[] and [1,2,3,4]:
+            self.incorrect.grid(row=2,column=0)
+            sleep(2)
+            self.incorrect.grid_forget()
             self.pw=[]
-            return 'incorrect'
-        
+
 
     def oublie(self):
         self.pad0.grid_forget()
