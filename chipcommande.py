@@ -190,8 +190,8 @@ class numpad(tk.Frame):
         c=0
         for t in numpadb:
             t
-            t=tk.Button(fenetre,text=str(b),width=10,height=5)
-            t.bind('<ButtonPress-1>',lambda event, p=b:self.onPress(p))
+            t=tk.Button(fenetre,text=str(t),width=10,height=5)
+            t.bind('<ButtonPress-1>',lambda event, p=t:self.onPress(p))
             t.grid(row=r,column=c)
             self.nump.append(t)
             c += 1
