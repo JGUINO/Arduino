@@ -206,7 +206,7 @@ class numpad(tk.Frame):
         self.pw=[]
     def onPress(self,b):
         self.pw.append(b)
-        self.
+        
     def valider(self):
         if self.pw==[1,2,3,4]:
             self.afficheroutil()
