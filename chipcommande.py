@@ -181,8 +181,9 @@ class numpad(tk.Frame):
         framep.place_forget()
         tk.Frame.__init__(self,fenetre)
         self.grid()
-        self.numpad_create()
         self.pw=[]
+        self.numpad_create()
+        
     
     def numpad_create(self):
         r=1
