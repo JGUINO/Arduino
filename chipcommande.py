@@ -183,6 +183,11 @@ class numpad(tk.Frame):
         self.grid()
         self.pw=[]
         self.numpad_create()
+        
+    
+    def numpad_create(self):
+        #r=1
+        #c=0
         for i in boutons:
             i.button.place_forget()
         for j in plab:
@@ -191,10 +196,6 @@ class numpad(tk.Frame):
             i.button.place_forget()
         for j in clab:
             j.place_forget()
-    
-    def numpad_create(self):
-        r=1
-        c=0
         self.pad1=tk.Button(fenetre,text='1',width=10,height=5)
         self.pad1.bind('<ButtonPress-1>',lambda event:self.onPress(1))
         self.pad1.grid(row=3,column=0)
