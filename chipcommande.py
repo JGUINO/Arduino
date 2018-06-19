@@ -299,6 +299,8 @@ class numpad(tk.Frame):
             self.correct.grid(row=1,column=3)
             sleep(2)
             self.correct.grid_forget()
+            self.blanc1.grid_forget()
+            self.blanc2.grid_forget()
             self.afficheroutil()
             self.pw=[]
 
