@@ -212,9 +212,11 @@ class numpad(tk.Frame):
         elif self.pw!=[] and ['1','2','3','4']:
             self.pw==[]
             return 'incorrect'
+    def oublie(self,b):
+        self.b.grid_forget()
     def afficheroutil(self):
         for t in numpadb:
-            self.t.grid_forget()
+            self.oublie(t)
         self.valid.grid_forget()
         self.corriger.grid_forget()
         if self.outil=='coffrage':
