@@ -393,10 +393,10 @@ for i in boutons:
     i.button.config(state=NORMAL)
 
 bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10)
-bcoffr.bind('<ButtonPress-1',lambda event:numpad(fenetre,'coffrage'))
+bcoffr.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'coffrage'))
 bcoffr.place(x=400,y=425)
 bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
-bpie.bind('<ButtonPress-1',lambda event:numpad(fenetre,'pieds'))
+bpie.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'pieds'))
 bpie.place(x=550,y=425)
 
 fenetre.geometry("800x600+10+10")
