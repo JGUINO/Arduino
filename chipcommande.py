@@ -215,10 +215,7 @@ class numpad(tk.Frame):
             self.pw==[]
             return 'incorrect'
     def oublie(self):
-        g=0
-        for p in range(len(self.nump)):
-            g=self.nump[p]
-            self.g.grid_forget()
+        self.nump[0].grid_forget()
 
 
     def afficheroutil(self):
