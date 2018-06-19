@@ -280,16 +280,17 @@ class numpad(tk.Frame):
             self.pw4.grid(row=5,column=0)
         
     def valider(self):
-        if self.pw==[1,2,3,4]:
-            self.afficheroutil()
-            return 'OK'
-        elif self.pw!=[] and [1,2,3,4]:
-            return 'incorrect'
         self.pw=[]
         self.pw1.grid_forget()
         self.pw2.grid_forget()
         self.pw3.grid_forget()
         self.pw4.grid_forget()
+        if self.pw==[1,2,3,4]:
+            self.afficheroutil()
+            return 'OK'
+        elif self.pw!=[] and [1,2,3,4]:
+            return 'incorrect'
+        
 
     def oublie(self):
         self.pad0.grid_forget()
