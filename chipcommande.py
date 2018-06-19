@@ -253,7 +253,7 @@ class numpad(tk.Frame):
 
     def oublie(self):
         for t in self.nump:
-            self.t.grid_forget()
+            t.grid_forget()
 
 
     def afficheroutil(self):
