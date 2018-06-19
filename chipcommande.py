@@ -175,8 +175,9 @@ pied4=Label(text="Pied 4",bg="green")
 plab=[pied1,pied2,pied3,pied4]
 
 class numpad(tk.Frame):
-    def __init__(self,fenetre,outil):
+    def __init__(self,fenetre,outil,nump):
         self.outil=outil
+        self.nump=nump
         framec.place_forget()
         framep.place_forget()
         tk.Frame.__init__(self,fenetre)
@@ -187,7 +188,7 @@ class numpad(tk.Frame):
     def numpad_create(self):
         r=1
         c=0
-        for b in numpadb:
+        for b in self.nump:
             self.b=tk.Button(fenetre,text=str(b),width=10,height=5)
             self.b.bind('<ButtonPress-1>',lambda event, p=b:self.onPress(p))
             self.b.grid(row=r,column=c)
@@ -212,12 +213,11 @@ class numpad(tk.Frame):
         elif self.pw!=[] and [1,2,3,4]:
             self.pw==[]
             return 'incorrect'
-    def oublie(self):
-        self.9.grid_forget()
+
         print('oublie 9')
     def afficheroutil(self):
-        for t in numpadb:
-            self.oublie(t)
+        for t in self.nump:
+            t.grid_forget()
         self.valid.grid_forget()
         self.corriger.grid_forget()
         if self.outil=='coffrage':
@@ -396,10 +396,10 @@ for i in boutons:
     i.button.config(state=NORMAL)
 
 bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10)
-bcoffr.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'coffrage'))
+bcoffr.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'coffrage',numpadb))
 bcoffr.place(x=400,y=425)
 bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
-bpie.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'pieds'))
+bpie.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'pieds',numpadb))
 bpie.place(x=550,y=425)
 
 fenetre.geometry("800x600+10+10")
