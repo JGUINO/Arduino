@@ -196,6 +196,9 @@ class numpad(tk.Frame):
             i.button.place_forget()
         for j in clab:
             j.place_forget()
+        f1.place_forget()
+        b1.place_forget()
+        tt.place_forget()
         self.pad1=tk.Button(fenetre,text='1',width=10,height=5)
         self.pad1.bind('<ButtonPress-1>',lambda event:self.onPress(1))
         self.pad1.grid(row=3,column=0)
@@ -320,9 +323,7 @@ class numpad(tk.Frame):
             global plab
             bpie.config(bg='yellow')
             bcoffr.config(bg='grey')
-            f1.place_forget()
-            b1.place_forget()
-            tt.place_forget()
+            
             
             for k in pieds:
                 if n%2==1:
