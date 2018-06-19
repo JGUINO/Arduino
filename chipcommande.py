@@ -206,10 +206,10 @@ class numpad(tk.Frame):
     def onPress(self,b):
         self.pw.append(b)
     def valider(self):
-        if self.pw==['1','2','3','4']:
+        if self.pw==[1,2,3,4]:
             self.afficheroutil()
             return 'OK'
-        elif self.pw!=[] and ['1','2','3','4']:
+        elif self.pw!=[] and [1,2,3,4]:
             self.pw==[]
             return 'incorrect'
     def oublie(self,b):
