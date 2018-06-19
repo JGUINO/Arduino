@@ -177,7 +177,6 @@ plab=[pied1,pied2,pied3,pied4]
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
         self.outil=outil
-        self.nump=[]
         framec.place_forget()
         framep.place_forget()
         tk.Frame.__init__(self,fenetre)
@@ -188,17 +187,47 @@ class numpad(tk.Frame):
     def numpad_create(self):
         r=1
         c=0
-        
-        for t in numpadb:
+        self.pad1=tk.Button(fenetre,text='1',width=10,height=5)
+        self.pad1.bind('<ButtonPress-1>',lambda event:self.onPress(1))
+        self.pad1.grid(row=3,column=2)
+        self.pad2=tk.Button(fenetre,text='2',width=10,height=5)
+        self.pad2.bind('<ButtonPress-1>',lambda event:self.onPress(2))
+        self.pad2.grid(row=3,column=1)
+        self.pad3=tk.Button(fenetre,text='3',width=10,height=5)
+        self.pad3.bind('<ButtonPress-1>',lambda event:self.onPress(3))
+        self.pad3.grid(row=3,column=0)
+        self.pad4=tk.Button(fenetre,text='4',width=10,height=5)
+        self.pad4.bind('<ButtonPress-1>',lambda event:self.onPress(4))
+        self.pad4.grid(row=2,column=2)
+        self.pad5=tk.Button(fenetre,text='5',width=10,height=5)
+        self.pad5.bind('<ButtonPress-1>',lambda event:self.onPress(5))
+        self.pad5.grid(row=2,column=1)
+        self.pad6=tk.Button(fenetre,text='6',width=10,height=5)
+        self.pad6.bind('<ButtonPress-1>',lambda event:self.onPress(6))
+        self.pad6.grid(row=2,column=0)
+        self.pad7=tk.Button(fenetre,text='7',width=10,height=5)
+        self.pad7.bind('<ButtonPress-1>',lambda event:self.onPress(7))
+        self.pad7.grid(row=1,column=2)
+        self.pad8=tk.Button(fenetre,text='8',width=10,height=5)
+        self.pad8.bind('<ButtonPress-1>',lambda event:self.onPress(8))
+        self.pad8.grid(row=1,column=1)
+        self.pad9=tk.Button(fenetre,text='9',width=10,height=5)
+        self.pad9.bind('<ButtonPress-1>',lambda event:self.onPress(9))
+        self.pad9.grid(row=1,column=0)
+        self.pad0=tk.Button(fenetre,text='0',width=10,height=5)
+        self.pad0.bind('<ButtonPress-1>',lambda event:self.onPress(0))
+        self.pad0.grid(row=4,column=0)
+        self.nump=[pad0,pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8,pad9]
+        #for t in numpadb:
             
-            t=tk.Button(fenetre,text=str(t),width=10,height=5)
-            t.bind('<ButtonPress-1>',lambda event, p=t:self.onPress(p))
-            t.grid(row=r,column=c)
-            self.nump.append(t)
-            c += 1
-            if c>2:
-                c=0
-                r += 1
+            #t=tk.Button(fenetre,text=str(t),width=10,height=5)
+            #t.bind('<ButtonPress-1>',lambda event, p=t:self.onPress(p))
+            #t.grid(row=r,column=c)
+            #self.nump.append(t)
+            #c += 1
+            #if c>2:
+            #    c=0
+            #    r += 1
         self.valid=tk.Button(fenetre,text='Valider',width=10,height=5)
         self.valid.bind('<ButtonPress-1>',lambda event:self.valider())
         self.valid.grid(row=5,column=1)
@@ -223,7 +252,7 @@ class numpad(tk.Frame):
 
     def oublie(self):
         for t in self.nump:
-            t.grid_forget()
+            self.t.grid_forget()
 
 
     def afficheroutil(self):
