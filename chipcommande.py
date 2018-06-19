@@ -210,36 +210,36 @@ class numpad(tk.Frame):
         f1.place_forget()
         b1.place_forget()
         tt.place_forget()
-        self.pad1=tk.Button(fenetre,text='1',width=10,height=5)
+        self.pad1=tk.Button(fenetre,text='1',width=10,height=4)
         self.pad1.bind('<ButtonPress-1>',lambda event:self.onPress(1))
-        self.pad1.grid(row=3,column=0)
-        self.pad2=tk.Button(fenetre,text='2',width=10,height=5)
+        self.pad1.grid(row=3,column=2)
+        self.pad2=tk.Button(fenetre,text='2',width=10,height=4)
         self.pad2.bind('<ButtonPress-1>',lambda event:self.onPress(2))
-        self.pad2.grid(row=3,column=1)
-        self.pad3=tk.Button(fenetre,text='3',width=10,height=5)
+        self.pad2.grid(row=3,column=3)
+        self.pad3=tk.Button(fenetre,text='3',width=10,height=4)
         self.pad3.bind('<ButtonPress-1>',lambda event:self.onPress(3))
-        self.pad3.grid(row=3,column=2)
-        self.pad4=tk.Button(fenetre,text='4',width=10,height=5)
+        self.pad3.grid(row=3,column=4)
+        self.pad4=tk.Button(fenetre,text='4',width=10,height=4)
         self.pad4.bind('<ButtonPress-1>',lambda event:self.onPress(4))
-        self.pad4.grid(row=2,column=0)
-        self.pad5=tk.Button(fenetre,text='5',width=10,height=5)
+        self.pad4.grid(row=2,column=2)
+        self.pad5=tk.Button(fenetre,text='5',width=10,height=4)
         self.pad5.bind('<ButtonPress-1>',lambda event:self.onPress(5))
-        self.pad5.grid(row=2,column=1)
-        self.pad6=tk.Button(fenetre,text='6',width=10,height=5)
+        self.pad5.grid(row=2,column=6)
+        self.pad6=tk.Button(fenetre,text='6',width=10,height=4)
         self.pad6.bind('<ButtonPress-1>',lambda event:self.onPress(6))
-        self.pad6.grid(row=2,column=2)
-        self.pad7=tk.Button(fenetre,text='7',width=10,height=5)
+        self.pad6.grid(row=2,column=4)
+        self.pad7=tk.Button(fenetre,text='7',width=10,height=4)
         self.pad7.bind('<ButtonPress-1>',lambda event:self.onPress(7))
-        self.pad7.grid(row=1,column=0)
-        self.pad8=tk.Button(fenetre,text='8',width=10,height=5)
+        self.pad7.grid(row=1,column=2)
+        self.pad8=tk.Button(fenetre,text='8',width=10,height=4)
         self.pad8.bind('<ButtonPress-1>',lambda event:self.onPress(8))
-        self.pad8.grid(row=1,column=1)
-        self.pad9=tk.Button(fenetre,text='9',width=10,height=5)
+        self.pad8.grid(row=1,column=3)
+        self.pad9=tk.Button(fenetre,text='9',width=10,height=4)
         self.pad9.bind('<ButtonPress-1>',lambda event:self.onPress(9))
-        self.pad9.grid(row=1,column=2)
-        self.pad0=tk.Button(fenetre,text='0',width=10,height=5)
+        self.pad9.grid(row=1,column=4)
+        self.pad0=tk.Button(fenetre,text='0',width=10,height=4)
         self.pad0.bind('<ButtonPress-1>',lambda event:self.onPress(0))
-        self.pad0.grid(row=4,column=0)
+        self.pad0.grid(row=4,column=2)
         self.nump=[self.pad0,self.pad1,self.pad2,self.pad3,self.pad4,self.pad5,self.pad6,self.pad7,self.pad8,self.pad9]
         #for t in numpadb:
             
@@ -251,12 +251,12 @@ class numpad(tk.Frame):
             #if c>2:
             #    c=0
             #    r += 1
-        self.valid=tk.Button(fenetre,text='Valider',width=10,height=5)
+        self.valid=tk.Button(fenetre,text='Valider',width=10,height=3)
         self.valid.bind('<ButtonPress-1>',lambda event:self.valider())
-        self.valid.grid(row=5,column=1)
-        self.corriger=tk.Button(fenetre,text='Corriger',width=10,height=5)
+        self.valid.grid(row=5,column=3)
+        self.corriger=tk.Button(fenetre,text='Corriger',width=10,height=3)
         self.corriger.bind('<ButtonPress-1>',lambda event:self.corrige())
-        self.corriger.grid(row=5,column=2)
+        self.corriger.grid(row=5,column=4)
 
     def corrige(self):
         self.pw=[]
@@ -268,16 +268,16 @@ class numpad(tk.Frame):
     def onPress(self,b):
         self.pw.append(b)
         if len(self.pw)==1:
-            self.pw1.grid(row=5,column=0)
+            self.pw1.grid(row=5,column=2)
         if len(self.pw)==2:
             self.pw1.grid_forget()
-            self.pw2.grid(row=5,column=0)
+            self.pw2.grid(row=5,column=2)
         if len(self.pw)==3:
             self.pw2.grid_forget()
-            self.pw3.grid(row=5,column=0)
+            self.pw3.grid(row=5,column=2)
         if len(self.pw)==4:
             self.pw3.grid_forget()
-            self.pw4.grid(row=5,column=0)
+            self.pw4.grid(row=5,column=2)
         
     def valider(self):
         self.pw=[]
