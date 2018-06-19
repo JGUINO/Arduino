@@ -210,6 +210,7 @@ class numpad(tk.Frame):
 
     def onPress(self,b):
         self.pw.append(b)
+        print(str(b))
         
     def valider(self):
         if self.pw==[1,2,3,4]:
