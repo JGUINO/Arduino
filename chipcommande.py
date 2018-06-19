@@ -189,9 +189,10 @@ class numpad(tk.Frame):
         r=1
         c=0
         for b in self.nump:
-            self.b=tk.Button(fenetre,text=str(b),width=10,height=5)
-            self.b.bind('<ButtonPress-1>',lambda event, p=b:self.onPress(p))
-            self.b.grid(row=r,column=c)
+            t=b
+            self.t=tk.Button(fenetre,text=str(b),width=10,height=5)
+            self.t.bind('<ButtonPress-1>',lambda event, p=b:self.onPress(p))
+            self.t.grid(row=r,column=c)
             c += 1
             if c>2:
                 c=0
@@ -215,7 +216,9 @@ class numpad(tk.Frame):
             self.pw==[]
             return 'incorrect'
     def oublie(self):
-        self.nump[0].grid_forget()
+        for i in self.nump:
+            t=i
+            self.t.grid_forget()
 
 
     def afficheroutil(self):
