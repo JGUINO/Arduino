@@ -184,10 +184,10 @@ plab=[pied1,pied2,pied3,pied4]
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
         self.outil=outil
-        self.pw1=Label(text="*",font=(30),height=5,width=30)
-        self.pw2=Label(text="**",font=(30),height=5,width=30)
-        self.pw3=Label(text="***",font=(30),height=5,width=30)
-        self.pw4=Label(text="****",font=(30),height=5,width=30)
+        self.pw1=Label(text="*",font=(30),height=5,width=20,bg='grey')
+        self.pw2=Label(text="**",font=(30),height=5,width=20,bg='grey')
+        self.pw3=Label(text="***",font=(30),height=5,width=20,bg='grey')
+        self.pw4=Label(text="****",font=(30),height=5,width=20,bg='grey')
         framec.place_forget()
         framep.place_forget()
         tk.Frame.__init__(self,fenetre)
@@ -253,10 +253,10 @@ class numpad(tk.Frame):
             #    r += 1
         self.valid=tk.Button(fenetre,text='Valider',width=10,height=3)
         self.valid.bind('<ButtonPress-1>',lambda event:self.valider())
-        self.valid.grid(row=5,column=3)
+        self.valid.grid(row=5,column=0)
         self.corriger=tk.Button(fenetre,text='Corriger',width=10,height=3)
         self.corriger.bind('<ButtonPress-1>',lambda event:self.corrige())
-        self.corriger.grid(row=5,column=4)
+        self.corriger.grid(row=5,column=1)
 
     def corrige(self):
         self.pw=[]
@@ -268,16 +268,16 @@ class numpad(tk.Frame):
     def onPress(self,b):
         self.pw.append(b)
         if len(self.pw)==1:
-            self.pw1.grid(row=5,column=2)
+            self.pw1.grid(row=2,column=0)
         if len(self.pw)==2:
             self.pw1.grid_forget()
-            self.pw2.grid(row=5,column=2)
+            self.pw2.grid(row=2,column=0)
         if len(self.pw)==3:
             self.pw2.grid_forget()
-            self.pw3.grid(row=5,column=2)
+            self.pw3.grid(row=2,column=0)
         if len(self.pw)==4:
             self.pw3.grid_forget()
-            self.pw4.grid(row=5,column=2)
+            self.pw4.grid(row=2,column=0)
         
     def valider(self):
         self.pw=[]
