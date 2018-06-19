@@ -212,9 +212,9 @@ class numpad(tk.Frame):
         elif self.pw!=[] and [1,2,3,4]:
             self.pw==[]
             return 'incorrect'
-    def oublie(self,b):
-        self.b.grid_forget()
-        print('oublie '+str(b))
+    def oublie(self):
+        self.9.grid_forget()
+        print('oublie 9')
     def afficheroutil(self):
         for t in numpadb:
             self.oublie(t)
