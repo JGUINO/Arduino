@@ -292,7 +292,7 @@ class numpad(tk.Frame):
             self.pw2.grid_forget()
         if len(self.pw)==3:
             self.pw3.grid_forget()
-        if len(self.pw)==4:
+        if len(self.pw)>=4:
             self.pw4.grid_forget()
         
         if self.pw==[1,2,3,4]:
@@ -304,7 +304,7 @@ class numpad(tk.Frame):
             self.afficheroutil()
             self.pw=[]
 
-        elif self.pw!=[] and [1,2,3,4]:
+        elif self.pw!=[] or [1,2,3,4]:
             self.incorrect.grid(row=1,column=3)
             sleep(2)
             self.incorrect.grid_forget()
