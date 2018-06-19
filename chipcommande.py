@@ -184,10 +184,10 @@ plab=[pied1,pied2,pied3,pied4]
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
         self.outil=outil
-        self.pw1=Label(text="*",font=(30),height=5,width=20,bg='grey')
-        self.pw2=Label(text="**",font=(30),height=5,width=20,bg='grey')
-        self.pw3=Label(text="***",font=(30),height=5,width=20,bg='grey')
-        self.pw4=Label(text="****",font=(30),height=5,width=20,bg='grey')
+        self.pw1=Label(text="*",font=(50),height=5,width=20,bg='grey')
+        self.pw2=Label(text="**",font=(50),height=5,width=20,bg='grey')
+        self.pw3=Label(text="***",font=(50),height=5,width=20,bg='grey')
+        self.pw4=Label(text="****",font=(50),height=5,width=20,bg='grey')
         framec.place_forget()
         framep.place_forget()
         tk.Frame.__init__(self,fenetre)
@@ -224,7 +224,7 @@ class numpad(tk.Frame):
         self.pad4.grid(row=2,column=2)
         self.pad5=tk.Button(fenetre,text='5',width=10,height=4)
         self.pad5.bind('<ButtonPress-1>',lambda event:self.onPress(5))
-        self.pad5.grid(row=2,column=6)
+        self.pad5.grid(row=2,column=3)
         self.pad6=tk.Button(fenetre,text='6',width=10,height=4)
         self.pad6.bind('<ButtonPress-1>',lambda event:self.onPress(6))
         self.pad6.grid(row=2,column=4)
