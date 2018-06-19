@@ -217,7 +217,7 @@ class numpad(tk.Frame):
     def oublie(self):
         g=0
         for p in range(len(self.nump)):
-            g=nump[p]
+            g=self.nump[p]
             self.g.grid_forget()
 
 
