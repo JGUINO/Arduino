@@ -188,8 +188,9 @@ class numpad(tk.Frame):
     def numpad_create(self):
         r=1
         c=0
+        
         for t in numpadb:
-            t
+            
             t=tk.Button(fenetre,text=str(t),width=10,height=5)
             t.bind('<ButtonPress-1>',lambda event, p=t:self.onPress(p))
             t.grid(row=r,column=c)
@@ -222,7 +223,7 @@ class numpad(tk.Frame):
 
     def oublie(self):
         for t in self.nump:
-            self.t.grid_forget()
+            t.grid_forget()
 
 
     def afficheroutil(self):
