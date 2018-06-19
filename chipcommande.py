@@ -175,9 +175,9 @@ pied4=Label(text="Pied 4",bg="green")
 plab=[pied1,pied2,pied3,pied4]
 
 class numpad(tk.Frame):
-    def __init__(self,fenetre,outil,nump):
+    def __init__(self,fenetre,outil):
         self.outil=outil
-        self.nump=nump
+        self.nump=[]
         framec.place_forget()
         framep.place_forget()
         tk.Frame.__init__(self,fenetre)
@@ -188,11 +188,12 @@ class numpad(tk.Frame):
     def numpad_create(self):
         r=1
         c=0
-        for b in self.nump:
-            t=b
-            self.t=tk.Button(fenetre,text=str(b),width=10,height=5)
-            self.t.bind('<ButtonPress-1>',lambda event, p=b:self.onPress(p))
-            self.t.grid(row=r,column=c)
+        for t in self.numpadb:
+            t
+            t=tk.Button(fenetre,text=str(b),width=10,height=5)
+            t.bind('<ButtonPress-1>',lambda event, p=b:self.onPress(p))
+            t.grid(row=r,column=c)
+            self.nump.append(t)
             c += 1
             if c>2:
                 c=0
@@ -203,8 +204,10 @@ class numpad(tk.Frame):
         self.corriger=tk.Button(fenetre,text='Corriger',width=10,height=5)
         self.corriger.bind('<ButtonPress-1>',lambda event:self.corrige())
         self.corriger.grid(row=5,column=2)
+
     def corrige(self):
         self.pw=[]
+
     def onPress(self,b):
         self.pw.append(b)
         
@@ -213,11 +216,11 @@ class numpad(tk.Frame):
             self.afficheroutil()
             return 'OK'
         elif self.pw!=[] and [1,2,3,4]:
-            self.pw==[]
             return 'incorrect'
+        self.pw=[]
+
     def oublie(self):
-        for i in self.nump:
-            t=i
+        for t in self.nump:
             self.t.grid_forget()
 
 
