@@ -214,7 +214,7 @@ class numpad(tk.Frame):
             return 'incorrect'
     def afficheroutil(self):
         for b in numpadb:
-            b.grid_forget()
+            self.b.grid_forget()
         self.valid.grid_forget()
         self.corriger.grid_forget()
         if self.outil=='coffrage':
