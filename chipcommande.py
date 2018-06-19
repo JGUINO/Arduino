@@ -214,6 +214,7 @@ class numpad(tk.Frame):
             return 'incorrect'
     def oublie(self,b):
         self.b.grid_forget()
+        print('oublie '+str(b))
     def afficheroutil(self):
         for t in numpadb:
             self.oublie(t)
