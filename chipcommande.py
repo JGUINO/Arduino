@@ -406,6 +406,7 @@ class capteurs():
             num.correct.grid_forget()
             num.blanc1.grid_forget()
             num.blanc2.grid_forget()
+            num.incorrect.grid_forget()
         except NameError:
             print('num not defined')
         for i in boutons:
