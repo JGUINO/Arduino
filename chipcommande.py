@@ -518,7 +518,7 @@ bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
 bpie.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'pieds'))
 bpie.place(x=550,y=425)
 bcapt=tk.Button(fenetre,text='Capteurs',font=(70),height=3,width=10)
-bcapt.bind('<ButtonPress-1>',lambda event:capteurs(fenetre))
+bcapt.bind('<ButtonPress-1>',lambda event:capteurs(None))
 bcapt.place(x=250,y=425)
 
 fenetre.geometry("800x600+10+10")
