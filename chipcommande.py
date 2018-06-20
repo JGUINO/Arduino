@@ -403,11 +403,11 @@ class capteurs():
         tt.place_forget()
         framep.place_forget()
         framec.place_forget()
-        tkinter.Tk.__init__(self,parent)
+        tk.Tk.__init__(self,parent)
         self.parent = parent
         self.initialize()
     def initialize(self):
-        button = tkinter.Button(self,text="Open File",command=self.OnButtonClick).pack(side=tkinter.TOP)
+        button = tk.Button(self,text="Open File",command=self.OnButtonClick).pack(side=tk.TOP)
         self.canvasFig=pltlib.figure(1)
         Fig = matplotlib.figure.Figure(figsize=(5,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
@@ -417,8 +417,8 @@ class capteurs():
         FigSubPlot.axis([0,5,0,1000])
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=self)
         self.canvas.draw()
-        self.canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
-        self.canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+        self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+        self.canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
         self.resizable(True,False)
         
     def refreshFigure(self,x,y):
