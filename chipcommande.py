@@ -415,8 +415,8 @@ class capteurs():
         FigSubPlot.axis([0,5,0,1000])
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=fenetre)
         self.canvas.draw()
-        self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-        self.canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+        self.canvas.get_tk_widget().pack(side=tk.TOP)
+        self.canvas._tkcanvas.pack(side=tk.TOP)
         self.resizable(True,False)
         
     def refreshFigure(self,x,y):
