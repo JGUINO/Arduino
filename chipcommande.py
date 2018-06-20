@@ -437,7 +437,7 @@ class capteurs():
         Y = y
         self.refreshFigure(X,Y)
     
-    def suppr():
+    def suppr(self):
         self.canvas.delete("all")
         self.canvas.pack_forget()
 
