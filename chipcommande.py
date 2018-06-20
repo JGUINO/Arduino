@@ -188,6 +188,7 @@ plab=[pied1,pied2,pied3,pied4]
 
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
+        capteurs.suppr()
         self.outil=outil
         self.pw1=Label(text="*",font=(50),height=3,width=9,bg='grey')
         self.pw2=Label(text="**",font=(50),height=3,width=9,bg='grey')
@@ -322,7 +323,7 @@ class numpad(tk.Frame):
         self.oublie()
         self.valid.grid_forget()
         self.corriger.grid_forget()
-        capteurs.suppr()
+        
         if self.outil=='coffrage':
             
             a=10
