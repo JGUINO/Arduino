@@ -190,7 +190,8 @@ plab=[pied1,pied2,pied3,pied4]
 
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
-        c.suppr()
+        if c:
+            c.suppr()
         global num
         num=self
         self.outil=outil
@@ -396,9 +397,10 @@ class numpad(tk.Frame):
 class capteurs():
     def __init__(self,parent):
         global num
-        num.oublie()
-        num.valid.grid_forget()
-        num.corriger.grid_forget()
+        if num:
+            num.oublie()
+            num.valid.grid_forget()
+            num.corriger.grid_forget()
         for i in boutons:
             i.button.place_forget()
         for j in plab:
