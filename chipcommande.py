@@ -407,13 +407,13 @@ class capteurs():
             num.blanc1.grid_forget()
             num.blanc2.grid_forget()
             num.incorrect.grid_forget()
-            if len(self.pw)==1:
+            if len(num.pw)==1:
                 num.pw1.grid_forget()
-            if len(self.pw)==2:
+            if len(num.pw)==2:
                 num.pw2.grid_forget()
-            if len(self.pw)==3:
+            if len(num.pw)==3:
                 num.pw3.grid_forget()
-            if len(self.pw)>=4:
+            if len(num.pw)>=4:
                 num.pw4.grid_forget()
         except NameError:
             print('num not defined')
