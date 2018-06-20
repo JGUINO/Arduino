@@ -501,12 +501,16 @@ for i in coffrage:
     boutons.append(i)
 for i in pieds:
     boutons.append(i)
-
-quitter=tk.Button(fenetre,text='Quitter',command=fenetre.quit(),fenetre.destroy())
+def _quit():
+    fenetre.quit()
+    fenetre.destroy()
+quitter=tk.Button(fenetre,text='Quitter',command=_quit())
 quitter.place(x=725,y=440)
 
 for i in boutons:
     i.button.config(state=NORMAL)
+
+
 
 bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10)
 bcoffr.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'coffrage'))
