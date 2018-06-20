@@ -190,7 +190,7 @@ plab=[pied1,pied2,pied3,pied4]
 
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
-        if c:
+        try:
             c.suppr()
         global num
         num=self
@@ -397,7 +397,7 @@ class numpad(tk.Frame):
 class capteurs():
     def __init__(self,parent):
         global num
-        if num:
+        try:
             num.oublie()
             num.valid.grid_forget()
             num.corriger.grid_forget()
