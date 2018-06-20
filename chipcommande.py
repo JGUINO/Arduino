@@ -322,7 +322,7 @@ class numpad(tk.Frame):
         self.oublie()
         self.valid.grid_forget()
         self.corriger.grid_forget()
-        
+        capteurs.suppr()
         if self.outil=='coffrage':
             
             a=10
@@ -405,7 +405,7 @@ class capteurs():
         framec.place_forget()
         self.initialize()
     def initialize(self):
-        button = tk.Button(fenetre,text="Open File",command=self.OnButtonClick).pack(side=tk.TOP)
+        #self.button = tk.Button(fenetre,text="Open File",command=self.OnButtonClick).pack(side=tk.TOP)
         self.canvasFig=pltlib.figure(1)
         Fig = matplotlib.figure.Figure(figsize=(7,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
@@ -435,6 +435,11 @@ class capteurs():
         X = x
         Y = y
         self.refreshFigure(X,Y)
+    
+    def suppr():
+        self.canvas.delete("all")
+        self.canvas.pack_forget()
+
 
 
 pfw1=bouton('fw1',21,'192.168.1.117','pied','up')
