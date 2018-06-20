@@ -519,6 +519,7 @@ for i in boutons:
     i.button.config(state=NORMAL)
 
 def capt():
+    global c
     c=capteurs(None)
 
 
