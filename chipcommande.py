@@ -22,6 +22,7 @@ pieds=[]
 numpadb=[7,8,9,4,5,6,1,2,3,0]
 boutons=[]
 global clab
+global c
 global plab
 global servo
 global led
@@ -188,7 +189,7 @@ plab=[pied1,pied2,pied3,pied4]
 
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
-        capteurs.suppr()
+        c.suppr()
         self.outil=outil
         self.pw1=Label(text="*",font=(50),height=3,width=9,bg='grey')
         self.pw2=Label(text="**",font=(50),height=3,width=9,bg='grey')
@@ -526,7 +527,7 @@ bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
 bpie.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'pieds'))
 bpie.place(x=550,y=425)
 bcapt=tk.Button(fenetre,text='Capteurs',font=(70),height=3,width=10)
-bcapt.bind('<ButtonPress-1>',lambda event:capteurs(None))
+bcapt.bind('<ButtonPress-1>',lambda event:c=capteurs(None))
 bcapt.place(x=250,y=425)
 
 fenetre.geometry("800x600+10+10")
