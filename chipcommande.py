@@ -417,7 +417,6 @@ class capteurs():
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(side=tk.TOP)
         self.canvas._tkcanvas.pack(side=tk.TOP)
-        self.resizable(True,False)
         
     def refreshFigure(self,x,y):
         self.line1.set_data(x,y)
