@@ -502,7 +502,7 @@ for i in coffrage:
 for i in pieds:
     boutons.append(i)
 
-quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
+quitter=tk.Button(fenetre,text='Quitter',command=fenetre.quit(),fenetre.destroy())
 quitter.place(x=725,y=440)
 
 for i in boutons:
