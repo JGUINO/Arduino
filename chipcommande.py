@@ -6,6 +6,8 @@ from gpiozero.pins.pigpio import PiGPIOFactory
 from gpiozero import LED
 from gpiozero import Servo
 from time import sleep
+import matplotlib
+import matplotlib.pyplot as plt
 
 fenetre = tk.Tk()
 downarrow=PhotoImage(file='arrowdown.gif')
@@ -384,8 +386,56 @@ class numpad(tk.Frame):
         framep.place(x=0,y=230)
 
 class capteurs():
-    def __init__(self):
+    def __init__(self,parent):
+        for i in boutons:
+            i.button.place_forget()
+        for j in plab:
+            j.place_forget()
+        for i in boutons:
+            i.button.place_forget()
+        for j in clab:
+            j.place_forget()
+        f1.place_forget()
+        b1.place_forget()
+        tt.place_forget()
+        framep.place_forget()
+        framec.place_forget()
+        tkinter.Tk.__init__(self,parent)
+        self.parent = parent
+        self.initialize()
+    def initialize(self):
+        button = tkinter.Button(self,text="Open File",command=self.OnButtonClick).pack(side=tkinter.TOP)
+        self.canvasFig=pltlib.figure(1)
+        Fig = matplotlib.figure.Figure(figsize=(5,4),dpi=100)
+        FigSubPlot = Fig.add_subplot(111)
+        x=['1','2','3','4']
+        y=[300,870,604,330]
+        self.line1 = FigSubPlot.bar(x,y)
+        FigSubPlot.axis([0,5,0,1000])
+        self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=self)
+        self.canvas.draw()
+        self.canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+        self.canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+        self.resizable(True,False)
         
+    def refreshFigure(self,x,y):
+        self.line1.set_data(x,y)
+        ax = self.canvas.figure.axes[0]
+        ax.set_xlim(min(x),max(x))
+        ax.set_ylim(0, 1000)        
+        self.canvas.draw()
+    def OnButtonClick(self):
+        # file is opened here and some data is taken
+        # I've just set some arrays here so it will compile alone
+        x=[1,2,3,4]
+        y=[300,870,604,330]
+        #for num in range(0,1000):x.append(num*.001+1)
+        # just some random function is given here, the real data is a UV-Vis spectrum
+        #for num2 in range(0,1000):y.append(sc.math.sin(num2*.06)+sc.math.e**(num2*.001))
+        X = x
+        Y = y
+        self.refreshFigure(X,Y)
+
 
 pfw1=bouton('fw1',21,'192.168.1.117','pied','up')
 pieds.append(pfw1)
