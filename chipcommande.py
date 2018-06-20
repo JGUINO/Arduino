@@ -439,8 +439,8 @@ class capteurs():
         self.refreshFigure(X,Y)
     
     def suppr(self):
-        
-        self.canvas.pack_forget()
+        self.canvas._tkcanvas.delete("ALL")
+        self.canvas._tkcanvas.pack_forget()
 
 
 
