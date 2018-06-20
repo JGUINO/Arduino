@@ -25,7 +25,7 @@ class App_Window(tkinter.Tk):
         FigSubPlot = Fig.add_subplot(111)
         x=[1,2,3,4]
         y=[300,870,604,330]
-        self.line1, = FigSubPlot.bar(x,y,'r-')
+        self.line1, = FigSubPlot.bar(x,y)
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=self)
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
