@@ -192,6 +192,8 @@ class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
         try:
             c.suppr()
+        except NameError:
+            print ('c not defined')
         global num
         num=self
         self.outil=outil
@@ -401,6 +403,8 @@ class capteurs():
             num.oublie()
             num.valid.grid_forget()
             num.corriger.grid_forget()
+        except NameError:
+            print('num not defined')
         for i in boutons:
             i.button.place_forget()
         for j in plab:
