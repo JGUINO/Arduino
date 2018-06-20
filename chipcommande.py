@@ -403,8 +403,6 @@ class capteurs():
         tt.place_forget()
         framep.place_forget()
         framec.place_forget()
-        tk.Tk.__init__(fenetre,parent)
-        self.parent = parent
         self.initialize()
     def initialize(self):
         button = tk.Button(fenetre,text="Open File",command=self.OnButtonClick).pack(side=tk.TOP)
