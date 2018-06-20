@@ -407,7 +407,7 @@ class capteurs():
     def initialize(self):
         button = tk.Button(fenetre,text="Open File",command=self.OnButtonClick).pack(side=tk.TOP)
         self.canvasFig=pltlib.figure(1)
-        Fig = matplotlib.figure.Figure(figsize=(3,4),dpi=100)
+        Fig = matplotlib.figure.Figure(figsize=(7,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
         x=['1','2','3','4']
         y=[300,870,604,330]
