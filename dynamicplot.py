@@ -23,9 +23,9 @@ class App_Window(tkinter.Tk):
         self.canvasFig=pltlib.figure(1)
         Fig = matplotlib.figure.Figure(figsize=(5,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
-        x=[]
-        y=[]
-        self.line1, = FigSubPlot.plot(x,y,'r-')
+        x=[1,2,3,4]
+        y=[300,870,604,330]
+        self.line1, = FigSubPlot.bar(x,y,'r-')
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=self)
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
@@ -35,8 +35,8 @@ class App_Window(tkinter.Tk):
     def refreshFigure(self,x,y):
         self.line1.set_data(x,y)
         ax = self.canvas.figure.axes[0]
-        ax.set_xlim(min(x), max(x))
-        ax.set_ylim(min(y), max(y))        
+        ax.set_xlim(min(x),max(x))
+        ax.set_ylim(0, 1000)        
         self.canvas.draw()
     def OnButtonClick(self):
         # file is opened here and some data is taken

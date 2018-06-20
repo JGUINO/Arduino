@@ -214,6 +214,7 @@ class numpad(tk.Frame):
         f1.place_forget()
         b1.place_forget()
         tt.place_forget()
+        
         self.blanc1.grid(row=1,column=0)
         self.blanc2.grid(row=1,column=1)
         self.pad1=tk.Button(fenetre,text='1',width=10,height=4)
@@ -246,17 +247,9 @@ class numpad(tk.Frame):
         self.pad0=tk.Button(fenetre,text='0',width=10,height=4)
         self.pad0.bind('<ButtonPress-1>',lambda event:self.onPress(0))
         self.pad0.grid(row=5,column=2)
+        
         self.nump=[self.pad0,self.pad1,self.pad2,self.pad3,self.pad4,self.pad5,self.pad6,self.pad7,self.pad8,self.pad9]
-        #for t in numpadb:
-            
-            #t=tk.Button(fenetre,text=str(t),width=10,height=5)
-            #t.bind('<ButtonPress-1>',lambda event, p=t:self.onPress(p))
-            #t.grid(row=r,column=c)
-            #self.nump.append(t)
-            #c += 1
-            #if c>2:
-            #    c=0
-            #    r += 1
+
         self.valid=tk.Button(fenetre,text='Valider',width=10,height=3)
         self.valid.bind('<ButtonPress-1>',lambda event:self.valider())
         self.valid.grid(row=6,column=3)
@@ -308,7 +301,6 @@ class numpad(tk.Frame):
             self.incorrect.grid_forget()
             self.pw=[]
 
-
     def oublie(self):
         self.pad0.grid_forget()
         self.pad1.grid_forget()
@@ -320,7 +312,6 @@ class numpad(tk.Frame):
         self.pad7.grid_forget()
         self.pad8.grid_forget()
         self.pad9.grid_forget()
-
 
     def afficheroutil(self):
         self.oublie()
@@ -392,8 +383,9 @@ class numpad(tk.Frame):
         framec.place(x=0,y=30)
         framep.place(x=0,y=230)
 
-
-
+class capteurs():
+    def __init__(self):
+        
 
 pfw1=bouton('fw1',21,'192.168.1.117','pied','up')
 pieds.append(pfw1)
@@ -460,30 +452,6 @@ for i in coffrage:
 for i in pieds:
     boutons.append(i)
 
-
-
-
-
-
-
-
-
-d=0
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
 quitter=tk.Button(fenetre,text='Quitter',command=fenetre.destroy)
 quitter.place(x=725,y=440)
 
@@ -496,17 +464,13 @@ bcoffr.place(x=400,y=425)
 bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
 bpie.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'pieds'))
 bpie.place(x=550,y=425)
+bcapt=tk.Button(fenetre,text='Capteurs',font=(70),height=3,width=10)
+bcapt.bind('<ButtonPress-1>',lambda event:dynplot(fenetre))
+bcapt.place(x=250,y=425)
 
 fenetre.geometry("800x600+10+10")
 fenetre.overrideredirect(True)
 fenetre.geometry("{0}x{1}+0+0".format(fenetre.winfo_screenwidth(), fenetre.winfo_screenheight()))
 fenetre.mainloop()
 
-
 GPIO.cleanup()
-
-
-
-    
-
-
