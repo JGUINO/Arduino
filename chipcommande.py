@@ -504,7 +504,8 @@ for i in pieds:
 def _quit():
     fenetre.quit()
     fenetre.destroy()
-quitter=tk.Button(fenetre,text='Quitter',lambda:_quit())
+quitter=tk.Button(fenetre,text='Quitter')
+quitter.bind('<ButtonPress-1>',lambda event:_quit())
 quitter.place(x=725,y=440)
 
 for i in boutons:
