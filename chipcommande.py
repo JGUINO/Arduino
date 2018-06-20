@@ -518,6 +518,8 @@ quitter.place(x=725,y=440)
 for i in boutons:
     i.button.config(state=NORMAL)
 
+def capt():
+    c=capteurs(None)
 
 
 bcoffr=tk.Button(fenetre,text='Coffrage',font=(70),height=3,width=10)
@@ -527,7 +529,7 @@ bpie=tk.Button(fenetre,text='Pieds',font=70,height=3,width=10)
 bpie.bind('<ButtonPress-1>',lambda event:numpad(fenetre,'pieds'))
 bpie.place(x=550,y=425)
 bcapt=tk.Button(fenetre,text='Capteurs',font=(70),height=3,width=10)
-bcapt.bind('<ButtonPress-1>',lambda event:c=capteurs(None))
+bcapt.bind('<ButtonPress-1>',lambda event:capt())
 bcapt.place(x=250,y=425)
 
 fenetre.geometry("800x600+10+10")
