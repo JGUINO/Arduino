@@ -23,7 +23,7 @@ class App_Window(tkinter.Tk):
         self.canvasFig=pltlib.figure(1)
         Fig = matplotlib.figure.Figure(figsize=(5,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
-        x=[1,2,3,4]
+        x=['1','2','3','4']
         y=[300,870,604,330]
         self.line1, = FigSubPlot.bar(x,y)
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=self)
