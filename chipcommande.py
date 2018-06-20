@@ -7,7 +7,10 @@ from gpiozero import LED
 from gpiozero import Servo
 from time import sleep
 import matplotlib
-import matplotlib.pyplot as plt
+matplotlib.use('TKAgg')
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.figure import Figure
+import matplotlib.pyplot as pltlib
 
 fenetre = tk.Tk()
 downarrow=PhotoImage(file='arrowdown.gif')
