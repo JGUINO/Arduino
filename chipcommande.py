@@ -403,11 +403,11 @@ class capteurs():
         tt.place_forget()
         framep.place_forget()
         framec.place_forget()
-        tk.Tk.__init__(self,parent)
+        tk.Tk.__init__(fenetre,parent)
         self.parent = parent
         self.initialize()
     def initialize(self):
-        button = tk.Button(self,text="Open File",command=self.OnButtonClick).pack(side=tk.TOP)
+        button = tk.Button(fenetre,text="Open File",command=self.OnButtonClick).pack(side=tk.TOP)
         self.canvasFig=pltlib.figure(1)
         Fig = matplotlib.figure.Figure(figsize=(5,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
@@ -415,7 +415,7 @@ class capteurs():
         y=[300,870,604,330]
         self.line1 = FigSubPlot.bar(x,y)
         FigSubPlot.axis([0,5,0,1000])
-        self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=self)
+        self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=fenetre)
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
         self.canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
