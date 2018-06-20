@@ -305,7 +305,7 @@ class numpad(tk.Frame):
             self.afficheroutil()
             self.pw=[]
 
-        else self.pw!=[] or [1,2,3,4]:
+        else:
             self.incorrect.grid(row=1,column=3)
             self.incorrect.grid_forget()
             self.pw=[]
