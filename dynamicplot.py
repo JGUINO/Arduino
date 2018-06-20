@@ -31,7 +31,7 @@ class App_Window(tkinter.Tk):
         self.canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
         self.canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
         self.resizable(True,False)
-        self.update()
+        
     def refreshFigure(self,x,y):
         self.line1.set_data(x,y)
         ax = self.canvas.figure.axes[0]
