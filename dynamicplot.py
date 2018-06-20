@@ -41,11 +41,11 @@ class App_Window(tkinter.Tk):
     def OnButtonClick(self):
         # file is opened here and some data is taken
         # I've just set some arrays here so it will compile alone
-        x=[]
-        y=[]
-        for num in range(0,1000):x.append(num*.001+1)
+        x=[1,2,3,4]
+        y=[300,870,604,330]
+        #for num in range(0,1000):x.append(num*.001+1)
         # just some random function is given here, the real data is a UV-Vis spectrum
-        for num2 in range(0,1000):y.append(sc.math.sin(num2*.06)+sc.math.e**(num2*.001))
+        #for num2 in range(0,1000):y.append(sc.math.sin(num2*.06)+sc.math.e**(num2*.001))
         X = x
         Y = y
         self.refreshFigure(X,Y)
