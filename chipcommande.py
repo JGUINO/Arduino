@@ -98,12 +98,12 @@ class bouton():
                 led3.on()
                 led4.on()
 
-        else:
-            servo=Servo(21,pin_factory=factory)
-            servo.value(1)
+        #else:
+            #servo=Servo(21,pin_factory=factory)
+            #servo.value(1)
             #led=LED(self.sortie,pin_factory=factory)
             #led.on()
-            GPIO.output(self.sortie, True)
+            #GPIO.output(self.sortie, True)
         print('Activation de {}'.format(self.sortie))
         framec.config(bg='red')
         framep.config(bg='red')
