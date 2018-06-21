@@ -443,7 +443,7 @@ class capteurs():
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=fenetre)
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(side=tk.TOP)
-        self.canvas._tkcanvas.pack(side=tk.TOP)
+        self.canvas._tkcanvas.place(x=150,y=0)
         
     def refreshFigure(self,x,y):
         self.line1.set_data(x,y)
@@ -465,7 +465,7 @@ class capteurs():
     
     def suppr(self):
         self.canvas._tkcanvas.delete("ALL")
-        self.canvas._tkcanvas.pack_forget()
+        self.canvas._tkcanvas.place_forget()
 
 
 
