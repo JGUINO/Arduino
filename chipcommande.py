@@ -414,6 +414,7 @@ class capteurs():
             num.oublie()
             num.valid.grid_forget()
             num.corriger.grid_forget()
+            num.annuler.grid_forget()
             num.correct.grid_forget()
             num.blanc1.grid_forget()
             num.blanc2.grid_forget()
