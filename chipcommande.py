@@ -463,8 +463,8 @@ class capteurs():
     def refreshFigure(self,x,y):
         self.line1.set_data(x,y)
         ax = self.canvas.figure.axes[0]
-        ax.set_xlabel('Capteurs')
-        ax.set_ylabel('Pression')
+        self.line1.set_xlabel('Capteurs')
+        self.line1.set_ylabel('Pression')
         ax.set_xlim(0,max(x))
         ax.set_ylim(0, 1000)        
         self.canvas.draw()
