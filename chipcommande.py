@@ -341,6 +341,7 @@ class numpad(tk.Frame):
             global clab
             bcoffr.config(bg='yellow')
             bpie.config(bg='grey')
+            bcapt.config(bg='grey')
             tt.place_forget()
             
             for k in coffrage:
@@ -373,6 +374,7 @@ class numpad(tk.Frame):
             global plab
             bpie.config(bg='yellow')
             bcoffr.config(bg='grey')
+            bcapt.config(bg='grey')
             
             
             for k in pieds:
@@ -417,6 +419,9 @@ class capteurs():
                 num.pw4.grid_forget()
         except NameError:
             print('num not defined')
+        bpie.config(bg='grey')
+        bcoffr.config(bg='grey')
+        bcapt.config(bg='yellow')
         for i in boutons:
             i.button.place_forget()
         for j in plab:
@@ -439,7 +444,7 @@ class capteurs():
         x=['1','2','3','4']
         y=[300,870,604,330]
         self.line1 = FigSubPlot.bar(x,y)
-        FigSubPlot.axis([0,5,0,1000])
+        FigSubPlot.axis([0,4,0,1000])
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=fenetre)
         self.canvas.draw()
         self.canvas.get_tk_widget().place(x=150,y=0)
@@ -448,7 +453,7 @@ class capteurs():
     def refreshFigure(self,x,y):
         self.line1.set_data(x,y)
         ax = self.canvas.figure.axes[0]
-        ax.set_xlim(min(x),max(x))
+        ax.set_xlim(0,max(x))
         ax.set_ylim(0, 1000)        
         self.canvas.draw()
     def OnButtonClick(self):
