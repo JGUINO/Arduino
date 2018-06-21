@@ -160,6 +160,8 @@ class bouton():
             GPIO.output(l.sortie,False)
         for k in plab:
             k.config(bg='green')
+        for p in clab:
+            p.config(bg='green')
         for i in boutons:
             i.button.config(state=NORMAL)
 clf1=Label(text="Avant",bg='green')
