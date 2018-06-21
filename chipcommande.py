@@ -455,8 +455,6 @@ class capteurs():
         y=[300,870,604,330]
         self.line1 = FigSubPlot.bar(x,y)
         FigSubPlot.axis([0,4,0,1000])
-        FigSubPlot.xlabel('Capteurs')
-        FigSubPlot.ylabel('Pression')
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=fenetre)
         self.canvas.draw()
         self.canvas.get_tk_widget().place(x=150,y=0)
@@ -465,6 +463,8 @@ class capteurs():
     def refreshFigure(self,x,y):
         self.line1.set_data(x,y)
         ax = self.canvas.figure.axes[0]
+        ax.set_xlabel('Capteurs')
+        ax.set_ylabel('Pression')
         ax.set_xlim(0,max(x))
         ax.set_ylim(0, 1000)        
         self.canvas.draw()
