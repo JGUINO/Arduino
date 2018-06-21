@@ -449,7 +449,7 @@ class capteurs():
     def initialize(self):
         #self.button = tk.Button(fenetre,text="Open File",command=self.OnButtonClick).pack(side=tk.TOP)
         self.canvasFig=pltlib.figure(1)
-        Fig = matplotlib.figure.Figure(figsize=(7,4),dpi=100)
+        Fig = matplotlib.figure.Figure(figsize=(8,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
         x=['1','2','3','4']
         y=[300,870,604,330]
@@ -458,7 +458,7 @@ class capteurs():
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=fenetre)
         self.canvas.draw()
         self.canvas.get_tk_widget().place(x=150,y=0)
-        self.canvas._tkcanvas.place(x=150,y=0)
+        self.canvas._tkcanvas.place(x=0,y=0)
         
     def refreshFigure(self,x,y):
         self.line1.set_data(x,y)
