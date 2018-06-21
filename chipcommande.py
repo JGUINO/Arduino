@@ -461,7 +461,7 @@ class capteurs():
         self.canvas.draw()
         self.canvas.get_tk_widget().place(x=150,y=0)
         self.canvas._tkcanvas.place(x=0,y=0)
-        self.line1.set_data(x,y)
+        
         ax = self.canvas.figure.axes[0]
         ax.set_xlim(0,max(x))
         ax.set_ylim(0, 1000) 
