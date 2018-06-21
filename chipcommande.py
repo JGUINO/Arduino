@@ -454,8 +454,8 @@ class capteurs():
         x=['1','2','3','4']
         y=[300,870,604,330]
         self.line1 = FigSubPlot.bar(x,y)
-        self.line1.set_xlabel('Capteurs')
-        self.line1.set_ylabel('Pression')
+        FigSubPlot.set_xlabel('Capteurs')
+        FigSubPlot.set_ylabel('Pression')
         FigSubPlot.axis([0,4,0,1000])
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=fenetre)
         self.canvas.draw()
