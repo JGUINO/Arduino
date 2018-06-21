@@ -16,6 +16,7 @@ fenetre = tk.Tk()
 downarrow=PhotoImage(file='arrowdown.gif')
 uparrow=PhotoImage(file='arrowup.gif')
 
+global boutons
 factory = PiGPIOFactory(host='192.168.1.127')
 coffrage=[]
 pieds=[]
@@ -128,6 +129,9 @@ class bouton():
         global led2
         global led3
         global led4
+        global plab
+        global boutons
+        global clab
         framec.config(bg='green')
         framep.config(bg='blue')
         f1.config(bg='blue')
