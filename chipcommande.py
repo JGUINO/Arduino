@@ -136,8 +136,8 @@ class bouton():
         b1.config(bg='blue')
         tt.config(bg='blue')
 
-        if type(servo)!=list:
-            servo.value(-1)
+        #if type(servo)!=list:
+            #servo.value(-1)
         if type(led)!=list:
             led.off()
         if type(led1)!=list:
