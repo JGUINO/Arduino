@@ -195,6 +195,7 @@ class numpad(tk.Frame):
         except NameError:
             print ('c not defined')
         global num
+        fenetre.config(bg='ghost white')
         num=self
         self.outil=outil
         self.pw1=Label(text="*",font=(50),height=3,width=9,bg='grey')
@@ -449,6 +450,7 @@ class capteurs():
     def initialize(self):
         #self.button = tk.Button(fenetre,text="Open File",command=self.OnButtonClick).pack(side=tk.TOP)
         self.canvasFig=pltlib.figure(1)
+        fenetre.config(bg='white')
         Fig = matplotlib.figure.Figure(figsize=(8,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
         x=['1','2','3','4']
