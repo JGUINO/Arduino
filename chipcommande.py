@@ -135,22 +135,19 @@ class bouton():
         f1.config(bg='blue')
         b1.config(bg='blue')
         tt.config(bg='blue')
-        try:
-            if type(servo)!=list:
-                servo.value(-1)
-            if type(led)!=list:
-                led.off()
-            if type(led1)!=list:
-                led1.off()
-            if type(led2)!=list:
-                led2.off()
-            if type(led3)!=list:
-                led3.off()
-            if type(led4)!=list:
-                led4.off()
-        except:
-            fenetre.destroy()
-            fenetre.mainloop()
+
+        if type(servo)!=list:
+            servo.value(-1)
+        if type(led)!=list:
+            led.off()
+        if type(led1)!=list:
+            led1.off()
+        if type(led2)!=list:
+            led2.off()
+        if type(led3)!=list:
+            led3.off()
+        if type(led4)!=list:
+            led4.off()
 
         servo=[]
         led=[]
