@@ -275,6 +275,7 @@ class numpad(tk.Frame):
         self.annuler.grid(row=6,column=4)
 
     def annule(self):
+        self.incorrect.grid_forget()
         self.corrige()
         capt()
 
@@ -287,6 +288,7 @@ class numpad(tk.Frame):
         self.pw4.grid_forget()
 
     def onPress(self,b):
+        self.incorrect.grid_forget()
         self.pw.append(b)
         if len(self.pw)==1:
             self.pw1.grid(row=1,column=3)
@@ -320,7 +322,7 @@ class numpad(tk.Frame):
 
         else:
             self.incorrect.grid(row=1,column=3)
-            self.incorrect.grid_forget()
+            #self.incorrect.grid_forget()
             self.pw=[]
 
     def oublie(self):
