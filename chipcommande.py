@@ -38,11 +38,11 @@ led3=[]
 led4=[]
 
 framec=Frame(fenetre,height=190,width=720,bg="green")
-framec.place(x=0,y=30)
+#framec.place(x=0,y=30)
 Label(framec,text='Simple',font=(25)).place(x=630,y=30)
 
 framep=Frame(fenetre,height=190,width=720,bg="blue")
-framep.place(x=0,y=230)
+#framep.place(x=0,y=230)
 Label(framep,text='Multi',font=(25)).place(x=630,y=30)
 
 class bouton():
