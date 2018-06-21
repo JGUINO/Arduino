@@ -195,15 +195,15 @@ class numpad(tk.Frame):
         except NameError:
             print ('c not defined')
         global num
-        fenetre.config(bg='ghost white')
+        fenetre.config(bg='light grey')
         num=self
         self.outil=outil
         self.pw1=Label(text="*",font=(50),height=3,width=9,bg='grey')
         self.pw2=Label(text="**",font=(50),height=3,width=9,bg='grey')
         self.pw3=Label(text="***",font=(50),height=3,width=9,bg='grey')
         self.pw4=Label(text="****",font=(50),height=3,width=9,bg='grey')
-        self.blanc1=Label(text='',height=3,width=9,font=50,bg='white')
-        self.blanc2=Label(text='',height=3,width=9,font=50,bg='white')
+        self.blanc1=Label(text='',height=3,width=9,font=50,bg='light grey')
+        self.blanc2=Label(text='',height=3,width=9,font=50,bg='light grey')
         framec.place_forget()
         framep.place_forget()
         tk.Frame.__init__(self,fenetre)
