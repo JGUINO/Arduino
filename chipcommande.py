@@ -202,8 +202,8 @@ class numpad(tk.Frame):
         self.pw2=Label(text="**",font=(50),height=3,width=9,bg='grey')
         self.pw3=Label(text="***",font=(50),height=3,width=9,bg='grey')
         self.pw4=Label(text="****",font=(50),height=3,width=9,bg='grey')
-        self.blanc1=Label(text='',height=3,width=9,font=50)
-        self.blanc2=Label(text='',height=3,width=9,font=50)
+        self.blanc1=Label(text='',height=3,width=9,font=50,bg='white')
+        self.blanc2=Label(text='',height=3,width=9,font=50,bg='white')
         framec.place_forget()
         framep.place_forget()
         tk.Frame.__init__(self,fenetre)
@@ -339,6 +339,7 @@ class numpad(tk.Frame):
         self.oublie()
         self.valid.grid_forget()
         self.corriger.grid_forget()
+        self.annuler.grid_forget()
     
         
         if self.outil=='coffrage':
