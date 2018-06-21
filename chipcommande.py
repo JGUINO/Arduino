@@ -265,10 +265,18 @@ class numpad(tk.Frame):
 
         self.valid=tk.Button(fenetre,text='Valider',width=10,height=3)
         self.valid.bind('<ButtonPress-1>',lambda event:self.valider())
-        self.valid.grid(row=6,column=3)
+        self.valid.grid(row=6,column=2)
         self.corriger=tk.Button(fenetre,text='Corriger',width=10,height=3)
         self.corriger.bind('<ButtonPress-1>',lambda event:self.corrige())
-        self.corriger.grid(row=6,column=4)
+        self.corriger.grid(row=6,column=3)
+        self.annuler=tk.Button(fenetre,text='Annuler',width=10,height=3)
+        self.annuler.bind('<ButtonPress-1>',lambda event:self.annule())
+        self.annuler.grid(row=6,column=4)
+
+    def annule(self):
+        self.corrige()
+        capt()
+
 
     def corrige(self):
         self.pw=[]
@@ -330,6 +338,7 @@ class numpad(tk.Frame):
         self.oublie()
         self.valid.grid_forget()
         self.corriger.grid_forget()
+    
         
         if self.outil=='coffrage':
             
