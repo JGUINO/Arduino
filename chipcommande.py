@@ -442,7 +442,7 @@ class capteurs():
         FigSubPlot.axis([0,5,0,1000])
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=fenetre)
         self.canvas.draw()
-        self.canvas.get_tk_widget().pack(side=tk.TOP)
+        self.canvas.get_tk_widget().place(x=150,y=0)
         self.canvas._tkcanvas.place(x=150,y=0)
         
     def refreshFigure(self,x,y):
