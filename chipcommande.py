@@ -213,7 +213,7 @@ class numpad(tk.Frame):
         self.numpad_create()
         self.correct=Label(text='Correct',font=50,height=3,width=9,bg='grey',fg='green')
         self.cred=Label(text='owner:G.Guillon',font=50,height=3,width=9,bg='grey',fg='navy')
-        self.incorrect=Label(text='Incorrect',font=50,height=3,width=9,bg='grey',fg='red')
+        self.incorrect=Label(text='Incorrect',font=50,height=3,width=15,bg='grey',fg='red')
         
     
     def numpad_create(self):
@@ -288,9 +288,11 @@ class numpad(tk.Frame):
         self.pw2.grid_forget()
         self.pw3.grid_forget()
         self.pw4.grid_forget()
+        self.cred.place_forget()
 
     def onPress(self,b):
         self.incorrect.grid_forget()
+        self.cred.place_forget()
         self.pw.append(b)
         if len(self.pw)==1:
             self.pw1.grid(row=1,column=3)
@@ -323,7 +325,7 @@ class numpad(tk.Frame):
             self.pw=[]
 
         if self.pw==[0,5,0,9,1,9,9,6]:
-            self.cred.grid(row=1,column=3)
+            self.cred.place(x=0,y=50)
             self.pw=[]
         else:
             self.incorrect.grid(row=1,column=3)
