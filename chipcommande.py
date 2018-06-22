@@ -212,6 +212,7 @@ class numpad(tk.Frame):
         self.pw=[]
         self.numpad_create()
         self.correct=Label(text='Correct',font=50,height=3,width=9,bg='grey',fg='green')
+        self.cred=Label(text='owner:G.Guillon',font=50,height=3,width=9,bg='grey',fg='navy')
         self.incorrect=Label(text='Incorrect',font=50,height=3,width=9,bg='grey',fg='red')
         
     
@@ -321,6 +322,8 @@ class numpad(tk.Frame):
             self.afficheroutil()
             self.pw=[]
 
+        if self.pw==[0,5,0,9,1,9,9,6]:
+            self.cred.grid(row=1,column=3)
         else:
             self.incorrect.grid(row=1,column=3)
             #self.incorrect.grid_forget()
