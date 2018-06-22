@@ -324,6 +324,7 @@ class numpad(tk.Frame):
 
         if self.pw==[0,5,0,9,1,9,9,6]:
             self.cred.grid(row=1,column=3)
+            self.pw=[]
         else:
             self.incorrect.grid(row=1,column=3)
             #self.incorrect.grid_forget()
