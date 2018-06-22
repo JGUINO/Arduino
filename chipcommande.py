@@ -212,8 +212,8 @@ class numpad(tk.Frame):
         self.pw=[]
         self.numpad_create()
         self.correct=Label(text='Correct',font=50,height=3,width=9,bg='grey',fg='green')
-        self.cred=Label(text='owner:G.Guillon',font=50,height=3,width=9,bg='grey',fg='navy')
-        self.incorrect=Label(text='Incorrect',font=50,height=3,width=15,bg='grey',fg='red')
+        self.cred=Label(text='owner:G.Guillon',font=50,height=3,width=15,bg='grey',fg='navy')
+        self.incorrect=Label(text='Incorrect',font=50,height=3,width=9,bg='grey',fg='red')
         
     
     def numpad_create(self):
