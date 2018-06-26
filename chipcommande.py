@@ -208,10 +208,11 @@ plab=[pied1,pied2,pied3,pied4]
 
 class numpad(tk.Frame):
     def __init__(self,fenetre,outil):
+        global c
         try:
             c.suppr()
         except NameError:
-            print ('c not defined')
+            print ('c pas def')
         global num
         fenetre.config(bg='light grey')
         num=self
@@ -497,8 +498,8 @@ class capteurs():
         self.boucle()
 
     def boucle(self):
-        mqttb=MQTTb()
-        mqttb.client.loop_start()
+        self.mqttb=MQTTb()
+        self.mqttb.client.loop_start()
         
         self.refreshFigure()
     def refreshFigure(self):
@@ -517,7 +518,7 @@ class capteurs():
         self.refreshFigure(X,Y)
     
     def suppr(self):
-        mqttb.client.loop_stop(force=False)
+        self.mqttb.client.loop_stop(force=False)
         self.canvas._tkcanvas.delete("ALL")
         self.canvas._tkcanvas.place_forget()
 
