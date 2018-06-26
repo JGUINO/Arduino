@@ -500,8 +500,8 @@ class capteurs():
         mqttb=MQTTb()
         mqttb.client.loop_start()
         
-        self.refreshFigure(x,y)
-    def refreshFigure(self,x,y):
+        self.refreshFigure()
+    def refreshFigure(self):
         
         self.canvas.draw()
     def OnButtonClick(self):
