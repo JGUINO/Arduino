@@ -522,6 +522,7 @@ class capteurs():
     def refreshFigure(self):
         self.canvas.get_tk_widget().place_forget()
         self.canvas._tkcanvas.place_forget()
+        self.line1.set_data(x,self.y)
         self.canvas.draw()
         self.canvas.get_tk_widget().place(x=150,y=0)
         self.canvas._tkcanvas.place(x=0,y=0)
