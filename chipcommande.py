@@ -50,7 +50,7 @@ Label(framep,text='Multi',font=(25)).place(x=630,y=30)
 class MQTTb:
     
     
-    def on_connect(client,userdata,flags,rc):
+    def on_connect(self,client,userdata,flags,rc):
         #print('connected (%s)' % client._client_id)
         if rc!=0:
             client.connecte = True
@@ -59,14 +59,14 @@ class MQTTb:
             client.connecte = False
         
     
-    def on_message(client,userdata,message):
+    def on_message(self,client,userdata,message):
         capt=int(message.payload[0])-1
         pression=message.playload[1:len(message.payload)]
         c.y[int(capt)]=int(pression)
         print('capteur %s' %capt)
         print(pression)
 
-    def on_publish(client, obj , mid):
+    def on_publish(self,client, obj , mid):
         print("Publication reussie")
 
     def __init__(self):
