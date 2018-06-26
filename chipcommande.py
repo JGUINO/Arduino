@@ -54,8 +54,13 @@ class MQTTb:
         self.client.connect(host='localhost',port=1883)
     
     def on_connect(self,userdata,flags,rc):
-        print('connected (%s)' % client._client_id)
-        client.subscribe(topic='pressions',qos=2)
+        #print('connected (%s)' % client._client_id)
+        if rc!=0:
+			self.connecte = True
+			print("Connecte avec le code retour "+str(rc))
+		else:
+			self.connecte = False
+        self.client.subscribe(topic='pressions',qos=2)
     
     def on_message(self,userdata,message):
         capt=int(message.payload[0])-1
