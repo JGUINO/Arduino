@@ -48,10 +48,7 @@ framep=Frame(fenetre,height=190,width=720,bg="blue")
 Label(framep,text='Multi',font=(25)).place(x=630,y=30)
 
 class MQTTb:
-    def __init__(self):
-        self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
-        self.client.username_pw_set(username='commande',password=None)
-        self.client.connect(host='192.168.1.124',port=1883)
+    
     
     def on_connect(self,userdata,flags,rc):
         #print('connected (%s)' % client._client_id)
@@ -68,6 +65,13 @@ class MQTTb:
         c.y[int(capt)]=int(pression)
         print('capteur %s' %capt)
         print(pression)
+
+    def __init__(self):
+        self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
+        self.client.username_pw_set(username='commande',password=None)
+        self.client.connect(host='192.168.1.124',port=1883)
+        self.client.on_connect=self.on_connect
+        self.client.on_message=self.on_message
 
 
 class bouton():
