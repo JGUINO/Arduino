@@ -346,7 +346,7 @@ class numpad(tk.Frame):
         if self.pw==[0,5,0,9,1,9,9,6]:
             self.cred.place(x=0,y=50)
             self.pw=[]
-        else:
+        elif self.pw!=[1,2,3,4] and self.pw!=[]:
             self.incorrect.grid(row=1,column=3)
             #self.incorrect.grid_forget()
             self.pw=[]
@@ -368,6 +368,7 @@ class numpad(tk.Frame):
         self.valid.grid_forget()
         self.corriger.grid_forget()
         self.annuler.grid_forget()
+        self.incorrect.grid_forget
     
         
         if self.outil=='coffrage':
