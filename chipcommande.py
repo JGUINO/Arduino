@@ -66,6 +66,9 @@ class MQTTb:
         print('capteur %s' %capt)
         print(pression)
 
+    def on_publish(client, obj , mid):
+        print("Publication reussie")
+
     def __init__(self):
         self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
         self.client.username_pw_set(username='commande',password=None)
