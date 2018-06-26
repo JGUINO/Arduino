@@ -370,7 +370,6 @@ class numpad(tk.Frame):
         self.valid.grid_forget()
         self.corriger.grid_forget()
         self.annuler.grid_forget()
-        self.incorrect.grid_forget
     
         
         if self.outil=='coffrage':
