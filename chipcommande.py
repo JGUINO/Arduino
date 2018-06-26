@@ -61,7 +61,7 @@ class MQTTb:
     
     def on_message(self,client,userdata,message):
         capt=int(message.payload[0])-1
-        pression=message.playload[1:len(message.payload)]
+        pression=message.payload[1:len(message.payload)]
         c.y[int(capt)]=int(pression)
         print('capteur %s' %capt)
         print(pression)
