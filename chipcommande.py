@@ -522,7 +522,7 @@ class capteurs():
     def refreshFigure(self):
         self.canvas._tkcanvas.place_forget
         self.canvas.draw()
-         self.canvas._tkcanvas.place(x=0,y=0)
+        self.canvas._tkcanvas.place(x=0,y=0)
         print('graph raffraichit')
     def OnButtonClick(self):
         # file is opened here and some data is taken
@@ -540,7 +540,7 @@ class capteurs():
         self.mqttb.client.loop_stop(force=False)
         self.canvas._tkcanvas.delete("ALL")
         self.canvas._tkcanvas.place_forget()
-
+ 
 
 
 pfw1=bouton('fw1',21,'192.168.1.117','pied','up')
