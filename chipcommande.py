@@ -457,7 +457,7 @@ class capteurs():
             if len(num.pw)>=4:
                 num.pw4.grid_forget()
         except NameError:
-            print('num not defined')
+            print('num pas definit')
         bpie.config(bg='grey')
         bcoffr.config(bg='grey')
         bcapt.config(bg='yellow')
@@ -517,7 +517,7 @@ class capteurs():
         self.refreshFigure(X,Y)
     
     def suppr(self):
-        loop_stop(force=False)
+        mqttb.client.loop_stop(force=False)
         self.canvas._tkcanvas.delete("ALL")
         self.canvas._tkcanvas.place_forget()
 
