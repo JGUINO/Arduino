@@ -57,7 +57,7 @@ class MQTTb:
             print("Connecte avec le code retour "+str(rc))
         else:
             self.connecte = False
-        self.client.subscribe(topic='pressions',qos=2)
+        
     
     def on_message(self,userdata,message):
         capt=int(message.payload[0])-1
@@ -70,9 +70,10 @@ class MQTTb:
         self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
         self.client.username_pw_set(username='commande',password=None)
         self.client.on_connect=self.on_connect
-        self.client.connect(host='192.168.1.124',port=1883)
-        
         self.client.on_message=self.on_message
+        self.client.connect(host='192.168.1.124',port=1883)
+        self.client.subscribe(topic='pressions',qos=2)
+        
 
 
 class bouton():
