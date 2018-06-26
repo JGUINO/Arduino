@@ -65,8 +65,7 @@ class MQTTb:
         print('pos %s' %capt)
         pression=message.payload[1:len(message.payload)]
         c.y[capt]=int(pression)
-        
-        print(pression)
+        c.refreshFigure()
 
     def on_publish(self,client, obj , mid):
         print("Publication reussie")
@@ -521,8 +520,8 @@ class capteurs():
         
         self.refreshFigure()
     def refreshFigure(self):
-        
         self.canvas.draw()
+        print('graph raffraichit')
     def OnButtonClick(self):
         # file is opened here and some data is taken
         # I've just set some arrays here so it will compile alone
