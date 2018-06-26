@@ -502,6 +502,7 @@ class capteurs():
 
     def boucle(self):
         self.mqttb=MQTTb()
+        self.mqttb.on_connect()
         self.mqttb.client.loop_start()
         
         self.refreshFigure()
