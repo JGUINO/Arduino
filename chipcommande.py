@@ -11,6 +11,7 @@ matplotlib.use('TKAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 from matplotlib.figure import Figure
 import matplotlib.pyplot as pltlib
+import paho.mqtt.client
 
 fenetre = tk.Tk()
 downarrow=PhotoImage(file='arrowdown.gif')
@@ -45,6 +46,22 @@ Label(framec,text='Simple',font=(25)).place(x=630,y=30)
 framep=Frame(fenetre,height=190,width=720,bg="blue")
 #framep.place(x=0,y=230)
 Label(framep,text='Multi',font=(25)).place(x=630,y=30)
+
+class MQTTb:
+    def __init__(self):
+        self.client=paho.mqtt.client.Client(client_id='rpicmd',clean_session=False)
+        self.client.username_pw_set(username='commande',password=None)
+        self.client.connect(host='localhost',port=1883)
+    
+    def on_connect(self,userdata,flags,rc):
+        print('connected (%s)' % client._client_id)
+        client.subscribe(topic='pressions',qos=2)
+    
+    def on_message(self,userdata,message):
+        capt=int(message.payload[0])-1
+        pression=message.playload[1:len(message.payload)]
+        c.y[int(capt)]=int(pression)
+
 
 class bouton():
     def __init__(self,nom,sortie,ip,typ,dire):
@@ -321,6 +338,7 @@ class numpad(tk.Frame):
             self.correct.grid_forget()
             self.blanc1.grid_forget()
             self.blanc2.grid_forget()
+            self.incorrect.grid_forget()
             self.afficheroutil()
             self.pw=[]
 
@@ -464,7 +482,7 @@ class capteurs():
         Fig = matplotlib.figure.Figure(figsize=(8,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
         x=['1','2','3','4']
-        y=[300,870,604,330]
+        y=[0,0,0,0]
         self.line1 = FigSubPlot.bar(x,y)
         FigSubPlot.set_xlabel('Capteurs')
         FigSubPlot.set_ylabel('Pression')
@@ -476,9 +494,14 @@ class capteurs():
         self.canvas.draw()
         self.canvas.get_tk_widget().place(x=150,y=0)
         self.canvas._tkcanvas.place(x=0,y=0)
+        self.boucle()
 
+    def boucle(self):
+        mqttb=MQTTb()
+        loop_start()
+        self.refreshFigure(x,y)
     def refreshFigure(self,x,y):
-               
+        
         self.canvas.draw()
     def OnButtonClick(self):
         # file is opened here and some data is taken
@@ -493,6 +516,7 @@ class capteurs():
         self.refreshFigure(X,Y)
     
     def suppr(self):
+        loop_stop(force=False)
         self.canvas._tkcanvas.delete("ALL")
         self.canvas._tkcanvas.place_forget()
 
