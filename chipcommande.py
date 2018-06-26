@@ -69,8 +69,9 @@ class MQTTb:
     def __init__(self):
         self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
         self.client.username_pw_set(username='commande',password=None)
-        self.client.connect(host='192.168.1.124',port=1883)
         self.client.on_connect=self.on_connect
+        self.client.connect(host='192.168.1.124',port=1883)
+        
         self.client.on_message=self.on_message
 
 
@@ -510,7 +511,6 @@ class capteurs():
 
     def boucle(self):
         self.mqttb=MQTTb()
-        self.mqttb.on_connect
         self.mqttb.client.loop_start()
         
         self.refreshFigure()
