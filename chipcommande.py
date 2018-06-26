@@ -50,13 +50,13 @@ Label(framep,text='Multi',font=(25)).place(x=630,y=30)
 class MQTTb:
     
     
-    def on_connect(self,userdata,flags,rc):
+    def on_connect(client,userdata,flags,rc):
         #print('connected (%s)' % client._client_id)
         if rc!=0:
-            self.connecte = True
+            client.connecte = True
             print("Connecte avec le code retour "+str(rc))
         else:
-            self.connecte = False
+            client.connecte = False
         
     
     def on_message(self,userdata,message):
