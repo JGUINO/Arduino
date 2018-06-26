@@ -59,7 +59,7 @@ class MQTTb:
             client.connecte = False
         
     
-    def on_message(self,userdata,message):
+    def on_message(client,userdata,message):
         capt=int(message.payload[0])-1
         pression=message.playload[1:len(message.payload)]
         c.y[int(capt)]=int(pression)
