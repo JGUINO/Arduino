@@ -499,8 +499,8 @@ class capteurs():
         Fig = matplotlib.figure.Figure(figsize=(8,4),dpi=100)
         FigSubPlot = Fig.add_subplot(111)
         x=['1','2','3','4']
-        y=[0,0,0,0]
-        self.line1 = FigSubPlot.bar(x,y)
+        self.y=[0,0,0,0]
+        self.line1 = FigSubPlot.bar(x,self.y)
         FigSubPlot.set_xlabel('Capteurs')
         FigSubPlot.set_ylabel('Pression')
         FigSubPlot.axis([0,4,0,1000])
