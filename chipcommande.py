@@ -520,7 +520,9 @@ class capteurs():
         
         self.refreshFigure()
     def refreshFigure(self):
+        self.canvas._tkcanvas.place_forget
         self.canvas.draw()
+         self.canvas._tkcanvas.place(x=0,y=0)
         print('graph raffraichit')
     def OnButtonClick(self):
         # file is opened here and some data is taken
