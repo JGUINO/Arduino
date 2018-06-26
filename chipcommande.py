@@ -11,7 +11,7 @@ matplotlib.use('TKAgg')
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
 from matplotlib.figure import Figure
 import matplotlib.pyplot as pltlib
-import paho.mqtt.client
+import paho.mqtt.client as mqttc
 
 fenetre = tk.Tk()
 downarrow=PhotoImage(file='arrowdown.gif')
@@ -498,7 +498,7 @@ class capteurs():
 
     def boucle(self):
         mqttb=MQTTb()
-        loop_start()
+        mqttc.loop_start()
         self.refreshFigure(x,y)
     def refreshFigure(self,x,y):
         
