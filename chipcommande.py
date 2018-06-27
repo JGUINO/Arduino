@@ -545,7 +545,7 @@ class capteurs():
         self.refreshFigure(X,Y)
     
     def suppr(self):
-        self.mqttb.client.loop_stop(force=False)
+        
         self.canvas._tkcanvas.delete("ALL")
         self.canvas._tkcanvas.place_forget()
  
