@@ -61,14 +61,14 @@ class MQTTb:
     
     def on_message(self,client,userdata,message):
         print(message.payload)
-        if message.topic=='ping':
-            self.client.publish(topic='ping',payload='check')
+        
+    def on_message_ping(mosq, obj, msg):
+        self.client.publish(topic='ping',payload='check')
             
-        if message.topic=='pressions':
-            
-            capt=int(message.payload[0])-49
+    def on_message_pressions(mosq, obj, msg):
+            capt=int(msg.payload[0])-49
             print('pos %s' %capt)
-            pression=message.payload[1:len(message.payload)]
+            pression=msg.payload[1:len(msg.payload)]
             c.y[capt]=int(pression)
             c.refreshFigure()
 
@@ -80,10 +80,12 @@ class MQTTb:
         self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
         self.client.username_pw_set(username='commande',password=None)
         self.client.on_connect=self.on_connect
+        self.client.message_callback_add('3189/ping',on_message_ping)
+        self.client.message_callback_add('3189/pressions',on_message_pressions)
         self.client.on_message=self.on_message
         self.client.connect(host='192.168.1.124',port=1883)
-        self.client.subscribe(topic='pressions',qos=2)
-        self.client.subscribe(topic='ping',qos=2)
+        self.client.subscribe("3189/#",qos=2)
+        
         
 
 
