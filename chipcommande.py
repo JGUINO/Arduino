@@ -60,15 +60,19 @@ class MQTTb:
         
     
     def on_message(self,client,userdata,message):
-        print(message.payload)
-        capt=int(message.payload[0])-49
-        print('pos %s' %capt)
-        pression=message.payload[1:len(message.payload)]
-        c.y[capt]=int(pression)
-        c.refreshFigure()
+        if message.topic=='ping':
+            self.client.publish(payload='check')
+        if message.topic=='pression':
+            print(message.payload)
+            capt=int(message.payload[0])-49
+            print('pos %s' %capt)
+            pression=message.payload[1:len(message.payload)]
+            c.y[capt]=int(pression)
+            c.refreshFigure()
 
     def on_publish(self,client, obj , mid):
         print("Publication reussie")
+
 
     def __init__(self):
         self.client=mqttc.Client(client_id='rpicmd',clean_session=False)
@@ -77,6 +81,7 @@ class MQTTb:
         self.client.on_message=self.on_message
         self.client.connect(host='192.168.1.124',port=1883)
         self.client.subscribe(topic='pressions',qos=2)
+        self.client.subscribe(topic='ping',qos=2)
         
 
 
@@ -132,11 +137,11 @@ class bouton():
                 led3.on()
                 led4.on()
 
-        #else:
-            #servo=Servo(21,pin_factory=factory)
+        elif type(self.sortie)=int:
+            #led=Servo(16,pin_factory=factory)
             #servo.value(1)
-            #led=LED(self.sortie,pin_factory=factory)
-            #led.on()
+            led=LED(self.sortie,pin_factory=factory)
+            led.on()
             #GPIO.output(self.sortie, True)
         print('Activation de {}'.format(self.sortie))
         framec.config(bg='red')
