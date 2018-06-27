@@ -15,20 +15,6 @@ def ping (a):
 	else:
 		return True
 
-while True:
-    #if ping('192.168.1.124'):
-        #print ('Bonne connexion')
-        
-    #else:
-        #LED(16).off()
-        #print('Perte de connexion')
-        #file=open('log.txt')
-        #file.write(time.strftime("%H:%M:%S"))
-        #file.close
-        #sleep(5)
-    MQTTclient.publish('cocheck')
-    sleep(0.5)
-
 class MQTTclient:
     
     
@@ -64,3 +50,20 @@ class MQTTclient:
         self.client.on_publish=self.on_publish
         self.client.connect(host='192.168.1.124',port=1883)
         self.client.subscribe(topic='ping',qos=2)
+
+mqttclie=MQTTclient()
+mqttclie.client.loop_start()
+while True:
+    #if ping('192.168.1.124'):
+        #print ('Bonne connexion')
+        
+    #else:
+        #LED(16).off()
+        #print('Perte de connexion')
+        #file=open('log.txt')
+        #file.write(time.strftime("%H:%M:%S"))
+        #file.close
+        #sleep(5)
+    MQTTclie.publish('cocheck')
+    sleep(0.5)
+
