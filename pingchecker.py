@@ -3,7 +3,7 @@ import subprocess
 from time import sleep
 import RPi.GPIO as GPIO
 from gpiozero import LED
-import time
+import time as time
 import paho.mqtt.client as mqttc
 
 
@@ -32,7 +32,7 @@ class MQTTclient:
         print(message.payload)
         self.tme=time.perf_counter()
         print(str(self.tme))
-        if self.time>1000:
+        if self.tme>1000:
             LED(16).off() #do that
         
         
@@ -66,5 +66,5 @@ while True:
         #file.close
         #sleep(5)
     mqttclie.publish('cocheck')
-    sleep(0.5)
+    time.sleep(0.5)
 
