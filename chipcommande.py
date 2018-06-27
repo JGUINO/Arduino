@@ -506,9 +506,9 @@ class capteurs():
         FigSubPlot.set_ylabel('Pression')
         FigSubPlot.axis([0,4,0,1000])
         self.canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(Fig, master=fenetre)
-        ax = self.canvas.figure.axes[0]
-        ax.set_xlim(-1,4)
-        ax.set_ylim(0, 1000)
+        self.ax = self.canvas.figure.axes[0]
+        self.ax.set_xlim(-1,4)
+        self.ax.set_ylim(0, 1000)
         self.canvas.draw()
         self.canvas.get_tk_widget().place(x=150,y=0)
         self.canvas._tkcanvas.place(x=0,y=0)
@@ -520,12 +520,10 @@ class capteurs():
         
         self.refreshFigure()
     def refreshFigure(self):
-        self.canvas.get_tk_widget().place_forget()
-        self.canvas._tkcanvas.place_forget()
-        self.line1.set_data(x,self.y)
+        for rect, h in zip(self.line1, 1000):
+            rect.set_height(h)
         self.canvas.draw()
-        self.canvas.get_tk_widget().place(x=150,y=0)
-        self.canvas._tkcanvas.place(x=0,y=0)
+        
         print('graph raffraichit')
     def OnButtonClick(self):
         # file is opened here and some data is taken
