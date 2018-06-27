@@ -137,7 +137,7 @@ class bouton():
                 led3.on()
                 led4.on()
 
-        elif type(self.sortie)=int:
+        elif type(self.sortie)==int:
             #led=Servo(16,pin_factory=factory)
             #servo.value(1)
             led=LED(self.sortie,pin_factory=factory)
