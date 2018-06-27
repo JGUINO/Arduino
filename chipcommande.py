@@ -62,7 +62,7 @@ class MQTTb:
     def on_message(self,client,userdata,message):
         if message.topic=='ping':
             self.client.publish(payload='check')
-        if message.topic=='pression':
+        if message.topic=='pressions':
             print(message.payload)
             capt=int(message.payload[0])-49
             print('pos %s' %capt)
@@ -137,7 +137,7 @@ class bouton():
                 led3.on()
                 led4.on()
 
-        elif type(self.sortie)==int:
+        else type(self.sortie)==int:
             #led=Servo(16,pin_factory=factory)
             #servo.value(1)
             led=LED(self.sortie,pin_factory=factory)

@@ -29,11 +29,12 @@ class MQTTclient:
         
     
     def on_message(self,client,userdata,message):
-        print(message.payload)
-        self.tme=time.perf_counter()
-        print(str(self.tme))
-        if self.tme>1000:
-            LED(16).off() #do that
+        if message.payload=='check':
+            print(message.payload)
+            self.tme=time.perf_counter()
+            print(str(self.tme))
+            if self.tme>1000:
+                LED(16).off() #do that
         
         
 
