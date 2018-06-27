@@ -39,7 +39,7 @@ class MQTTclient:
         
 
     def on_publish(self,client, obj , mid):
-        self.tme=tim.perf_counter()
+        self.tme=time.perf_counter()
         print("Publication reussie")
 
     def publish(self,payload):
