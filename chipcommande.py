@@ -520,7 +520,7 @@ class capteurs():
         
         self.refreshFigure()
     def refreshFigure(self):
-        for rect, h in zip(self.line1, 1000):
+        for rect, h in zip(self.line1,self.y):
             rect.set_height(h)
         self.canvas.draw()
         
