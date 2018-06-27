@@ -65,6 +65,6 @@ while True:
         #file.write(time.strftime("%H:%M:%S"))
         #file.close
         #sleep(5)
-    MQTTclie.publish('cocheck')
+    mqttclie.publish('cocheck')
     sleep(0.5)
 
