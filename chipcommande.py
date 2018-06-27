@@ -390,7 +390,8 @@ class numpad(tk.Frame):
         self.valid.grid_forget()
         self.corriger.grid_forget()
         self.annuler.grid_forget()
-    
+        self.mqttb=MQTTb()
+        self.mqttb.client.loop_start()
         
         if self.outil=='coffrage':
             
@@ -614,6 +615,7 @@ for i in coffrage:
 for i in pieds:
     boutons.append(i)
 def _quit():
+    MQTTb.client.loop_stop(force=False)
     fenetre.quit()
     fenetre.destroy()
 quitter=tk.Button(fenetre,text='Quitter')
