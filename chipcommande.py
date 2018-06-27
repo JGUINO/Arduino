@@ -615,7 +615,6 @@ for i in coffrage:
 for i in pieds:
     boutons.append(i)
 def _quit():
-    MQTTb.client.loop_stop(force=False)
     fenetre.quit()
     fenetre.destroy()
 quitter=tk.Button(fenetre,text='Quitter')
