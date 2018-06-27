@@ -63,7 +63,7 @@ class MQTTb:
         print(message.payload)
         
     def on_message_ping(mosq, obj, msg):
-        self.client.publish(topic='ping',payload='check')
+        self.client.publish(topic='3189/ping',payload='check')
             
     def on_message_pressions(mosq, obj, msg):
             capt=int(msg.payload[0])-49
