@@ -62,6 +62,7 @@ class MQTTb:
     def on_message(self,client,userdata,message):
         if message.topic=='ping':
             self.client.publish(topic='ping',payload='check')
+            print(message.payload)
         if message.topic=='pressions':
             print(message.payload)
             capt=int(message.payload[0])-49
