@@ -84,7 +84,7 @@ class MQTTb:
         self.client.message_callback_add('3189/pressions',self.on_message_pressions)
         self.client.on_message=self.on_message
         self.client.connect(host='192.168.1.124',port=1883)
-        self.client.subscribe("3189/#",qos=2)
+        self.client.subscribe("3189/#")
         
         
 
