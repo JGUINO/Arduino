@@ -129,29 +129,33 @@ class bouton():
         global led3
         global led4
 
-        if type(self.sortie)==list:
-            if len(self.sortie)==2:
-                led1=LED(self.sortie[0],self.sortie[1],pin_factory=factory)
-                led2=LED(self.sortie[1],pin_factory=factory)
-                led1.on()
-                led2.on()
-            if len(self.sortie)==4:
-                led1=LED(self.sortie[0],pin_factory=factory)
-                led2=LED(self.sortie[1],pin_factory=factory)
-                led3=LED(self.sortie[2],pin_factory=factory)
-                led4=LED(self.sortie[3],pin_factory=factory)
-                led1.on()
-                led2.on()
-                led3.on()
-                led4.on()
+        try:
+            if type(self.sortie)==list:
+                if len(self.sortie)==2:
+                    led1=LED(self.sortie[0],self.sortie[1],pin_factory=factory)
+                    led2=LED(self.sortie[1],pin_factory=factory)
+                    led1.on()
+                    led2.on()
+                if len(self.sortie)==4:
+                    led1=LED(self.sortie[0],pin_factory=factory)
+                    led2=LED(self.sortie[1],pin_factory=factory)
+                    led3=LED(self.sortie[2],pin_factory=factory)
+                    led4=LED(self.sortie[3],pin_factory=factory)
+                    led1.on()
+                    led2.on()
+                    led3.on()
+                    led4.on()
+        
 
-        else :
-            #led=Servo(16,pin_factory=factory)
-            #servo.value(1)
-            led=LED(self.sortie,pin_factory=factory)
-            led.on()
-            #GPIO.output(self.sortie, True)
-        print('Activation de {}'.format(self.sortie))
+            else :
+                #led=Servo(16,pin_factory=factory)
+                #servo.value(1)
+                led=LED(self.sortie,pin_factory=factory)
+                led.on()
+                #GPIO.output(self.sortie, True)
+            print('Activation de {}'.format(self.sortie))
+        except:
+            print('Perte de co?')
         framec.config(bg='red')
         framep.config(bg='red')
         f1.config(bg='red')
@@ -183,18 +187,21 @@ class bouton():
         b1.config(bg='blue')
         tt.config(bg='blue')
 
-        #if type(servo)!=list:
-            #servo.value(-1)
-        if type(led)!=list:
-            led.off()
-        if type(led1)!=list:
-            led1.off()
-        if type(led2)!=list:
-            led2.off()
-        if type(led3)!=list:
-            led3.off()
-        if type(led4)!=list:
-            led4.off()
+        try:
+            #if type(servo)!=list:
+                #servo.value(-1)
+            if type(led)!=list:
+                led.off()
+            if type(led1)!=list:
+                led1.off()
+            if type(led2)!=list:
+                led2.off()
+            if type(led3)!=list:
+                led3.off()
+            if type(led4)!=list:
+                led4.off()
+        except:
+            print('Perte de co?')
 
         servo=[]
         led=[]
@@ -204,13 +211,17 @@ class bouton():
         led4=[]
 
         for l in boutons:
-            GPIO.output(l.sortie,False)
+            try:
+                GPIO.output(l.sortie,False)
+            except:
+                print('perte de co?')
         for k in plab:
             k.config(bg='green')
         for p in clab:
             p.config(bg='green')
         for i in boutons:
             i.button.config(state=NORMAL)
+
 clf1=Label(text="Avant",bg='green')
 clf2=Label(text="gauche",bg='green')
 crf1=Label(text="Avant",bg='green')
