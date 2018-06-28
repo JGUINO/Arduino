@@ -48,7 +48,7 @@ class MQTTclient:
 
     def __init__(self):
         self.client=mqttc.Client(client_id='mtr',clean_session=False)
-        self.client.username_pw_set(username=None,password=None)
+        #self.client.username_pw_set(username=None,password=None)
         self.client.on_connect=self.on_connect
         self.client.on_message=self.on_message
         self.client.on_publish=self.on_publish
