@@ -72,6 +72,8 @@ while True:
             LED(16).off()
     try:
         mqttclie.publish('cocheck')
+    except:
+        print('Co perdue')
     time.sleep(0.5)
     n=n+1
 
