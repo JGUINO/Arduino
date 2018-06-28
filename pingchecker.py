@@ -74,6 +74,8 @@ while True:
         
         LED(21).off()
         print('commandes éteintes')
+        n=0
+        time.sleep(10)
     else:
         print('Bonne connexion')
         
