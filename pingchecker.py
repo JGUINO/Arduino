@@ -42,7 +42,7 @@ class MQTTclient:
         print("Publication reussie")
 
     def publish(self,payload):
-        self.client.publish(topic='ping',qos=2,payload=payload)
+        self.client.publish(topic='ping',qos=0,payload=payload)
 
     def __init__(self):
         self.client=mqttc.Client(client_id='mtr',clean_session=False)
@@ -51,7 +51,7 @@ class MQTTclient:
         self.client.on_message=self.on_message
         self.client.on_publish=self.on_publish
         self.client.connect(host='192.168.1.124',port=1883)
-        self.client.subscribe(topic='ping',qos=2)
+        self.client.subscribe(topic='ping',qos=0)
 
 mqttclie=MQTTclient()
 mqttclie.client.loop_start()
@@ -70,7 +70,8 @@ while True:
     if n==3:
         if time.perf_counter()>2000:
             LED(16).off()
-    mqttclie.publish('cocheck')
+    try:
+        mqttclie.publish('cocheck')
     time.sleep(0.5)
     n=n+1
 
