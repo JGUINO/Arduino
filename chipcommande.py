@@ -12,6 +12,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolb
 from matplotlib.figure import Figure
 import matplotlib.pyplot as pltlib
 import paho.mqtt.client as mqttc
+import os
+import sys
 
 fenetre = tk.Tk()
 downarrow=PhotoImage(file='arrowdown.gif')
