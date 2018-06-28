@@ -40,6 +40,7 @@ class MQTTclient:
 
     def on_publish(self,client, obj , mid):
         #print("Publication reussie")
+        p=0
 
     def publish(self,payload):
         try:
