@@ -75,6 +75,7 @@ while True:
         if time.perf_counter()>100000:
             LED(16).off()
             print('commandes éteintes')
+        n=0
     mqttclie.publish('cocheck')
     time.sleep(0.5)
     n=n+1
