@@ -156,6 +156,7 @@ class bouton():
             print('Activation de {}'.format(self.sortie))
         except:
             print('Perte de co?')
+            os.execv(__file__,sys.argv)
         framec.config(bg='red')
         framep.config(bg='red')
         f1.config(bg='red')
@@ -202,6 +203,7 @@ class bouton():
                 led4.off()
         except:
             print('Perte de co?')
+            os.execv(__file__,sys.argv)
 
         servo=[]
         led=[]
@@ -215,6 +217,7 @@ class bouton():
                 GPIO.output(l.sortie,False)
             except:
                 print('perte de co?')
+                os.execv(__file__,sys.argv)
         for k in plab:
             k.config(bg='green')
         for p in clab:
