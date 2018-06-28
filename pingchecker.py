@@ -30,7 +30,7 @@ class MQTTclient:
     
     def on_message(self,client,userdata,message):
         print(message.payload)
-        if message.payload=='check':
+        if len(message.payload)==5:
             print(message.payload)
             self.tme=time.perf_counter()
             print(self.tme)
