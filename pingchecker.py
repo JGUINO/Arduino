@@ -70,7 +70,7 @@ while True:
         #file.write(time.strftime("%H:%M:%S"))
         #file.close
         #sleep(5)
-    if n<=3:
+    if n>=3:
         
         LED(16).off()
         print('commandes éteintes')
