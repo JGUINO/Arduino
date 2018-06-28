@@ -67,7 +67,7 @@ while True:
         #file.write(time.strftime("%H:%M:%S"))
         #file.close
         #sleep(5)
-    if n=3:
+    if n==3:
         if time.perf_counter()>2000:
             LED(16).off()
     mqttclie.publish('cocheck')
