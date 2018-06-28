@@ -63,9 +63,11 @@ class MQTTb:
         print(message.payload)
         
     def on_message_ping(self,client, usedata, msg):
+        print(msg.payload)
         self.client.publish(topic='ping',payload='check')
             
     def on_message_pressions(self,client, userdata, msg):
+            print(msg.payload)
             capt=int(msg.payload[0])-49
             print('pos %s' %capt)
             pression=msg.payload[1:len(msg.payload)]
