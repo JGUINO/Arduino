@@ -72,7 +72,7 @@ while True:
         #sleep(5)
     if n>=3:
         
-        LED(16).off()
+        GPIO.output(16,False)
         print('commandes éteintes')
     else:
         print('Bonne connexion')
