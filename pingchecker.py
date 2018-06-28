@@ -33,14 +33,12 @@ class MQTTclient:
         if message.payload=='check':
             print(message.payload)
             self.tme=time.perf_counter()
-            print(str(self.tme))
-            if self.tme>1000:
-                LED(16).off() #do that
+            print(self.tme)
+            
         
         
 
     def on_publish(self,client, obj , mid):
-        self.tme=time.perf_counter()
         print("Publication reussie")
 
     def publish(self,payload):
@@ -57,6 +55,7 @@ class MQTTclient:
 
 mqttclie=MQTTclient()
 mqttclie.client.loop_start()
+n=0
 while True:
     #if ping('192.168.1.124'):
         #print ('Bonne connexion')
@@ -68,6 +67,10 @@ while True:
         #file.write(time.strftime("%H:%M:%S"))
         #file.close
         #sleep(5)
+    if n=3:
+        if time.perf_counter()>2000:
+            LED(16).off()
     mqttclie.publish('cocheck')
     time.sleep(0.5)
+    n=n+1
 
