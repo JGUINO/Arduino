@@ -64,7 +64,7 @@ class MQTTb:
         
     def on_message_ping(self,client, usedata, msg):
         print(msg.payload)
-        if msg.payload=='cocheck':
+        if len(msg.payload)==7:
             self.client.publish(topic='ping',payload='check')
             
     def on_message_pressions(self,client, userdata, msg):
