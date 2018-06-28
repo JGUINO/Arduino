@@ -6,7 +6,7 @@ from gpiozero import LED
 import time as time
 import paho.mqtt.client as mqttc
 
-
+GPIO.setup(16,GPIO.OUT)
 def ping (a):
 	cmd=shlex.split("ping -c1 %s" % a)
 	try:
