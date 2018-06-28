@@ -29,11 +29,10 @@ class MQTTclient:
         
     
     def on_message(self,client,userdata,message):
-        
+        global n
         if len(message.payload)==5:
             print(message.payload)
-            self.tme=time.perf_counter()
-            print(self.tme)
+            n=0
             
         
         
@@ -56,7 +55,7 @@ class MQTTclient:
         self.client.on_publish=self.on_publish
         self.client.connect(host='192.168.1.124',port=1883)
         self.client.subscribe(topic='ping',qos=0)
-
+global n
 mqttclie=MQTTclient()
 mqttclie.client.loop_start()
 n=0
@@ -71,13 +70,13 @@ while True:
         #file.write(time.strftime("%H:%M:%S"))
         #file.close
         #sleep(5)
-    if n==3:
-        if time.perf_counter()>100000:
-            LED(16).off()
-            print('commandes éteintes')
-        else:
-            print('Bonne connexion')
-        n=0
+    if n<=3:
+        
+        LED(16).off()
+        print('commandes éteintes')
+    else:
+        print('Bonne connexion')
+        
     mqttclie.publish('cocheck')
     time.sleep(0.5)
     n=n+1
