@@ -76,15 +76,15 @@ while True:
         pot_adjust = abs(trim_pot - last_read)
  
         if DEBUG:
-                print ("trim_pot:"), trim_pot
-                print ("pot_adjust:"), pot_adjust
-                print ("last_read"), last_read
+                print ("trim_pot:", trim_pot)
+                print ("pot_adjust:", pot_adjust)
+                print ("last_read", last_read)
  
         if ( pot_adjust > tolerance ):
                trim_pot_changed = True
  
         if DEBUG:
-                print ("trim_pot_changed"), trim_pot_changed
+                print ("trim_pot_changed", trim_pot_changed)
  
         if ( trim_pot_changed ):
                 set_volume = trim_pot / 10.24           # convert 10bit adc0 (0-1024) trim pot read into 0-100 volume level
@@ -96,8 +96,8 @@ while True:
                 os.system(set_vol_cmd)  # set volume
  
                 if DEBUG:
-                        print ("set_volume"), set_volume
-                        print ("tri_pot_changed"), set_volume
+                        print ("set_volume", set_volume)
+                        print ("tri_pot_changed", set_volume)
  
                 # save the potentiometer reading for the next loop
                 last_read = trim_pot
