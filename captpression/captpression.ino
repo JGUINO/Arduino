@@ -3,10 +3,9 @@
 #include <Adafruit_SSD1306.h>
 #include <Wire.h>
 #include <stdlib.h>
-
 #include <system.h>
                          
-
+#include <string.h>
 #include <HX711.h>
 
 #include <Adafruit_GFX.h>
@@ -28,6 +27,7 @@ Adafruit_SSD1306 display(OLED_RESET);
 #include "LCDtest.h"
 #define LOGO16_GLCD_HEIGHT 16 
 #define LOGO16_GLCD_WIDTH  16 
+#define buzzer 12
 using namespace std;
 
 #if (SSD1306_LCDHEIGHT != 64)
@@ -38,13 +38,17 @@ const char ssid[] = "Livebox-f6d8";
 const char pass[] = "FE496357475DAFEF5F7ED4DFC3";
 const char username[] = "";
 const char brokerpass[] = "";
+const char*ip;
 char* msg;
-WiFiClient net;
-PubSubClient client(net);
-
+char s[15];
+WiFiClient esp8266;
+PubSubClient client;
+int Al=12;
 unsigned long lastMillis = 0;
 HX711 scale;
-float mesure=0;
+float mesure;
+
+
 
 void connect() {
   Serial.print("checking wifi...");
@@ -66,12 +70,14 @@ void connect() {
   //client.subscribe("pressions");
   //client.unsubscribe("pressions");
 }
+
+
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("ESP8266Client")) {
+    if (client.connect("1")) {
       Serial.println("connected");
       // Once connected, publish an announcement...
 
@@ -94,29 +100,38 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println();
 
   // Switch on the LED if an 1 was received as first character
-  if ((char)payload[0] == '1') {
-    digitalWrite(BUILTIN_LED, LOW);   // Turn the LED on (Note that LOW is the voltage level
-    // but actually the LED is on; this is because
-    // it is acive low on the ESP-01)
-  } else {
-    digitalWrite(BUILTIN_LED, HIGH);  // Turn the LED off by making the voltage HIGH
-  }
+  
 }
 
+void alarme(){
+  tone(buzzer,500);
+  delay(3000);
+  noTone(buzzer);
+}
 
+void jauge(float mesure,int maxi) {
+  
+  display.drawRect(10, 25, 100, 25, WHITE);
+  display.fillRect(10,25,(mesure/maxi)*100,25,WHITE);
+  delay(1);
+}
 void setup() {
-  pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
-  //Serial.begin(9600);
+  pinMode(Al, OUTPUT);
+  Wire.begin();
+  Serial.begin(9600);
+  ip="192.168.1.124";
   Serial.println("HX711");
   WiFi.begin(ssid, pass);
   delay(2000);
+  connect();
   // Note: Local domain names (e.g. "Computer.local" on OSX) are not supported by Arduino.
   // You need to set the IP address directly.
   //client.begin("broker.shiftr.io", net);
-  client.setServer("192.168.1.124",1883);
+  client.setClient(esp8266);
+  client.setServer(ip,1883);
   client.setCallback(callback);
   
-  connect();
+  reconnect();
   
 
   Serial.println("Initializing the scale");
@@ -223,9 +238,7 @@ void setup() {
 
   // draw a bitmap icon and 'animate' movement
   //testdrawbitmap(logo16_glcd_bmp, LOGO16_GLCD_HEIGHT, LOGO16_GLCD_WIDTH);
-  if (!client.connected()) {
-    reconnect();
-  }
+  
 }
 
 void loop() {
@@ -239,10 +252,12 @@ void loop() {
   delay(1000);  // <- fixes some issues with WiFi stability
   scale.power_up();
  
-  char s[8]; // Nombre maximal de chiffres + 1
+   // Nombre maximal de chiffres + 1
   sprintf(s, "%f", mesure); // Conversion de l'entier
   printf("%f => \"%s\"\n", mesure, s);
   Serial.println(s);
+  
+  
   if (!client.connected()) {
     reconnect();
   }
@@ -251,8 +266,8 @@ void loop() {
   if (millis() - lastMillis > 1000) {
   lastMillis = millis();
 
-  msg=strcat("1",s);
-  client.publish("pressions",msg);
+  
+  client.publish("capteur 1",s);
   }
   
   
@@ -262,12 +277,16 @@ void loop() {
   display.setTextColor(WHITE);
   display.setCursor(0,0);
   display.println("Lecture Poids");
-  display.println(msg);
+  display.println(s);
   display.println();
+  jauge(mesure,10000);
  
   
-  display.display();  
-  
+  display.display();
+  if (mesure>5000){
+    alarme();
+  }  
+  memset(s,0,sizeof s);
 }
 
 
